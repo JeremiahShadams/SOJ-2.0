@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&amp;family=Archivo:wght@400;600;700;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#EDEAE3;color:#1A1A1A;font-family:Archivo,sans-serif;overflow-x:hidden}
+a{color:#1F4FD8}a:hover{color:#FF4D00}
+::selection{background:#FF4D00;color:#fff}
+button{font-family:inherit}
+@keyframes slamIn{0%{opacity:0;transform:scale(2.1)}55%{opacity:1;transform:scale(.93)}75%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+@keyframes dropIn{0%{transform:translateY(-46vh)}68%{transform:translateY(0) scale(1.12,.88)}84%{transform:scale(.95,1.06)}100%{transform:none}}
+@keyframes settleW{0%{transform:rotate(0)}25%{transform:rotate(1.7deg)}55%{transform:rotate(-1.1deg)}80%{transform:rotate(.5deg)}100%{transform:rotate(0)}}
+@keyframes shakeX{0%,100%{transform:translate(0,0)}25%{transform:translate(2px,-1px)}50%{transform:translate(-2px,1px)}75%{transform:translate(1px,2px)}}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes blinkB{0%,55%{opacity:1}56%,100%{opacity:.12}}
+@keyframes doorUp{to{transform:translate(-50%,-103%)}}
+@keyframes sprayIn{from{clip-path:inset(0 100% 0 0);opacity:.6}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes scanSweep{from{left:-10%}to{left:105%}}
+@keyframes floatChip{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes flapUp{to{transform:translateY(-102%)}}
+@keyframes flapDn{to{transform:translateY(102%)}}
+@keyframes dashDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes hintP{0%,100%{opacity:.85;transform:translateY(0)}50%{opacity:.35;transform:translateY(6px)}}
+@media(max-width:860px){[data-hud-card]{transform:scale(.82);transform-origin:left bottom}[data-navlinks]{display:none}[data-bell]{position:static;margin:18px auto 0;display:block}}
+</style>
+</helmet>
+
+<div ref="{{rootRef}}" style="position:relative;min-height:100vh">
+
+  <!-- ══════════ ENTRANCE ══════════ -->
+  <sc-if value="{{entOn}}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:500;pointer-events:none">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:360px;height:250px;background:repeating-linear-gradient(180deg,#DCD8CE 0 22px,#CFCBBF 22px 26px);border:3px solid #1A1A1A;border-top:none;box-shadow:10px 10px 0 rgba(26,26,26,.25);animation:doorUp .55s cubic-bezier(.6,0,.4,1) .5s both">
+        <div style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.14em;font-weight:700">DOCK 01 — INBOUND</div>
+      </div>
+      <sc-if value="{{entStamp}}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute;left:24px;bottom:120px;transform:rotate(-8deg)">
+          <div style="display:inline-block;border:3px solid #1F4FD8;color:#1F4FD8;font-family:'Space Mono',monospace;font-weight:700;font-size:14px;letter-spacing:.12em;padding:8px 16px;border-radius:6px;box-shadow:inset 0 0 0 2px #EDEAE3,inset 0 0 0 3.5px #1F4FD8;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">ORDER PLACED — 10 JUL 2026</div>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav style="position:fixed;top:0;left:0;right:0;height:54px;z-index:330;background:#EDEAE3;border-bottom:2px solid #1A1A1A;display:flex;align-items:center;gap:6px;padding:0 20px">
+    <div style="font-family:'Allerta Stencil',sans-serif;font-size:17px;letter-spacing:.04em">SOJ <span style="color:#FF4D00">/</span> NATIVE LABS</div>
+    <div data-navlinks="1" style="margin-left:auto;display:flex;align-items:center;gap:4px">
+      <a href="#manifest" title="MANIFEST — my work" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-decoration:none;color:#1A1A1A;padding:8px 12px" style-hover="color:#FF4D00">MANIFEST</a>
+      <a href="#customs" title="CUSTOMS — about me" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-decoration:none;color:#1A1A1A;padding:8px 12px" style-hover="color:#FF4D00">CUSTOMS</a>
+      <a href="#depot" title="DEPOT — playground" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-decoration:none;color:#1A1A1A;padding:8px 12px" style-hover="color:#FF4D00">DEPOT</a>
+      <a href="#delivery" title="DELIVERY — contact" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-decoration:none;color:#1A1A1A;padding:8px 12px" style-hover="color:#FF4D00">DELIVERY</a>
+    </div>
+    <button onClick="{{toggleSound}}" style="margin-left:10px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;background:#FFFDF8;border:2px solid #1A1A1A;padding:6px 10px;cursor:pointer;box-shadow:3px 3px 0 #1A1A1A" style-hover="background:#FF4D00;color:#fff">{{soundLabel}}</button>
+  </nav>
+
+  <!-- ══════════ TRACKING HUD ══════════ -->
+  <div data-hud-card="1" style="position:fixed;left:18px;bottom:18px;z-index:320;background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:5px 5px 0 rgba(26,26,26,.9);padding:12px 16px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;line-height:1.8;min-width:250px">
+    <div style="font-weight:700;border-bottom:1px solid #1A1A1A;padding-bottom:4px;margin-bottom:4px">TRACKING № NL-2026-SOJ</div>
+    <div>STATUS: <span data-hud="status" style="color:#1F4FD8;font-weight:700">ORDER PLACED</span> ▸ <span data-hud="pct">0%</span></div>
+    <div>NEXT STOP: <span data-hud="next">STATION 00 — THE LABEL</span></div>
+    <div style="height:5px;background:#E4DFD3;margin-top:6px;border:1px solid #1A1A1A"><div data-hud="bar" style="height:100%;width:0%;background:#1F4FD8"></div></div>
+  </div>
+
+  <!-- ══════════ THE ROUTE ══════════ -->
+  <svg data-el="route" style="position:absolute;top:0;left:0;z-index:1;pointer-events:none;overflow:visible">
+    <g data-el="rollers"></g>
+    <path data-el="path" fill="none" stroke="#1A1A1A" stroke-width="3"></path>
+    <path data-el="belt" fill="none" stroke="#EDEAE3" stroke-width="3" stroke-dasharray="7 26"></path>
+  </svg>
+
+  <!-- ══════════ THE BOX ══════════ -->
+  <div data-el="box" style="position:absolute;top:0;left:0;z-index:6;width:140px;pointer-events:none;will-change:transform;transform:translate(-600px,-600px);opacity:{{boxOpacity}}">
+    <div data-el="boxinner" style="position:relative">
+      <div data-el="shadow" style="position:absolute;bottom:-9px;left:10px;width:120px;height:13px;background:rgba(26,26,26,.18);border-radius:50%"></div>
+      <div style="height:22px;background:#D9BE8E;border:2px solid #1A1A1A;border-bottom:none;position:relative">
+        <div style="position:absolute;left:50%;top:0;bottom:0;width:28px;transform:translateX(-50%);background:#B99B67;border-left:2px solid #A98B5B;border-right:2px solid #A98B5B"></div>
+      </div>
+      <div style="height:96px;background:#C9A876;border:2px solid #1A1A1A;position:relative;overflow:visible">
+        <div style="position:absolute;left:50%;top:0;bottom:0;width:28px;transform:translateX(-50%);background:#BC9E6A;opacity:.7"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.22em;color:#1A1A1A;opacity:.85;text-transform:uppercase">{{boxLabel}}</div>
+        <div style="position:absolute;left:6px;bottom:6px;width:46px;height:20px;background:#FFFDF8;border:1px solid #1A1A1A;padding:3px 4px">
+          <div style="height:100%;background:repeating-linear-gradient(90deg,#1A1A1A 0 2px,transparent 2px 5px)"></div>
+        </div>
+        <sc-for list="{{stamps}}" as="st" hint-placeholder-count="0">
+          <div style="position:absolute;left:{{st.left}}px;top:{{st.top}}px;transform:rotate({{st.rot}}deg);z-index:3">
+            <div style="width:54px;height:54px;border-radius:50%;border:2.5px solid {{st.color}};color:{{st.color}};display:flex;align-items:center;justify-content:center;text-align:center;font-family:'Space Mono',monospace;font-size:7.5px;font-weight:700;letter-spacing:.03em;line-height:1.3;padding:5px;background:rgba(255,253,248,.66);box-shadow:inset 0 0 0 1.5px rgba(255,253,248,.9),inset 0 0 0 3px {{st.color}};animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both;text-transform:uppercase">{{st.text}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ STATION 00 — THE LABEL ══════════ -->
+  <section id="label" data-screen-label="Station 00 — Hero" style="position:relative;z-index:5;padding:86px 5vw 6vh;scroll-margin-top:70px">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#6E6A5E;border-top:1px solid #1A1A1A;border-bottom:1px solid #1A1A1A;padding:8px 2px;flex-wrap:wrap;gap:6px">
+        <span>FULFILMENT LINE 01 — PORTFOLIO CONSIGNMENT</span>
+        <span><span data-clock="1">—:—:— WAT</span> · LAGOS, NG</span>
+      </div>
+
+      <svg width="240" height="132" viewBox="0 0 240 132" style="display:block;margin:26px auto 0">
+        <line x1="120" y1="0" x2="120" y2="46" stroke="#1A1A1A" stroke-width="5"></line>
+        <rect x="66" y="46" width="108" height="36" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="3"></rect>
+        <text x="120" y="69" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A" letter-spacing="1">LABELER-01</text>
+        <circle cx="182" cy="52" r="5" fill="#FF4D00"></circle>
+        <line x1="96" y1="82" x2="96" y2="114" stroke="#1A1A1A" stroke-width="3"></line>
+        <line x1="144" y1="82" x2="144" y2="114" stroke="#1A1A1A" stroke-width="3"></line>
+        <rect x="80" y="114" width="80" height="12" fill="#1A1A1A"></rect>
+      </svg>
+      <div data-dock="hero" style="width:2px;height:150px;margin:0 auto"></div>
+
+      <div style="position:relative;background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:10px 10px 0 rgba(26,26,26,.9);max-width:920px;margin:60px auto 0;padding:42px 48px 44px">
+        <div data-type="1" style="font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.12em;color:#1A1A1A">SHIP FROM: LAGOS, NIGERIA (WAT)</div>
+        <h1 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.6rem,8.4vw,7rem);line-height:.98;letter-spacing:.01em;margin:18px 0 14px;width:110%;margin-left:-5%;animation:sprayIn .7s ease .4s both;text-wrap:balance">JEREMIAH “SOJ” SHADAMORO</h1>
+        <div data-type="1" style="font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.12em">DECLARED VALUE: DESIGN ENGINEER — AI PRODUCTS, END-TO-END</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:14px;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.12em;font-weight:700;color:#1E7A46">
+          <span style="width:10px;height:10px;border-radius:50%;background:#1E7A46;display:inline-block;animation:pulseDot 2s infinite"></span>
+          HANDLING: AVAILABLE FOR U.S. REMOTE ROLES
+        </div>
+        <p style="font-size:clamp(17px,2vw,21px);line-height:1.55;max-width:58ch;margin:26px 0 30px">I design the interface <strong>and</strong> engineer the intelligence behind it. Contracts, food systems, payments — packed, inspected and shipped from Lagos.</p>
+        <div style="display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap">
+          <div style="flex:1;min-width:230px;max-width:380px">
+            <div style="height:58px;background:#fff;border:2px solid #1A1A1A;padding:5px"><div data-barcode="hero" style="width:100%;height:100%"></div></div>
+            <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#6E6A5E;margin-top:6px">REAL CODE 128 — SCAN WITH A PHONE → MY GITHUB</div>
+          </div>
+        </div>
+        <sc-if value="{{heroStamp}}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:-22px;right:-18px;transform:rotate(9deg)">
+            <div style="border:3px solid #FF4D00;color:#FF4D00;font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.1em;padding:8px 14px;border-radius:6px;background:#FFFDF8;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #FF4D00;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">FRAGILE: HANDLE WITH AMBITION</div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="text-align:center;margin-top:9vh;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;animation:hintP 2.4s infinite">SCROLL TO START THE LINE ▼</div>
+    </div>
+  </section>
+
+  <div style="height:10px;background:repeating-linear-gradient(45deg,#1A1A1A 0 14px,#FF4D00 14px 28px);border-top:2px solid #1A1A1A;border-bottom:2px solid #1A1A1A;position:relative;z-index:5"></div>
+
+  <!-- ══════════ STATION 01 — CONTRACT GUARD ══════════ -->
+  <section id="manifest" data-screen-label="Station 01 — Contract Guard" style="position:relative;z-index:5;padding:13vh 5vw;scroll-margin-top:70px">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start">
+      <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:34px 36px;position:relative">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:12px">STATION 01 / QUALITY CONTROL</div>
+        <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;margin:0 0 16px">CONTRACT GUARD</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">AI</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">RAG</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">LEGAL-TECH</span>
+        </div>
+        <p style="font-size:17px;line-height:1.65;margin:0 0 18px;max-width:52ch">A RAG engine that reads contracts the way senior counsel does — clause-aware retrieval, grounded answers, a receipt for every claim.</p>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:#1E7A46;border:2px solid #1E7A46;padding:7px 12px;background:#fff">RETRIEVAL 68% → 91% · 50 CONTRACT TYPES</span>
+          <sc-if value="{{s1}}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-block;transform:rotate(-8deg)"><span style="display:inline-block;border:2.5px solid #1E7A46;color:#1E7A46;border-radius:50%;width:74px;height:74px;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.05em;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.35;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #1E7A46;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">QUALITY INSPECTED</span></span>
+          </sc-if>
+        </div>
+        <div style="margin-top:24px"><button onClick="{{openCrate}}" style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;color:#1F4FD8;background:none;border:none;border-bottom:2px solid #1F4FD8;padding:2px 0;cursor:pointer" style-hover="color:#FF4D00;border-color:#FF4D00">OPEN CRATE ↗ — INSPECTION REPORT</button></div>
+      </div>
+      <div style="position:relative;padding-top:26px">
+        <div style="position:absolute;top:0;left:10%;right:10%;height:26px;border-left:4px solid #1A1A1A;border-right:4px solid #1A1A1A;border-top:4px solid #1A1A1A"></div>
+        <div style="position:relative;background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:14px">
+          <div style="position:absolute;top:5px;left:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;bottom:5px;left:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;bottom:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="height:320px;position:relative">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shot-contract-guard" shape="rect" placeholder="Drop the Contract Guard screenshot here" hint-size="100%,320px" style="width:100%;height:100%"></x-import>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6E6A5E;margin-top:10px;text-align:center">FIG. 01 — CONTRACT GUARD / MOUNTED INSPECTION SCREEN</div>
+        </div>
+        <div style="height:190px;position:relative"><div data-dock="s1" style="position:absolute;left:50%;bottom:36px;width:2px;height:2px"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATION 02 — FRESCO ══════════ -->
+  <section data-screen-label="Station 02 — Fresco" style="position:relative;z-index:5;padding:13vh 5vw">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start">
+      <div style="position:relative;padding-top:26px;order:0">
+        <div style="position:absolute;top:0;left:10%;right:10%;height:26px;border-left:4px solid #1A1A1A;border-right:4px solid #1A1A1A;border-top:4px solid #1A1A1A"></div>
+        <div style="position:relative;background:#FFFDF8;border:2px solid #1F4FD8;box-shadow:8px 8px 0 rgba(31,79,216,.55);padding:14px">
+          <div style="position:absolute;top:-14px;left:18px;background:#1F4FD8;color:#fff;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.14em;padding:4px 10px">COLD CHAIN UNIT — 4°C</div>
+          <div style="height:340px;position:relative;display:flex;justify-content:center">
+            <div style="width:230px;height:100%;position:relative;border:2px solid #1A1A1A;background:#fff;padding:8px">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shot-fresco" shape="rect" placeholder="Drop the Fresco app capture here" hint-size="100%,100%" style="width:100%;height:100%"></x-import>
+            </div>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6E6A5E;margin-top:10px;text-align:center">FIG. 02 — FRESCO / REFRIGERATED DISPLAY</div>
+        </div>
+        <div style="height:190px;position:relative"><div data-dock="s2" style="position:absolute;left:50%;bottom:36px;width:2px;height:2px"></div></div>
+      </div>
+      <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:34px 36px;position:relative;order:1">
+        <div style="position:absolute;top:-16px;right:22px;transform:rotate(6deg);background:#1F4FD8;color:#fff;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;padding:6px 12px;box-shadow:3px 3px 0 #1A1A1A">PERISHABLE ❆</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:12px">STATION 02 / COLD CHAIN</div>
+        <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;margin:0 0 16px">FRESCO</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">COMPUTER VISION</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">MOBILE</span>
+        </div>
+        <p style="font-size:17px;line-height:1.65;margin:0 0 18px;max-width:52ch">Point a phone camera at fresh produce and Fresco estimates its remaining shelf life — computer vision keeping food out of the bin and money in the till.</p>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:#1F4FD8;border:2px solid #1F4FD8;padding:7px 12px;background:#fff">CV SHELF-LIFE ESTIMATOR · ON-DEVICE</span>
+          <sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-block;transform:rotate(7deg)"><span style="border:2.5px solid #1F4FD8;color:#1F4FD8;border-radius:50%;width:74px;height:74px;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.35;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #1F4FD8;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">KEEP CHILLED</span></span>
+          </sc-if>
+        </div>
+        <div style="margin-top:24px"><span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6E6A5E">REPORT: SEALED — ON REQUEST</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATION 03 — PAYTRACE ══════════ -->
+  <section data-screen-label="Station 03 — PayTrace" style="position:relative;z-index:5;padding:13vh 5vw">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start">
+      <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:34px 36px;position:relative">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:12px">STATION 03 / SETTLEMENTS</div>
+        <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;margin:0 0 16px">PAYTRACE</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">FINTECH</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">PAYMENTS</span>
+        </div>
+        <p style="font-size:17px;line-height:1.65;margin:0 0 18px;max-width:52ch">Payment infrastructure with a paper trail — reconciliation and tracing for transactions that are never allowed to go missing.</p>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:#1A1A1A;border:2px solid #1A1A1A;padding:7px 12px;background:#fff">EVERY KOBO ACCOUNTED FOR</span>
+          <sc-if value="{{s3}}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-block;transform:rotate(-6deg)"><span style="border:2.5px solid #1A1A1A;color:#1A1A1A;border-radius:50%;width:74px;height:74px;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.35;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #1A1A1A;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">SETTLED ✓</span></span>
+          </sc-if>
+        </div>
+        <div style="margin-top:24px"><span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6E6A5E">REPORT: SEALED — ON REQUEST</span></div>
+      </div>
+      <div style="position:relative;padding-top:26px">
+        <div style="position:absolute;top:0;left:10%;right:10%;height:26px;border-left:4px solid #1A1A1A;border-right:4px solid #1A1A1A;border-top:4px solid #1A1A1A"></div>
+        <div style="position:relative;background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:14px">
+          <div style="position:absolute;top:5px;left:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;bottom:5px;left:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="position:absolute;bottom:5px;right:5px;width:9px;height:9px;border-radius:50%;background:#1A1A1A"></div>
+          <div style="height:320px;position:relative">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shot-paytrace" shape="rect" placeholder="Drop the PayTrace screenshot here" hint-size="100%,320px" style="width:100%;height:100%"></x-import>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6E6A5E;margin-top:10px;text-align:center">FIG. 03 — PAYTRACE / MOUNTED INSPECTION SCREEN</div>
+        </div>
+        <div style="height:190px;position:relative"><div data-dock="s3" style="position:absolute;left:50%;bottom:36px;width:2px;height:2px"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATION 04 — KORTEX ══════════ -->
+  <section data-screen-label="Station 04 — Kortex" style="position:relative;z-index:5;padding:13vh 5vw">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start">
+      <div style="position:relative;padding-top:26px;order:0">
+        <div style="position:absolute;top:0;left:10%;right:10%;height:26px;border-left:4px solid #1A1A1A;border-right:4px solid #1A1A1A;border-top:4px solid #1A1A1A"></div>
+        <div style="position:relative;background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:14px">
+          <div style="position:absolute;top:8px;right:10px;width:11px;height:11px;border-radius:50%;background:#FF4D00;animation:blinkB 1.1s infinite;z-index:2"></div>
+          <div style="height:320px;position:relative">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="shot-kortex" shape="rect" placeholder="Drop a Kortex work-in-progress shot here" hint-size="100%,320px" style="width:100%;height:100%"></x-import>
+          </div>
+          <div style="position:absolute;top:44%;left:-4%;right:-4%;height:26px;background:repeating-linear-gradient(45deg,#1A1A1A 0 14px,#FF4D00 14px 28px);border:2px solid #1A1A1A;transform:rotate(-4deg);display:flex;align-items:center;justify-content:center">
+            <span style="background:#FFFDF8;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.16em;padding:2px 10px;border:1px solid #1A1A1A">UNDER CONSTRUCTION — DO NOT CROSS</span>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#6E6A5E;margin-top:10px;text-align:center">FIG. 04 — KORTEX / GANTRY PARTIALLY TAPED</div>
+        </div>
+        <div style="height:190px;position:relative"><div data-dock="s4" style="position:absolute;left:50%;bottom:36px;width:2px;height:2px"></div></div>
+      </div>
+      <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:34px 36px;position:relative;order:1">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:12px">STATION 04 / IN PRODUCTION</div>
+        <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.6rem);line-height:1;margin:0 0 16px">KORTEX</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">AGENTIC AI</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;border:1.5px solid #1A1A1A;padding:4px 9px">CONTENT SYSTEMS</span>
+        </div>
+        <p style="font-size:17px;line-height:1.65;margin:0 0 18px;max-width:52ch">An agentic content system, being built in public. The line is live, the crate is not yet sealed — watch this station.</p>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:#FF4D00;border:2px solid #FF4D00;padding:7px 12px;background:#fff">STATUS: IN PRODUCTION ●</span>
+          <sc-if value="{{s4}}" hint-placeholder-val="{{ false }}">
+            <span style="display:inline-block;transform:rotate(8deg)"><span style="border:2.5px solid #FF4D00;color:#FF4D00;border-radius:50%;width:74px;height:74px;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;line-height:1.35;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #FF4D00;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">IN PROD</span></span>
+          </sc-if>
+        </div>
+        <div style="margin-top:24px"><span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6E6A5E">CRATE NOT YET SEALED</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:10px;background:repeating-linear-gradient(45deg,#1A1A1A 0 14px,#FF4D00 14px 28px);border-top:2px solid #1A1A1A;border-bottom:2px solid #1A1A1A;position:relative;z-index:5"></div>
+
+  <!-- ══════════ CUSTOMS — ABOUT ══════════ -->
+  <section id="customs" data-screen-label="Customs — About" style="position:relative;z-index:5;padding:13vh 5vw;scroll-margin-top:70px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:10px">GATE 05 / DECLARATIONS</div>
+      <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.4rem,5vw,4.2rem);margin:0 0 40px">CUSTOMS</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:48px;align-items:start">
+        <div style="background:#101F4E;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);position:relative;overflow:hidden;min-height:420px;padding:24px">
+          <div style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#6F8FFF;font-weight:700">X-RAY VIEW — GATE 05</div>
+          <div style="position:relative;width:240px;height:180px;margin:52px auto 0;border:2px dashed #6F8FFF;display:flex;align-items:center;justify-content:center">
+            <svg width="150" height="120" viewBox="0 0 150 120">
+              <circle cx="62" cy="30" r="14" fill="none" stroke="#8FA8FF" stroke-width="2.5"></circle>
+              <path d="M40 92 Q42 58 62 52 Q82 58 84 92" fill="none" stroke="#8FA8FF" stroke-width="2.5"></path>
+              <line x1="20" y1="92" x2="130" y2="92" stroke="#6F8FFF" stroke-width="2.5"></line>
+              <path d="M88 92 L92 70 L122 70 L126 92" fill="none" stroke="#8FA8FF" stroke-width="2.5"></path>
+              <line x1="92" y1="76" x2="122" y2="76" stroke="#8FA8FF" stroke-width="2"></line>
+            </svg>
+          </div>
+          <div style="position:absolute;top:70px;left:6%;animation:floatChip 3.2s ease-in-out infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">PYTHON</span></div>
+          <div style="position:absolute;top:120px;right:5%;animation:floatChip 2.7s ease-in-out .4s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">TYPESCRIPT</span></div>
+          <div style="position:absolute;top:190px;left:4%;animation:floatChip 3.6s ease-in-out .8s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">PYTORCH</span></div>
+          <div style="position:absolute;top:250px;right:7%;animation:floatChip 3s ease-in-out .2s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">FASTAPI</span></div>
+          <div style="position:absolute;top:300px;left:10%;animation:floatChip 3.4s ease-in-out .6s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">REACT</span></div>
+          <div style="position:absolute;top:64px;right:26%;animation:floatChip 2.9s ease-in-out 1s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">NEXT.JS</span></div>
+          <div style="position:absolute;top:310px;right:30%;animation:floatChip 3.1s ease-in-out .3s infinite"><span style="font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#9FB4FF;border:1.5px solid #6F8FFF;padding:3px 8px">POSTGRES</span></div>
+          <sc-if value="{{xray}}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:0;bottom:0;width:7%;background:linear-gradient(90deg,transparent,rgba(143,168,255,.5),transparent);animation:scanSweep 1.5s ease-in-out .1s 2 both"></div>
+          </sc-if>
+          <div style="position:absolute;left:24px;right:24px;bottom:18px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:#9FB4FF;border-top:1px solid #31469B;padding-top:10px">CONTENTS VERIFIED: 1× ENGINEER · FUTA CS ’26 · SHIPS WITHOUT PERMISSION</div>
+        </div>
+        <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:34px 36px;position:relative">
+          <div style="position:absolute;top:-18px;right:26px;transform:rotate(-3deg)">
+            <div style="width:110px;height:134px;position:relative;background:#fff;border:2px solid #1A1A1A;padding:6px;box-shadow:4px 4px 0 rgba(26,26,26,.8)">
+              <div style="position:absolute;top:-7px;left:44px;width:22px;height:6px;background:#1A1A1A;transform:rotate(-12deg)"></div>
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="passport-soj" shape="rect" placeholder="Passport photo" hint-size="100%,100%" style="width:100%;height:100%"></x-import>
+            </div>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:20px">CUSTOMS DECLARATION — FORM NL-05</div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;line-height:2;border-bottom:1px dashed #B9B29E;padding-bottom:16px;margin-bottom:20px;max-width:88%">
+            OCCUPATION: <strong>DESIGN ENGINEER — AI PRODUCTS</strong><br>
+            DECLARED EXPERIENCE: <strong>TECVISON</strong> — SOFTWARE &amp; AI ENG · <strong>EMPEROR FINANCIAL</strong> — AI ENG (CONTRACT)<br>
+            ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>FUTA CS ’26</strong>
+          </div>
+          <p style="font-size:17px;line-height:1.7;margin:0 0 14px;max-width:56ch">Final-year computer science at FUTA. I’ve shipped AI products across contracts, food systems and payments — I don’t wait for permission to build.</p>
+          <p style="font-size:17px;line-height:1.7;margin:0 0 14px;max-width:56ch">I work the whole line: design the interface, engineer the intelligence behind it, and carry the thing to production myself.</p>
+          <p style="font-size:17px;line-height:1.7;margin:0;max-width:56ch">Lagos-based, WAT timezone — a comfortable overlap with U.S. mornings, available for remote roles.</p>
+          <sc-if value="{{cleared}}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;bottom:22px;right:26px;transform:rotate(-10deg)">
+              <div style="border:3px solid #1E7A46;color:#1E7A46;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;letter-spacing:.2em;padding:8px 18px;border-radius:6px;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 4px #1E7A46;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">CLEARED</div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="width:2px;height:150px;margin:30px auto 0;position:relative"><div data-dock="customs" style="position:absolute;left:0;top:60%;width:2px;height:2px"></div></div>
+    </div>
+  </section>
+
+  <!-- ══════════ DEPOT — PLAYGROUND ══════════ -->
+  <section id="depot" data-screen-label="Depot — Playground" style="position:relative;z-index:5;padding:10vh 5vw;scroll-margin-top:70px">
+    <div style="max-width:1280px;margin:0 auto;position:relative">
+      <div data-dock="depot" style="position:absolute;left:6%;top:40%;width:2px;height:2px"></div>
+      <div style="border:3px dashed #1A1A1A;padding:38px clamp(18px,4vw,48px) 44px;position:relative">
+        <div style="position:absolute;top:-14px;left:28px;background:#EDEAE3;padding:2px 12px;font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em">DEPOT — AUTHORIZED PERSONNEL &amp; CURIOUS RECRUITERS ONLY</div>
+        <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2rem,4vw,3.2rem);margin:0 0 34px">THE DEPOT <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;color:#6E6A5E;font-weight:400">— A SIDING OFF THE MAIN LINE</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:34px;align-items:start">
+
+          <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:6px 6px 0 rgba(26,26,26,.9);padding:22px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px;flex-wrap:wrap">
+              <span style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em">BUBBLE WRAP — QA STRESS RELIEF</span>
+              <span style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6E6A5E">POPS: {{popCount}}/{{bubbleTotal}}</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:6px">
+              <sc-for list="{{bubbles}}" as="b" hint-placeholder-count="10">
+                <button onClick="{{b.pop}}" style="width:100%;aspect-ratio:1;border-radius:50%;cursor:pointer;padding:0;background:{{b.bg}};border:2px solid {{b.bd}};transform:{{b.sc}};box-shadow:{{b.sh}}"></button>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;min-height:44px">
+              <sc-if value="{{bubbleDone}}" hint-placeholder-val="{{ false }}">
+                <span style="display:inline-block;transform:rotate(-5deg)"><span style="display:inline-block;border:2.5px solid #FF4D00;color:#FF4D00;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;padding:6px 12px;border-radius:5px;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #FF4D00;animation:slamIn .35s cubic-bezier(.2,1.4,.4,1) both">CERTIFIED PROCRASTINATOR</span></span>
+              </sc-if>
+              <button onClick="{{resetBubbles}}" style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;background:none;border:none;color:#1F4FD8;cursor:pointer;border-bottom:1.5px solid #1F4FD8">RE-WRAP</button>
+            </div>
+          </div>
+
+          <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:6px 6px 0 rgba(26,26,26,.9);padding:22px">
+            <div style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;margin-bottom:14px">LABEL MAKER — MARK THE SITE</div>
+            <div style="display:flex;gap:10px">
+              <input value="{{labelText}}" onChange="{{onLabelInput}}" onKeyDown="{{onLabelKey}}" maxLength="24" placeholder="TYPE ANYTHING (24 CHARS)" style="flex:1;min-width:0;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border:2px solid #1A1A1A;padding:9px 10px;background:#fff;outline-color:#FF4D00">
+              <button onClick="{{printLabel}}" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;background:#FF4D00;color:#fff;border:2px solid #1A1A1A;padding:9px 14px;cursor:pointer;box-shadow:3px 3px 0 #1A1A1A" style-hover="transform:translate(-1px,-1px);box-shadow:4px 4px 0 #1A1A1A">PRINT</button>
+            </div>
+            <div style="position:relative;height:220px;margin-top:14px;border:2px dashed #B9B29E;overflow:hidden;touch-action:none">
+              <sc-for list="{{labels}}" as="lb" hint-placeholder-count="0">
+                <div onPointerDown="{{lb.down}}" style="position:absolute;left:0;top:0;transform:{{lb.tr}};cursor:grab;touch-action:none;background:#fff;border:2px solid #1A1A1A;box-shadow:3px 3px 0 rgba(26,26,26,.85);padding:7px 10px 6px;animation:slamIn .3s cubic-bezier(.2,1.4,.4,1) both;user-select:none">
+                  <div style="font-family:'Allerta Stencil',sans-serif;font-size:13px;letter-spacing:.06em;white-space:nowrap">{{lb.text}}</div>
+                  <div style="height:8px;margin-top:4px;background:repeating-linear-gradient(90deg,#1A1A1A 0 2px,transparent 2px 5px)"></div>
+                </div>
+              </sc-for>
+              <div style="position:absolute;inset:auto 8px 6px auto;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#B9B29E;pointer-events:none">DRAG YOUR STICKERS AROUND</div>
+            </div>
+          </div>
+
+          <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:6px 6px 0 rgba(26,26,26,.9);padding:22px 22px 26px;background-image:linear-gradient(180deg,transparent 96%,rgba(26,26,26,.06) 100%)">
+            <div style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.12em;margin-bottom:14px">RECEIPT TERMINAL — TRY “SUDO HIRE SOJ”</div>
+            <div data-el="termscroll" style="height:236px;overflow-y:auto;font-family:'Space Mono',monospace;font-size:11.5px;line-height:1.85;letter-spacing:.03em;border:1px solid #E0DBCD;padding:12px;background:#fff">
+              <sc-for list="{{termLines}}" as="tl" hint-placeholder-count="2">
+                <div style="color:{{tl.c}};white-space:pre-wrap">{{tl.t}}</div>
+              </sc-for>
+              <div style="display:flex;gap:6px;align-items:center">
+                <span style="color:#FF4D00;font-weight:700">&gt;</span>
+                <input value="{{termInput}}" onChange="{{onTermInput}}" onKeyDown="{{onTermKey}}" placeholder="help" style="flex:1;min-width:0;font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.03em;border:none;outline:none;background:transparent;text-transform:lowercase"></input>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:10px;background:repeating-linear-gradient(45deg,#1A1A1A 0 14px,#FF4D00 14px 28px);border-top:2px solid #1A1A1A;border-bottom:2px solid #1A1A1A;position:relative;z-index:5"></div>
+
+  <!-- ══════════ DISPATCH — CHATBOT ══════════ -->
+  <section id="dispatch" data-screen-label="Dispatch — Chatbot" style="position:relative;z-index:5;padding:13vh 5vw;scroll-margin-top:70px">
+    <div style="max-width:1200px;margin:0 auto;position:relative">
+      <div data-dock="dispatch" style="position:absolute;left:50%;top:-40px;width:2px;height:2px"></div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:10px">GATE 06 / DISPATCH DESK</div>
+      <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.4rem,5vw,4.2rem);margin:0 0 8px">ASK DISPATCH.</h2>
+      <p style="font-size:17px;line-height:1.6;max-width:56ch;margin:0 0 38px">A live dispatcher is on shift. Ask anything about this consignment — the projects, the engineer, the availability. Replies print below.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:48px;align-items:start">
+
+        <!-- intercom unit -->
+        <div style="background:#1A1A1A;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.4);padding:26px;position:relative;max-width:420px">
+          <div style="position:absolute;top:-14px;left:20px;background:#FF4D00;color:#fff;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.14em;padding:4px 10px;border:2px solid #1A1A1A">INTERCOM UNIT NL-06</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.14em;color:#EDEAE3">DISPATCH CHANNEL 1</span>
+            <span style="display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:{{onAirColor}}">
+              <span style="width:9px;height:9px;border-radius:50%;background:{{onAirColor}};display:inline-block;animation:{{onAirAnim}}"></span>{{onAirText}}
+            </span>
+          </div>
+          <div style="height:110px;background:repeating-linear-gradient(180deg,#2E2C28 0 5px,#1A1A1A 5px 10px);border:2px solid #4A473F;margin-bottom:18px"></div>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{chatChips}}" as="ch" hint-placeholder-count="4">
+              <button onClick="{{ch.ask}}" disabled="{{chatBusy}}" style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-align:left;background:#EDEAE3;color:#1A1A1A;border:2px solid #4A473F;padding:10px 13px;cursor:pointer" style-hover="background:#FF4D00;color:#fff">▸ {{ch.q}}</button>
+            </sc-for>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a8578;margin-top:16px">HOLD BUTTON ETIQUETTE NOT REQUIRED · TYPE FREELY, RIGHT →</div>
+        </div>
+
+        <!-- receipt printer chat -->
+        <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:22px;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1A1A1A;padding-bottom:10px;margin-bottom:14px">
+            <span style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em">RECEIPT PRINTER — TRANSCRIPT</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#6E6A5E">FEED: THERMAL 80MM</span>
+          </div>
+          <div data-el="chatscroll" style="height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding:4px 2px">
+            <sc-for list="{{chatMsgs}}" as="m" hint-placeholder-count="1">
+              <sc-if value="{{m.isUser}}" hint-placeholder-val="{{ false }}">
+                <div style="align-self:flex-end;max-width:82%;transform:rotate(1deg)">
+                  <div style="background:#fff;border:2px solid #1A1A1A;box-shadow:3px 3px 0 rgba(26,26,26,.85);padding:9px 12px 8px;animation:slamIn .3s cubic-bezier(.2,1.4,.4,1) both">
+                    <div style="font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.14em;color:#FF4D00;margin-bottom:3px">YOU — VISITOR BADGE</div>
+                    <div style="font-family:'Space Mono',monospace;font-size:12px;line-height:1.6;letter-spacing:.02em">{{m.text}}</div>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{m.isBot}}" hint-placeholder-val="{{ true }}">
+                <div style="align-self:flex-start;max-width:86%;transform:rotate(-.6deg)">
+                  <div style="background:#fff;border:1.5px solid #D8D2C2;border-bottom:none;box-shadow:2px 3px 0 rgba(26,26,26,.14);padding:11px 14px 12px;animation:fadeUp .35s ease both;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),96% 100%,92% calc(100% - 6px),88% 100%,84% calc(100% - 6px),80% 100%,76% calc(100% - 6px),72% 100%,68% calc(100% - 6px),64% 100%,60% calc(100% - 6px),56% 100%,52% calc(100% - 6px),48% 100%,44% calc(100% - 6px),40% 100%,36% calc(100% - 6px),32% 100%,28% calc(100% - 6px),24% 100%,20% calc(100% - 6px),16% 100%,12% calc(100% - 6px),8% 100%,4% calc(100% - 6px),0 100%)">
+                    <div style="display:flex;justify-content:space-between;gap:12px;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:.14em;color:#6E6A5E;margin-bottom:5px"><span>DISPATCH — NATIVE LABS</span><span>{{m.time}}</span></div>
+                    <div style="font-family:'Space Mono',monospace;font-size:12px;line-height:1.7;letter-spacing:.02em;white-space:pre-wrap;padding-bottom:6px">{{m.text}}</div>
+                  </div>
+                </div>
+              </sc-if>
+            </sc-for>
+            <sc-if value="{{chatBusy}}" hint-placeholder-val="{{ false }}">
+              <div style="align-self:flex-start;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;color:#6E6A5E;padding:4px 2px">DISPATCHER IS KEYING<span style="animation:blinkB 1s infinite">▮</span></div>
+            </sc-if>
+          </div>
+          <div style="display:flex;gap:10px;border-top:2px dashed #B9B29E;padding-top:14px;margin-top:10px">
+            <input value="{{chatInput}}" onChange="{{onChatInput}}" onKeyDown="{{onChatKey}}" maxLength="200" placeholder="ASK THE DISPATCHER ANYTHING…" style="flex:1;min-width:0;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.03em;border:2px solid #1A1A1A;padding:11px 12px;background:#fff;outline-color:#FF4D00"></input>
+            <button onClick="{{sendChat}}" disabled="{{chatBusy}}" style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;background:#1F4FD8;color:#fff;border:2px solid #1A1A1A;padding:11px 16px;cursor:pointer;box-shadow:3px 3px 0 #1A1A1A" style-hover="transform:translate(-1px,-1px);box-shadow:4px 4px 0 #1A1A1A">SEND ▸</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ DELIVERY — CONTACT ══════════ -->
+  <section id="delivery" data-screen-label="Delivery — Contact" style="position:relative;z-index:5;padding:14vh 5vw 0;scroll-margin-top:70px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E;margin-bottom:10px">FINAL STOP / PROOF OF DELIVERY</div>
+      <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.6rem,7vw,5.6rem);margin:0 0 50px;line-height:1">SIGN FOR DELIVERY.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:start">
+
+        <div style="position:relative;padding:10px 0 0">
+          <div style="position:relative;width:250px;margin:0 auto">
+            <div style="width:26px;height:26px;border-radius:50%;border:2px solid #1A1A1A;margin:0 auto 10px;background:{{porchBg}};box-shadow:{{porchGlow}}"></div>
+            <div style="width:220px;height:330px;margin:0 auto;border:3px solid #1A1A1A;background:#B98F5C;position:relative;box-shadow:8px 8px 0 rgba(26,26,26,.9)">
+              <div style="position:absolute;top:22px;left:24px;right:24px;height:110px;border:2px solid #1A1A1A;opacity:.45"></div>
+              <div style="position:absolute;top:158px;left:24px;right:24px;height:130px;border:2px solid #1A1A1A;opacity:.45"></div>
+              <div style="position:absolute;top:170px;right:16px;width:13px;height:13px;border-radius:50%;background:#FF4D00;border:2px solid #1A1A1A"></div>
+              <sc-if value="{{doorLit}}" hint-placeholder-val="{{ false }}">
+                <div style="position:absolute;top:0;bottom:0;left:-14px;width:14px;background:linear-gradient(90deg,rgba(255,217,138,0),rgba(255,217,138,.9))"></div>
+              </sc-if>
+            </div>
+            <div style="width:210px;height:46px;margin:10px auto 0;background:#C9A876;border:2px solid #1A1A1A;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.22em;position:relative">
+              {{boxLabel}}
+              <div data-dock="delivery" style="position:absolute;left:50%;top:-40px;width:2px;height:2px"></div>
+            </div>
+            <button data-bell="1" onClick="{{doorbell}}" title="Ring the doorbell" style="position:absolute;right:-64px;top:150px;width:48px;height:48px;border-radius:50%;background:#FF4D00;border:2.5px solid #1A1A1A;box-shadow:4px 4px 0 rgba(26,26,26,.9);cursor:pointer;font-family:'Space Mono',monospace;font-size:8.5px;font-weight:700;color:#fff;letter-spacing:.06em" style-hover="transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(26,26,26,.9)">RING</button>
+          </div>
+        </div>
+
+        <div style="display:grid;gap:30px">
+          <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:24px;position:relative">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <span style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em">PROOF OF DELIVERY — SIGN HERE ✕</span>
+              <button onClick="{{clearSig}}" style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;background:none;border:none;color:#1F4FD8;cursor:pointer;border-bottom:1.5px solid #1F4FD8">CLEAR</button>
+            </div>
+            <canvas data-el="sig" style="width:100%;height:150px;display:block;border:2px dashed #B9B29E;background:#fff;touch-action:none;cursor:crosshair"></canvas>
+            <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#6E6A5E;margin-top:8px">DRAW WITH CURSOR OR FINGER · SIGNING IS OPTIONAL — THE RECEIPT IS YOURS EITHER WAY</div>
+            <sc-if value="{{signed}}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:52px;right:34px;transform:rotate(-12deg);pointer-events:none">
+                <div style="border:3.5px solid #1E7A46;color:#1E7A46;font-family:'Space Mono',monospace;font-weight:700;font-size:19px;letter-spacing:.2em;padding:10px 20px;border-radius:8px;box-shadow:inset 0 0 0 2.5px #fff,inset 0 0 0 5px #1E7A46;animation:slamIn .4s cubic-bezier(.2,1.4,.4,1) both;background:rgba(255,255,255,.75)">DELIVERED ✓</div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:8px 8px 0 rgba(26,26,26,.9);padding:30px 32px;border-bottom:6px dashed #1A1A1A">
+            <div style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;border-bottom:1px solid #1A1A1A;padding-bottom:10px;margin-bottom:18px">DELIVERY RECEIPT — NL-2026-SOJ</div>
+            <button onClick="{{copyEmail}}" title="Click to copy" style="font-family:'Space Mono',monospace;font-size:clamp(15px,2.4vw,21px);font-weight:700;letter-spacing:.02em;background:none;border:none;border-bottom:2.5px solid #1A1A1A;padding:0 0 3px;cursor:pointer;color:#1A1A1A;word-break:break-all;text-align:left" style-hover="color:#FF4D00;border-color:#FF4D00">shadams.dev@gmail.com</button>
+            <span style="margin-left:12px;font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#1E7A46;opacity:{{copiedOp}}">COPIED ✓</span>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 26px">
+              <a href="resume.pdf" style="font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-decoration:none;background:#1E7A46;color:#fff;border:2px solid #1A1A1A;padding:11px 18px;box-shadow:4px 4px 0 rgba(26,26,26,.9)" style-hover="transform:translate(-1px,-1px);box-shadow:5px 5px 0 rgba(26,26,26,.9)">RESUME ↓</a>
+              <a href="https://github.com/oluwatosin123456789" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-decoration:none;background:#FFFDF8;color:#1A1A1A;border:2px solid #1A1A1A;padding:11px 18px;box-shadow:4px 4px 0 rgba(26,26,26,.9)" style-hover="background:#1F4FD8;color:#fff">GITHUB ↗</a>
+              <a href="https://www.linkedin.com/in/jeremiah-shadamoro-547224235/" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-decoration:none;background:#FFFDF8;color:#1A1A1A;border:2px solid #1A1A1A;padding:11px 18px;box-shadow:4px 4px 0 rgba(26,26,26,.9)" style-hover="background:#1F4FD8;color:#fff">LINKEDIN ↗</a>
+            </div>
+            <div style="max-width:420px">
+              <div style="height:64px;background:#fff;border:2px solid #1A1A1A;padding:5px"><div data-barcode="mail" style="width:100%;height:100%"></div></div>
+              <div style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#6E6A5E;margin-top:6px">SCAN WITH YOUR PHONE CAMERA → OPENS AN EMAIL DRAFT TO ME</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="border-top:2px solid #1A1A1A;margin-top:12vh;padding:16px 5vw 18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:#6E6A5E">
+      <span>© 2026 NATIVE LABS · SHIPPED FROM LAGOS · NO TEMPLATES IN THIS CONSIGNMENT</span>
+      <span data-clock="1">—:—:— WAT</span>
+      <button onClick="{{returnToTop}}" style="font-family:'Space Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.1em;background:none;border:none;color:#1F4FD8;cursor:pointer;border-bottom:1.5px solid #1F4FD8">RETURN TO SENDER ↑</button>
+    </footer>
+  </section>
+
+  <!-- ══════════ CASE STUDY — INSIDE THE CRATE ══════════ -->
+  <sc-if value="{{crateOpen}}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Case Study — Contract Guard" style="position:fixed;inset:0;z-index:400;background:#EDEAE3;overflow-y:auto">
+      <div style="position:fixed;top:0;left:0;right:0;height:50%;background:#C9A876;border-bottom:3px solid #1A1A1A;animation:flapUp .55s cubic-bezier(.6,0,.4,1) .05s both;z-index:2"></div>
+      <div style="position:fixed;bottom:0;left:0;right:0;height:50%;background:#B99B67;border-top:3px solid #1A1A1A;animation:flapDn .55s cubic-bezier(.6,0,.4,1) .05s both;z-index:2"></div>
+      <button onClick="{{closeCrate}}" style="position:fixed;top:18px;right:20px;z-index:5;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;background:#FF4D00;color:#fff;border:2px solid #1A1A1A;padding:10px 16px;cursor:pointer;box-shadow:4px 4px 0 rgba(26,26,26,.9)" style-hover="transform:translate(-1px,-1px)">RESEAL ✕</button>
+      <div style="max-width:960px;margin:0 auto;padding:70px 5vw 90px;animation:fadeUp .5s ease .5s both;position:relative;z-index:3">
+        <div style="background:#FFFDF8;border:2px solid #1A1A1A;box-shadow:10px 10px 0 rgba(26,26,26,.9);padding:clamp(28px,5vw,56px);position:relative">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;color:#6E6A5E">INSPECTION REPORT — CRATE 01</div>
+            <div style="transform:rotate(6deg)"><span style="display:inline-block;border:2.5px solid #1F4FD8;color:#1F4FD8;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;padding:7px 13px;border-radius:5px;box-shadow:inset 0 0 0 2px #FFFDF8,inset 0 0 0 3.5px #1F4FD8;animation:slamIn .4s cubic-bezier(.2,1.4,.4,1) .8s both">QUALITY INSPECTED</span></div>
+          </div>
+          <h2 style="font-family:'Allerta Stencil',sans-serif;font-weight:400;font-size:clamp(2.4rem,6vw,4.6rem);margin:14px 0 26px;line-height:1">CONTRACT GUARD</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;border:2px solid #1A1A1A;margin-bottom:40px">
+            <div style="padding:12px 16px;border-right:1px solid #1A1A1A"><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:#6E6A5E;margin-bottom:4px">ROLE</div><div style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em">DESIGN ENGINEER, END-TO-END</div></div>
+            <div style="padding:12px 16px;border-right:1px solid #1A1A1A"><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:#6E6A5E;margin-bottom:4px">STACK</div><div style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em">PYTHON · FASTAPI · PGVECTOR · NEXT.JS</div></div>
+            <div style="padding:12px 16px;border-right:1px solid #1A1A1A"><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:#6E6A5E;margin-bottom:4px">TIMELINE</div><div style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em">2025</div></div>
+            <div style="padding:12px 16px"><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:#6E6A5E;margin-bottom:4px">STATUS</div><div style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em;color:#1E7A46">SHIPPED ✓</div></div>
+          </div>
+
+          <div style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;color:#FF4D00;margin-bottom:10px">01 — PROBLEM</div>
+          <p style="font-size:17.5px;line-height:1.7;max-width:66ch;margin:0 0 34px">Legal teams reviewed contracts with keyword search that missed clause context entirely. Baseline retrieval sat at 68% — one in three questions surfaced the wrong clause, and every wrong clause meant a lawyer re-reading a 40-page document.</p>
+
+          <div style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;color:#FF4D00;margin-bottom:10px">02 — APPROACH</div>
+          <p style="font-size:17.5px;line-height:1.7;max-width:66ch;margin:0 0 26px">Clause-aware chunking instead of naive splitting, hybrid dense + keyword retrieval, a reranking pass, and grounded generation that must cite the exact clause it answers from. An evaluation harness across 50 contract types kept every change honest.</p>
+
+          <svg viewBox="0 0 900 150" style="width:100%;display:block;margin:0 0 40px" data-om-raster="1">
+            <rect x="8" y="50" width="130" height="50" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="2.5"></rect>
+            <text x="73" y="80" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">CONTRACTS</text>
+            <rect x="196" y="50" width="150" height="50" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="2.5"></rect>
+            <text x="271" y="74" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">CLAUSE-AWARE</text>
+            <text x="271" y="90" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">CHUNKER</text>
+            <rect x="404" y="50" width="150" height="50" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="2.5"></rect>
+            <text x="479" y="74" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">HYBRID</text>
+            <text x="479" y="90" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">RETRIEVER</text>
+            <rect x="612" y="50" width="120" height="50" fill="#FFFDF8" stroke="#1A1A1A" stroke-width="2.5"></rect>
+            <text x="672" y="80" text-anchor="middle" font-family="Space Mono,monospace" font-size="11" font-weight="700" fill="#1A1A1A">RERANKER</text>
+            <rect x="790" y="44" width="104" height="62" fill="#1E7A46" stroke="#1A1A1A" stroke-width="2.5"></rect>
+            <text x="842" y="70" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" font-weight="700" fill="#fff">GROUNDED</text>
+            <text x="842" y="86" text-anchor="middle" font-family="Space Mono,monospace" font-size="10.5" font-weight="700" fill="#fff">ANSWER</text>
+            <line x1="138" y1="75" x2="196" y2="75" stroke="#1F4FD8" stroke-width="2.5" stroke-dasharray="6 5" pathLength="1" style="stroke-dashoffset:1;animation:dashDraw .7s ease .9s forwards"></line>
+            <line x1="346" y1="75" x2="404" y2="75" stroke="#1F4FD8" stroke-width="2.5" stroke-dasharray="6 5" pathLength="1" style="stroke-dashoffset:1;animation:dashDraw .7s ease 1.15s forwards"></line>
+            <line x1="554" y1="75" x2="612" y2="75" stroke="#1F4FD8" stroke-width="2.5" stroke-dasharray="6 5" pathLength="1" style="stroke-dashoffset:1;animation:dashDraw .7s ease 1.4s forwards"></line>
+            <line x1="732" y1="75" x2="790" y2="75" stroke="#1F4FD8" stroke-width="2.5" stroke-dasharray="6 5" pathLength="1" style="stroke-dashoffset:1;animation:dashDraw .7s ease 1.65s forwards"></line>
+            <text x="8" y="132" font-family="Space Mono,monospace" font-size="9.5" fill="#6E6A5E" letter-spacing="1">FIG. A — THE RAG PIPELINE AS A LITERAL PIPELINE. DATA RIDES THE BELT.</text>
+          </svg>
+
+          <div style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.16em;color:#FF4D00;margin-bottom:18px">03 — RESULT</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:36px">
+            <div style="border:2px solid #1E7A46;padding:22px;animation:slamIn .4s cubic-bezier(.2,1.4,.4,1) 1.9s both"><div style="font-family:'Allerta Stencil',sans-serif;font-size:3.2rem;color:#1E7A46;line-height:1">91%</div><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;margin-top:8px">RETRIEVAL ACCURACY</div></div>
+            <div style="border:2px solid #1E7A46;padding:22px;animation:slamIn .4s cubic-bezier(.2,1.4,.4,1) 2.05s both"><div style="font-family:'Allerta Stencil',sans-serif;font-size:3.2rem;color:#1E7A46;line-height:1">+23</div><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;margin-top:8px">POINTS OVER 68% BASELINE</div></div>
+            <div style="border:2px solid #1E7A46;padding:22px;animation:slamIn .4s cubic-bezier(.2,1.4,.4,1) 2.2s both"><div style="font-family:'Allerta Stencil',sans-serif;font-size:3.2rem;color:#1E7A46;line-height:1">50</div><div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;margin-top:8px">CONTRACT TYPES IN THE EVAL HARNESS</div></div>
+          </div>
+          <p style="font-size:17.5px;line-height:1.7;max-width:66ch;margin:0">Every answer now cites the exact clause it came from. The lawyers stopped re-reading 40-page documents; the harness makes regressions impossible to ship quietly.</p>
+        </div>
+        <div style="text-align:center;margin-top:36px">
+          <button onClick="{{closeCrate}}" style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.12em;background:#FFFDF8;border:2px solid #1A1A1A;padding:13px 24px;cursor:pointer;box-shadow:5px 5px 0 rgba(26,26,26,.9)" style-hover="transform:translate(-1px,-1px);box-shadow:6px 6px 0 rgba(26,26,26,.9)">RESEAL &amp; CONTINUE →</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;entrance&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;full&quot;,&quot;calm&quot;],&quot;default&quot;:&quot;full&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Experience&quot;},&quot;boxLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;NATIVE LABS&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Cargo&quot;}}">
+class Component extends DCLogic {
+  state = {
+    ent: 'run', dropped: false, heroStamp: false,
+    stamps: [], fired: {}, signed: false, copied: false, doorLit: false, soundOn: false,
+    bubbles: Array(60).fill(false), labels: [], labelText: '',
+    termLines: [
+      { t: 'NATIVE LABS — RECEIPT TERMINAL v3.0', c: '#1A1A1A' },
+      { t: "TYPE 'HELP' AND HIT ENTER", c: '#8a8578' }
+    ],
+    termInput: '', crateOpen: false,
+    chat: [{ who: 'bot', text: 'DISPATCH ON SHIFT. THIS CHANNEL COVERS ONE CONSIGNMENT: JEREMIAH "SOJ" SHADAMORO, DESIGN ENGINEER. GO AHEAD.', time: '--:--' }],
+    chatInput: '', chatBusy: false
+  };
+  rootRef = React.createRef();
+
+  q(sel) { return this.rootRef.current ? this.rootRef.current.querySelector(sel) : null; }
+
+  componentDidMount() {
+    this.calm = (this.props.motion ?? 'full') === 'calm' ||
+      (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._ivs = []; this._tos = [];
+
+    this.drawBarcode('[data-barcode=hero]', 'https://github.com/oluwatosin123456789');
+    this.drawBarcode('[data-barcode=mail]', 'mailto:shadams.dev@gmail.com');
+
+    const build = () => this.buildRoute();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(build, 80));
+    this._tos.push(setTimeout(build, 500));
+    this._tos.push(setTimeout(build, 1600));
+    this._raf = requestAnimationFrame(this.tick);
+    this._onresize = () => { clearTimeout(this._rt); this._rt = setTimeout(build, 250); };
+    window.addEventListener('resize', this._onresize);
+
+    this._clock = setInterval(() => {
+      const t = new Date(Date.now() + (new Date().getTimezoneOffset() + 60) * 60000);
+      const pad = n => String(n).padStart(2, '0');
+      const s = pad(t.getHours()) + ':' + pad(t.getMinutes()) + ':' + pad(t.getSeconds()) + ' WAT';
+      if (this.rootRef.current) this.rootRef.current.querySelectorAll('[data-clock]').forEach(e => { e.textContent = s; });
+    }, 1000);
+
+    this.initSig();
+
+    try {
+      const l = JSON.parse(sessionStorage.getItem('soj-labels') || '[]');
+      if (l.length) this.setState({ labels: l });
+    } catch (e) {}
+
+    const skip = !(this.props.entrance ?? true) || sessionStorage.getItem('soj-ent');
+    if (skip) {
+      this.setState({ ent: 'done', dropped: true, heroStamp: true });
+      if (!this.state.stamps.length) this.setState(s => ({ stamps: [{ key: 'st0', text: 'FRAGILE', color: '#FF4D00', left: 6, top: 4, rot: -12 }] }));
+    } else {
+      this._tos.push(setTimeout(() => {
+        this.setState({ dropped: true });
+        const bi = this.q('[data-el=boxinner]');
+        if (bi && !this.calm) bi.style.animation = 'dropIn .6s cubic-bezier(.3,1.3,.5,1) both';
+        this.snd('thunk');
+      }, 900));
+      this._tos.push(setTimeout(() => {
+        this.setState({ ent: 'done', heroStamp: true });
+        this.addStamp('FRAGILE', '#FF4D00');
+        this.snd('beep');
+        try { sessionStorage.setItem('soj-ent', '1'); } catch (e) {}
+        this.typeAll();
+      }, 2100));
+    }
+  }
+
+  componentWillUnmount() {
+    cancelAnimationFrame(this._raf);
+    clearInterval(this._clock);
+    (this._ivs || []).forEach(clearInterval);
+    (this._tos || []).forEach(clearTimeout);
+    window.removeEventListener('resize', this._onresize);
+    document.body.style.overflow = '';
+  }
+
+  buildRoute() {
+    const root = this.rootRef.current; if (!root) return;
+    const svg = root.querySelector('[data-el=route]');
+    const path = root.querySelector('[data-el=path]');
+    const belt = root.querySelector('[data-el=belt]');
+    const rollers = root.querySelector('[data-el=rollers]');
+    if (!svg || !path) return;
+    const H = root.scrollHeight;
+    const W = document.documentElement.clientWidth;
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    const sy = window.scrollY;
+    const docks = [...root.querySelectorAll('[data-dock]')].map(el => {
+      const r = el.getBoundingClientRect();
+      return { k: el.getAttribute('data-dock'), x: r.left + r.width / 2, y: r.top + sy + r.height / 2 };
+    }).filter(d => d.y > 0);
+    if (docks.length < 2) return;
+    docks.sort((a, b) => a.y - b.y);
+    for (let i = 1; i < docks.length; i++) if (docks[i].y < docks[i - 1].y + 80) docks[i].y = docks[i - 1].y + 80;
+    let d = 'M ' + docks[0].x + ' ' + docks[0].y;
+    for (let i = 1; i < docks.length; i++) {
+      const a = docks[i - 1], b = docks[i], m = (a.y + b.y) / 2;
+      d += ' C ' + a.x + ' ' + m + ' ' + b.x + ' ' + m + ' ' + b.x + ' ' + b.y;
+    }
+    path.setAttribute('d', d); belt.setAttribute('d', d);
+    const total = path.getTotalLength();
+    const N = Math.max(200, Math.min(2400, Math.round(total / 6)));
+    const pts = [];
+    for (let i = 0; i <= N; i++) {
+      const p = path.getPointAtLength(total * i / N);
+      pts.push({ x: p.x, y: p.y, len: total * i / N });
+    }
+    // enforce monotonic y for lookup
+    for (let i = 1; i < pts.length; i++) if (pts[i].y < pts[i - 1].y) pts[i].y = pts[i - 1].y;
+    this.route = { pts, total };
+    let rl = '';
+    for (let l = 40; l < total - 20; l += 110) {
+      const p = path.getPointAtLength(l);
+      rl += '<circle cx="' + p.x.toFixed(1) + '" cy="' + (p.y + 10).toFixed(1) + '" r="5" fill="none" stroke="#1A1A1A" stroke-width="2" opacity=".45"/>';
+    }
+    rollers.innerHTML = rl;
+    this.trigs = docks.map(dk => {
+      let best = 0, bd = 1e18;
+      pts.forEach(p => { const dd = (p.x - dk.x) * (p.x - dk.x) + (p.y - dk.y) * (p.y - dk.y); if (dd < bd) { bd = dd; best = p.len; } });
+      return { k: dk.k, len: best };
+    });
+    if (this.bx === undefined) { this.bx = pts[0].x; this.by = pts[0].y; }
+    this._beltEl = belt;
+  }
+
+  tick = () => {
+    const r = this.route;
+    if (r && this.rootRef.current) {
+      const y = window.scrollY, vh = window.innerHeight;
+      const v = y - (this._ly === undefined ? y : this._ly); this._ly = y;
+      this._sv = (this._sv || 0) * 0.85 + v * 0.15;
+      const pts = r.pts;
+      const targetY = Math.min(Math.max(y + vh * 0.6, pts[0].y), pts[pts.length - 1].y);
+      let i = this._i || 0;
+      while (i < pts.length - 1 && pts[i].y < targetY) i++;
+      while (i > 0 && pts[i].y > targetY) i--;
+      this._i = i;
+      const p = pts[i];
+      this.bx += (p.x - this.bx) * 0.16;
+      this.by += (p.y - this.by) * 0.16;
+      if (!this._box) this._box = this.q('[data-el=box]');
+      if (!this._shadow) this._shadow = this.q('[data-el=shadow]');
+      const lean = this.calm ? 0 : Math.max(-6, Math.min(6, this._sv * 0.25));
+      if (this._box) this._box.style.transform = 'translate(' + (this.bx - 70) + 'px,' + (this.by - 118) + 'px) rotate(' + lean + 'deg)';
+      if (this._shadow) this._shadow.style.transform = 'scaleX(' + (1 + Math.min(Math.abs(this._sv) * 0.02, 0.7)) + ')';
+      if (this._beltEl) this._beltEl.style.strokeDashoffset = -(p.len * 0.9) + 'px';
+      const mv = Math.abs(this._sv);
+      if (mv > 3) this._moving = true;
+      else if (this._moving && mv < 0.4) {
+        this._moving = false;
+        if (!this.calm) {
+          const bi = this.q('[data-el=boxinner]');
+          if (bi) { bi.style.animation = 'none'; void bi.offsetWidth; bi.style.animation = 'settleW .5s'; }
+        }
+      }
+      // HUD
+      const prog = p.len / r.total;
+      const pct = Math.round(prog * 100);
+      if (!this._hud) this._hud = {
+        status: this.q('[data-hud=status]'), pct: this.q('[data-hud=pct]'),
+        next: this.q('[data-hud=next]'), bar: this.q('[data-hud=bar]')
+      };
+      const L = k => { const t = (this.trigs || []).find(t => t.k === k); return t ? t.len : 1e18; };
+      let st = 'IN TRANSIT';
+      if (this.state.signed) st = 'DELIVERED ✓';
+      else if (p.len < 60) st = 'ORDER PLACED';
+      else if (p.len < L('s1') - r.total * 0.06) st = 'PICKED';
+      else if (Math.abs(p.len - L('customs')) < r.total * 0.05) st = 'IN CUSTOMS';
+      else if (p.len > L('delivery') - r.total * 0.03) st = 'AT THE DOOR';
+      else if (p.len > L('customs')) st = 'OUT FOR DELIVERY';
+      const names = { hero: 'STATION 00 — THE LABEL', s1: 'STATION 01 — CONTRACT GUARD', s2: 'STATION 02 — FRESCO', s3: 'STATION 03 — PAYTRACE', s4: 'STATION 04 — KORTEX', customs: 'CUSTOMS — GATE 05', depot: 'DEPOT (SIDING)', dispatch: 'GATE 06 — DISPATCH DESK', delivery: 'FRONT DOOR' };
+      const nxt = (this.trigs || []).find(t => t.len > p.len + 60);
+      if (this._hud.status && this._hud.status.textContent !== st) this._hud.status.textContent = st;
+      if (this._hud.pct) this._hud.pct.textContent = pct + '%';
+      if (this._hud.next) this._hud.next.textContent = nxt ? (names[nxt.k] || nxt.k.toUpperCase()) : '— END OF LINE —';
+      if (this._hud.bar) this._hud.bar.style.width = pct + '%';
+      // triggers
+      (this.trigs || []).forEach(t => { if (p.len >= t.len - 50) this.fireDock(t.k); });
+    }
+    this._raf = requestAnimationFrame(this.tick);
+  };
+
+  fireDock(k) {
+    if (this.state.fired[k]) return;
+    this.setState(s => ({ fired: { ...s.fired, [k]: true } }));
+    if (k === 's1') this.addStamp('INSPECTED 68→91', '#1E7A46');
+    else if (k === 's2') this.addStamp('KEEP CHILLED', '#1F4FD8');
+    else if (k === 's3') this.addStamp('SETTLED ✓', '#1A1A1A');
+    else if (k === 's4') this.addStamp('IN PROD', '#FF4D00');
+    else if (k === 'customs') { this.addStamp('CLEARED', '#1E7A46'); this.snd('beep'); }
+    else if (k === 'delivery') { this.snd('thunk'); this.shake(); }
+  }
+
+  addStamp(text, color) {
+    const spots = [[6, 4, -12], [82, 8, 9], [10, 44, 7], [76, 48, -8], [44, 24, -3], [42, 56, 12], [-12, 20, -15]];
+    this.setState(s => {
+      const sp = spots[s.stamps.length % spots.length];
+      return { stamps: [...s.stamps, { key: 'st' + s.stamps.length, text, color, left: sp[0], top: sp[1], rot: sp[2] }] };
+    });
+    this.shake(); this.snd('thunk');
+  }
+
+  shake() {
+    if (this.calm) return;
+    const r = this.rootRef.current; if (!r) return;
+    r.style.animation = 'none'; void r.offsetWidth;
+    r.style.animation = 'shakeX .28s';
+  }
+
+  // ---------- sound ----------
+  ac() {
+    if (!this._ac) this._ac = new (window.AudioContext || window.webkitAudioContext)();
+    if (this._ac.state === 'suspended') this._ac.resume();
+    return this._ac;
+  }
+  tone(f, d, type, g, when, slide) {
+    const a = this.ac(), t0 = a.currentTime + (when || 0);
+    const o = a.createOscillator(), v = a.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(f, t0);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, t0 + d);
+    v.gain.setValueAtTime(g || 0.2, t0);
+    v.gain.exponentialRampToValueAtTime(0.0001, t0 + d);
+    o.connect(v); v.connect(a.destination);
+    o.start(t0); o.stop(t0 + d + 0.05);
+  }
+  snd(k) {
+    if (!this.state.soundOn) return;
+    try {
+      if (k === 'thunk') { this.tone(85, 0.16, 'triangle', 0.5, 0, 40); this.tone(50, 0.2, 'sine', 0.4); }
+      else if (k === 'beep') this.tone(1250, 0.07, 'square', 0.12);
+      else if (k === 'pop') this.tone(420, 0.05, 'square', 0.15, 0, 180);
+      else if (k === 'ding') { this.tone(659, 0.4, 'sine', 0.25); this.tone(523, 0.5, 'sine', 0.25, 0.28); }
+      else if (k === 'bell') { this.tone(1568, 0.7, 'sine', 0.2); this.tone(2093, 0.5, 'sine', 0.12, 0.05); }
+      else if (k === 'print') { for (let i = 0; i < 5; i++) this.tone(900 + Math.random() * 400, 0.03, 'square', 0.06, i * 0.05); }
+    } catch (e) {}
+  }
+
+  // ---------- barcode (real Code 128B) ----------
+  drawBarcode(sel, text) {
+    const el = this.q(sel); if (!el) return;
+    const P = ['212222','222122','222221','121223','121322','131222','122213','122312','132212','221213','221312','231212','112232','122132','122231','113222','123122','123221','223211','221132','221231','213212','223112','312131','311222','321122','321221','312212','322112','322211','212123','212321','232121','111323','131123','131321','112313','132113','132311','211313','231113','231311','112133','112331','132131','113123','113321','133121','313121','211331','231131','213113','213311','213131','311123','311321','331121','312113','312311','332111','314111','221411','431111','111224','111422','121124','121421','141122','141221','112214','112412','122114','122411','142112','142211','241211','221114','413111','241112','134111','111242','121142','121241','114212','124112','124211','411212','421112','421211','212141','214121','412121','111143','111341','131141','114113','114311','411113','411311','113141','114131','311141','411131','211412','211214','211232'];
+    const vals = [104];
+    for (const ch of text) { const c = ch.charCodeAt(0) - 32; if (c >= 0 && c < 95) vals.push(c); }
+    let ck = vals[0];
+    for (let i = 1; i < vals.length; i++) ck += vals[i] * i;
+    vals.push(ck % 103);
+    let widths = '';
+    for (const v of vals) widths += P[v];
+    widths += '2331112';
+    let total = 20, x = 10, rects = '';
+    for (const w of widths) total += +w;
+    let bar = true;
+    for (const w of widths) {
+      if (bar) rects += '<rect x="' + x + '" y="0" width="' + w + '" height="60" fill="#1A1A1A"/>';
+      x += +w; bar = !bar;
+    }
+    el.innerHTML = '<svg viewBox="0 0 ' + total + ' 60" preserveAspectRatio="none" style="width:100%;height:100%;display:block"><rect width="' + total + '" height="60" fill="#fff"/>' + rects + '</svg>';
+  }
+
+  // ---------- typing ----------
+  typeAll() {
+    if (this.calm || !this.rootRef.current) return;
+    let delay = 0;
+    this.rootRef.current.querySelectorAll('[data-type]').forEach(el => {
+      const full = el.textContent;
+      el.textContent = '';
+      const start = delay;
+      delay += full.length * 13 + 240;
+      this._tos.push(setTimeout(() => {
+        let i = 0;
+        const iv = setInterval(() => { i++; el.textContent = full.slice(0, i); if (i >= full.length) clearInterval(iv); }, 13);
+        this._ivs.push(iv);
+      }, start));
+    });
+  }
+
+  // ---------- signature ----------
+  initSig() {
+    const c = this.q('[data-el=sig]'); if (!c) return;
+    const fit = () => { c.width = c.clientWidth; c.height = c.clientHeight; };
+    setTimeout(fit, 300);
+    const ctx = c.getContext('2d');
+    let draw = false, drew = false;
+    c.addEventListener('pointerdown', e => {
+      draw = true; drew = false;
+      c.setPointerCapture(e.pointerId);
+      const r = c.getBoundingClientRect();
+      ctx.beginPath(); ctx.moveTo(e.clientX - r.left, e.clientY - r.top);
+      e.preventDefault();
+    });
+    c.addEventListener('pointermove', e => {
+      if (!draw) return; drew = true;
+      const r = c.getBoundingClientRect();
+      ctx.lineTo(e.clientX - r.left, e.clientY - r.top);
+      ctx.strokeStyle = '#FF4D00'; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.stroke();
+    });
+    c.addEventListener('pointerup', () => {
+      draw = false;
+      if (drew && !this.state.signed) {
+        this.setState({ signed: true });
+        this.addStamp('DELIVERED ✓', '#1E7A46');
+        this.snd('bell');
+      }
+    });
+  }
+  clearSig = () => {
+    const c = this.q('[data-el=sig]');
+    if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
+  };
+
+  // ---------- handlers ----------
+  toggleSound = () => this.setState(s => ({ soundOn: !s.soundOn }), () => { if (this.state.soundOn) this.snd('beep'); });
+  copyEmail = () => {
+    const em = 'shadams.dev@gmail.com';
+    try { navigator.clipboard.writeText(em); } catch (e) {}
+    this.setState({ copied: true }); this.snd('beep');
+    this._tos.push(setTimeout(() => this.setState({ copied: false }), 1600));
+  };
+  doorbell = () => { this.setState({ doorLit: true }); this.snd('ding'); this._tos.push(setTimeout(() => this.setState({ doorLit: false }), 2600)); };
+  pop(i) {
+    if (this.state.bubbles[i]) return;
+    this.setState(s => {
+      const b = [...s.bubbles]; b[i] = true;
+      return { bubbles: b };
+    }, () => { if (this.state.bubbles.every(Boolean)) this.snd('bell'); });
+    this.snd('pop');
+  }
+  resetBubbles = () => this.setState({ bubbles: Array(60).fill(false) });
+  onLabelInput = e => this.setState({ labelText: e.target.value.slice(0, 24) });
+  onLabelKey = e => { if (e.key === 'Enter') this.printLabel(); };
+  printLabel = () => {
+    const text = this.state.labelText.trim().slice(0, 24).toUpperCase();
+    if (!text) return;
+    const lb = { id: Date.now(), text, x: 14 + Math.random() * 120, y: 12 + Math.random() * 120, rot: Math.round(Math.random() * 12 - 6) };
+    this.setState(s => ({ labels: [...s.labels, lb], labelText: '' }), this.saveLabels);
+    this.snd('print');
+  };
+  saveLabels = () => { try { sessionStorage.setItem('soj-labels', JSON.stringify(this.state.labels)); } catch (e) {} };
+  labelDown(e, id) {
+    e.preventDefault();
+    const l = this.state.labels.find(o => o.id === id); if (!l) return;
+    const sx = e.clientX - l.x, sy = e.clientY - l.y;
+    const mv = ev => this.setState(s => ({ labels: s.labels.map(o => o.id === id ? { ...o, x: ev.clientX - sx, y: ev.clientY - sy } : o) }));
+    const up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); this.saveLabels(); };
+    window.addEventListener('pointermove', mv);
+    window.addEventListener('pointerup', up);
+  }
+  onTermInput = e => this.setState({ termInput: e.target.value });
+  onTermKey = e => {
+    if (e.key !== 'Enter') return;
+    const cmd = this.state.termInput.trim().toLowerCase();
+    if (!cmd) return;
+    if (cmd === 'clear') { this.setState({ termLines: [], termInput: '' }); return; }
+    const out = [{ t: '> ' + cmd, c: '#8a8578' }];
+    const G = '#1E7A46', I = '#1A1A1A', D = '#8a8578', O = '#FF4D00';
+    if (cmd === 'help') out.push(
+      { t: 'COMMANDS: WORK · CONTACT · TRACK · WHOAMI · CLEAR', c: I },
+      { t: 'PRIVILEGED: SUDO HIRE SOJ', c: D });
+    else if (cmd === 'work' || cmd === 'manifest') out.push(
+      { t: '01 CONTRACT GUARD — RAG · RETRIEVAL 68→91%', c: I },
+      { t: '02 FRESCO — CV SHELF-LIFE ESTIMATOR', c: I },
+      { t: '03 PAYTRACE — PAYMENTS, EVERY KOBO TRACED', c: I },
+      { t: '04 KORTEX — AGENTIC AI · IN PRODUCTION', c: O });
+    else if (cmd === 'contact') out.push({ t: 'SHADAMS.DEV@GMAIL.COM — REPLIES FROM WAT', c: I });
+    else if (cmd === 'track') out.push({ t: 'CONSIGNMENT NL-2026-SOJ: SEE HUD, BOTTOM-LEFT', c: I });
+    else if (cmd === 'whoami') out.push({ t: 'CURIOUS RECRUITER — WELCOME TO THE DEPOT', c: I });
+    else if (cmd === 'sudo hire soj') {
+      out.push(
+        { t: '════════ PACKING SLIP ════════', c: I },
+        { t: '1× DESIGN ENGINEER — AI PRODUCTS, END-TO-END', c: I },
+        { t: 'SHIP TO: YOUR TEAM', c: I },
+        { t: 'CONTACT: SHADAMS.DEV@GMAIL.COM', c: I },
+        { t: 'PERMISSION GRANTED ✓', c: G });
+      this.snd('bell');
+    }
+    else out.push({ t: "COMMAND NOT FOUND: " + cmd.toUpperCase() + " — TRY 'HELP'", c: O });
+    this.setState(s => ({ termLines: [...s.termLines, ...out], termInput: '' }), () => {
+      const el = this.q('[data-el=termscroll]');
+      if (el) el.scrollTop = el.scrollHeight;
+    });
+    this.snd('print');
+  };
+  // ---------- dispatch chatbot ----------
+  chatTime() { const t = new Date(); const p = n => String(n).padStart(2, '0'); return p(t.getHours()) + ':' + p(t.getMinutes()); }
+  onChatInput = e => this.setState({ chatInput: e.target.value });
+  onChatKey = e => { if (e.key === 'Enter' && !this.state.chatBusy) this.sendChat(); };
+  askChip(q) { if (!this.state.chatBusy) { this.setState({ chatInput: q }, () => this.sendChat()); } }
+  sendChat = async () => {
+    const q = this.state.chatInput.trim();
+    if (!q || this.state.chatBusy) return;
+    this.snd('print');
+    this.setState(s => ({ chat: [...s.chat, { who: 'user', text: q, time: this.chatTime() }], chatInput: '', chatBusy: true }), this.chatScroll);
+    let reply;
+    try {
+      if (!window.claude || !window.claude.complete) throw new Error('offline');
+      const history = this.state.chat.slice(-10).map(m => ({ role: m.who === 'user' ? 'user' : 'assistant', content: m.text }));
+      reply = await window.claude.complete({
+        system: 'You are DISPATCH, the warehouse dispatcher for Native Labs on the portfolio site of Jeremiah "SOJ" Shadamoro. Voice: terse radio-operator telegraph style, ALL CAPS, warm but clipped, max 55 words, no markdown, no emoji. You answer questions about SOJ using ONLY these facts: Design engineer for AI products, end-to-end (designs the interface AND engineers the intelligence). Based in Lagos, Nigeria (WAT — overlaps US mornings). Final-year Computer Science, FUTA, class of 2026. AVAILABLE FOR U.S. REMOTE ROLES. Experience: Tecvison (software & AI engineering), Emperor Financial (AI engineering, contract). Projects: 1) CONTRACT GUARD — RAG engine for legal contracts, clause-aware chunking + hybrid retrieval + reranking + grounded citations; retrieval accuracy 68% to 91% across 50 contract types (stack: Python, FastAPI, pgvector, Next.js). 2) FRESCO — computer-vision shelf-life estimator for fresh produce, on-device mobile. 3) PAYTRACE — payment reconciliation/tracing infrastructure, every kobo accounted for. 4) KORTEX — agentic AI content system, currently in production, built in public. Contact: shadams.dev@gmail.com, github.com/oluwatosin123456789, LinkedIn jeremiah-shadamoro. If asked something off-manifest, say the manifest does not cover it and steer back to the consignment. If they seem interested in hiring, tell them to sign for delivery at the front door below or radio shadams.dev@gmail.com. Stay in character always.',
+        messages: history
+      });
+      reply = (reply || '').trim().slice(0, 600);
+      if (!reply) throw new Error('empty');
+    } catch (e) {
+      const ql = q.toLowerCase();
+      if (ql.includes('avail') || ql.includes('hire') || ql.includes('remote')) reply = 'AFFIRMATIVE — SOJ IS CLEARED FOR U.S. REMOTE ROLES. WAT TIMEZONE, OVERLAPS YOUR MORNINGS. RADIO SHADAMS.DEV@GMAIL.COM OR SIGN FOR DELIVERY BELOW.';
+      else if (ql.includes('contract')) reply = 'CONTRACT GUARD: RAG ENGINE FOR LEGAL DOCS. CLAUSE-AWARE CHUNKING, HYBRID RETRIEVAL, GROUNDED CITATIONS. ACCURACY 68 TO 91 PERCENT ACROSS 50 CONTRACT TYPES. FULL REPORT: OPEN CRATE, STATION 01.';
+      else if (ql.includes('build') || ql.includes('do') || ql.includes('skill') || ql.includes('work')) reply = 'CARGO ON RECORD: CONTRACT GUARD (RAG, 68 TO 91 PERCENT), FRESCO (CV SHELF-LIFE), PAYTRACE (PAYMENTS), KORTEX (AGENTIC, IN PRODUCTION). SOJ DESIGNS THE INTERFACE AND ENGINEERS THE INTELLIGENCE.';
+      else reply = 'CHANNEL IS RUNNING ON BACKUP POWER — LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, DESIGN ENGINEER, AI PRODUCTS, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD.';
+    }
+    this.setState(s => ({ chat: [...s.chat, { who: 'bot', text: reply, time: this.chatTime() }], chatBusy: false }), this.chatScroll);
+    this.snd('print'); this.snd('beep');
+  };
+  chatScroll = () => {
+    const el = this.q('[data-el=chatscroll]');
+    if (el) el.scrollTop = el.scrollHeight;
+  };
+
+  openCrate = () => { this.setState({ crateOpen: true }); document.body.style.overflow = 'hidden'; this.snd('thunk'); };
+  closeCrate = () => { this.setState({ crateOpen: false }); document.body.style.overflow = ''; this.snd('thunk'); };
+  returnToTop = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); this.snd('beep'); };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      rootRef: this.rootRef,
+      boxLabel: this.props.boxLabel ?? 'NATIVE LABS',
+      entOn: s.ent !== 'done',
+      entStamp: s.dropped && s.ent !== 'done',
+      boxOpacity: (s.ent !== 'done' && !s.dropped) ? 0 : 1,
+      soundLabel: s.soundOn ? 'SOUND: ON' : 'SOUND: OFF',
+      toggleSound: this.toggleSound,
+      stamps: s.stamps,
+      heroStamp: s.heroStamp,
+      s1: !!s.fired.s1, s2: !!s.fired.s2, s3: !!s.fired.s3, s4: !!s.fired.s4,
+      cleared: !!s.fired.customs, xray: !!s.fired.customs,
+      signed: s.signed,
+      copiedOp: s.copied ? 1 : 0,
+      copyEmail: this.copyEmail,
+      doorbell: this.doorbell,
+      doorLit: s.doorLit,
+      porchBg: s.doorLit ? '#FFD98A' : '#FFFDF8',
+      porchGlow: s.doorLit ? '0 0 34px 6px rgba(255,217,138,.85)' : 'none',
+      bubbles: s.bubbles.map((p, i) => ({
+        key: 'b' + i,
+        pop: () => this.pop(i),
+        bg: p ? '#E3DFD5' : '#FFFFFF',
+        bd: p ? '#CFC9BA' : '#B9B29E',
+        sc: p ? 'scale(.9)' : 'scale(1)',
+        sh: p ? 'inset 0 2px 4px rgba(0,0,0,.18)' : '0 2px 0 rgba(0,0,0,.14)'
+      })),
+      popCount: s.bubbles.filter(Boolean).length,
+      bubbleTotal: s.bubbles.length,
+      bubbleDone: s.bubbles.every(Boolean),
+      resetBubbles: this.resetBubbles,
+      labelText: s.labelText,
+      onLabelInput: this.onLabelInput,
+      onLabelKey: this.onLabelKey,
+      printLabel: this.printLabel,
+      labels: s.labels.map(l => ({
+        ...l, key: 'lb' + l.id,
+        down: e => this.labelDown(e, l.id),
+        tr: 'translate(' + l.x + 'px,' + l.y + 'px) rotate(' + l.rot + 'deg)'
+      })),
+      termLines: s.termLines.map((l, i) => ({ ...l, key: 'tl' + i })),
+      termInput: s.termInput,
+      onTermInput: this.onTermInput,
+      onTermKey: this.onTermKey,
+      crateOpen: s.crateOpen,
+      openCrate: this.openCrate,
+      closeCrate: this.closeCrate,
+      chatMsgs: s.chat.map((m, i) => ({ key: 'cm' + i, text: m.text, time: m.time, isUser: m.who === 'user', isBot: m.who === 'bot' })),
+      chatInput: s.chatInput,
+      chatBusy: s.chatBusy,
+      onChatInput: this.onChatInput,
+      onChatKey: this.onChatKey,
+      sendChat: this.sendChat,
+      chatChips: [
+        'WHAT CAN SOJ BUILD?',
+        'IS HE AVAILABLE FOR U.S. REMOTE?',
+        'TELL ME ABOUT CONTRACT GUARD',
+        'WHY SHOULD WE HIRE HIM?'
+      ].map((q, i) => ({ key: 'chip' + i, q, ask: () => this.askChip(q) })),
+      onAirText: s.chatBusy ? 'KEYING…' : 'ON AIR',
+      onAirColor: s.chatBusy ? '#FFB300' : '#4CE07C',
+      onAirAnim: s.chatBusy ? 'blinkB .5s infinite' : 'pulseDot 2s infinite',
+      clearSig: this.clearSig,
+      returnToTop: this.returnToTop
+    };
+  }
+}
+</script>
+</body>
+</html>

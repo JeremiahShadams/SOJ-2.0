@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 
-// In-world image slot. Looks for /shots/<id>.png (drop real screenshots in
-// public/shots/ to fill them); until then it renders a styled
+const EXTENSIONS = ["png", "webp", "jpg", "jpeg", "avif"];
+
+// In-world image slot. Looks for /shots/<id> with common image extensions
+// (drop real screenshots in public/shots/ to fill them); until then it renders a styled
 // "awaiting cargo photo" placeholder that fits the freight aesthetic.
 export default function ImageSlot({
   id,
@@ -14,13 +16,14 @@ export default function ImageSlot({
   alt: string;
   label: string;
 }) {
-  const [missing, setMissing] = useState(false);
+  const [extensionIndex, setExtensionIndex] = useState(0);
+  const missing = extensionIndex >= EXTENSIONS.length;
 
   if (missing) {
     return (
       <div
         role="img"
-        aria-label={`${alt} (placeholder — awaiting photo)`}
+        aria-label={`${alt} (placeholder - awaiting photo)`}
         style={{
           width: "100%",
           height: "100%",
@@ -62,7 +65,12 @@ export default function ImageSlot({
         </div>
         <div
           className="mono"
-          style={{ fontSize: 9, letterSpacing: ".08em", color: "var(--tape)" }}
+          style={{
+            fontSize: "clamp(8px,2.2vw,9px)",
+            letterSpacing: ".08em",
+            color: "var(--tape)",
+            overflowWrap: "anywhere",
+          }}
         >
           {label} · DROP /public/shots/{id}.png
         </div>
@@ -73,10 +81,17 @@ export default function ImageSlot({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={`/shots/${id}.png`}
+      src={`/shots/${id}.${EXTENSIONS[extensionIndex]}`}
       alt={alt}
-      onError={() => setMissing(true)}
-      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+      sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 560px"
+      onError={() => setExtensionIndex((i) => i + 1)}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
+        display: "block",
+      }}
     />
   );
 }

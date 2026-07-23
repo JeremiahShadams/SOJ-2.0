@@ -16,7 +16,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
   return (
     <section
       id="customs"
-      aria-label="Customs — about"
+      aria-label="Customs - about"
       style={{ position: "relative", zIndex: 5, padding: "13vh 5vw", scrollMarginTop: 70 }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -58,7 +58,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                 fontWeight: 700,
               }}
             >
-              X-RAY VIEW — GATE 05
+              X-RAY VIEW - GATE 05
             </div>
             <div
               aria-hidden="true"
@@ -165,8 +165,8 @@ export default function Customs({ cleared }: { cleared: boolean }) {
             >
               <div
                 style={{
-                  width: 110,
-                  height: 134,
+                  width: "clamp(82px, 20vw, 110px)",
+                  aspectRatio: "55 / 67",
                   position: "relative",
                   background: "#fff",
                   border: "2px solid var(--ink)",
@@ -179,7 +179,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                   style={{
                     position: "absolute",
                     top: -7,
-                    left: 44,
+                    left: "40%",
                     width: 22,
                     height: 6,
                     background: "var(--ink)",
@@ -194,7 +194,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
               </div>
             </div>
             <div className="eyebrow" style={{ marginBottom: 20 }}>
-              CUSTOMS DECLARATION — FORM NL-05
+              CUSTOMS DECLARATION - FORM NL-05
             </div>
             <div
               className="mono"
@@ -208,16 +208,16 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                 maxWidth: "88%",
               }}
             >
-              OCCUPATION: <strong>DESIGN ENGINEER — AI PRODUCTS</strong>
+              OCCUPATION: <strong>DESIGN ENGINEER - AI PRODUCTS</strong>
               <br />
-              DECLARED EXPERIENCE: <strong>TECVISON</strong> — SOFTWARE &amp; AI ENG ·{" "}
-              <strong>EMPEROR FINANCIAL</strong> — AI ENG (CONTRACT)
+              DECLARED EXPERIENCE: <strong>TECVISON</strong> - SOFTWARE &amp; AI ENG ·{" "}
+              <strong>EMPEROR FINANCIAL</strong> - AI ENG (CONTRACT)
               <br />
               ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>FUTA CS ’26</strong>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
               Final-year computer science at FUTA. I’ve shipped AI products across
-              contracts, food systems and payments — I don’t wait for permission to
+              contracts, food systems and payments - I don’t wait for permission to
               build.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
@@ -225,7 +225,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
               behind it, and carry the thing to production myself.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: 0, maxWidth: "56ch" }}>
-              Lagos-based, WAT timezone — a comfortable overlap with U.S. mornings,
+              Lagos-based, WAT timezone - a comfortable overlap with U.S. mornings,
               available for remote roles.
             </p>
             {cleared && (

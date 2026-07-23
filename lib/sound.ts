@@ -1,4 +1,4 @@
-// Opt-in WebAudio sound effects — thunks, beeps, bells. OFF by default;
+// Opt-in WebAudio sound effects - thunks, beeps, bells. OFF by default;
 // the enabled flag is owned by the caller (nav toggle) per spec §6.
 export type SoundKind = "thunk" | "beep" | "pop" | "ding" | "bell" | "print";
 
@@ -60,6 +60,6 @@ export function playSound(kind: SoundKind) {
       }
     }
   } catch {
-    // audio unavailable — stay silent
+    // audio unavailable - stay silent
   }
 }

@@ -7,7 +7,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
   return (
     <section
       id="label"
-      aria-label="Station 00 — The Label"
+      aria-label="Station 00 - The Label"
       style={{
         position: "relative",
         zIndex: 5,
@@ -33,7 +33,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
         >
           <span>SOJ</span>
           <span>
-            <span data-clock="1">—:—:— WAT</span> · LAGOS, NG
+            <span data-clock="1">-:-:- WAT</span> · LAGOS, NG
           </span>
         </div>
 
@@ -166,7 +166,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
                   marginTop: 6,
                 }}
               >
-                REAL CODE 128 — SCAN WITH A PHONE → MY GITHUB
+                REAL CODE 128 - SCAN WITH A PHONE → MY GITHUB
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@
 
 import type { CSSProperties, ReactNode } from "react";
 import ImageSlot from "@/components/ImageSlot";
+import { SITE } from "@/lib/site";
 
 type Fired = Record<string, boolean>;
 
@@ -113,7 +114,13 @@ function BoltedFrame({
             }}
           />
         )}
-        <div style={{ height: 320, position: "relative" }}>
+        <div
+          style={{
+            height: "clamp(220px, 34vw, 360px)",
+            minHeight: 0,
+            position: "relative",
+          }}
+        >
           <ImageSlot id={slotId} alt={slotAlt} label={slotLabel} />
         </div>
         {constructionTape && (
@@ -145,7 +152,7 @@ function BoltedFrame({
                 border: "1px solid var(--ink)",
               }}
             >
-              UNDER CONSTRUCTION — DO NOT CROSS
+              UNDER CONSTRUCTION - DO NOT CROSS
             </span>
           </div>
         )}
@@ -181,10 +188,10 @@ export default function Stations({
 }) {
   return (
     <>
-      {/* ══════════ STATION 01 — CONTRACT GUARD ══════════ */}
+      {/* ══════════ STATION 01 - CONTRACT GUARD ══════════ */}
       <section
         id="manifest"
-        aria-label="Station 01 — Contract Guard"
+        aria-label="Station 01 - Contract Guard"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw", scrollMarginTop: 70 }}
       >
         <div className="station-grid">
@@ -202,7 +209,7 @@ export default function Stations({
               <span className="chip">LEGAL-TECH</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              A RAG engine that reads contracts the way senior counsel does —
+              A RAG engine that reads contracts the way senior counsel does -
               clause-aware retrieval, grounded answers, a receipt for every claim.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
@@ -214,6 +221,24 @@ export default function Stations({
               </StationStamp>
             </div>
             <div style={{ marginTop: 24 }}>
+              <div style={{ display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
+                <a
+                  href={SITE.projects.contractGuard}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono"
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 700,
+                    letterSpacing: ".1em",
+                    color: "var(--cargo-blue)",
+                    borderBottom: "2px solid var(--cargo-blue)",
+                    padding: "2px 0",
+                    textDecoration: "none",
+                  }}
+                >
+                  LAUNCH CONTRACT GUARD ↗
+                </a>
               <button
                 onClick={onOpenCrate}
                 className="mono"
@@ -237,23 +262,24 @@ export default function Stations({
                   e.currentTarget.style.borderColor = "var(--cargo-blue)";
                 }}
               >
-                OPEN CRATE ↗ — INSPECTION REPORT
+                OPEN CRATE ↗ - INSPECTION REPORT
               </button>
+              </div>
             </div>
           </div>
           <BoltedFrame
             slotId="shot-contract-guard"
             slotAlt="Contract Guard product screenshot"
             slotLabel="CONTRACT GUARD"
-            caption="FIG. 01 — CONTRACT GUARD / MOUNTED INSPECTION SCREEN"
+            caption="FIG. 01 - CONTRACT GUARD / MOUNTED INSPECTION SCREEN"
             dock="s1"
           />
         </div>
       </section>
 
-      {/* ══════════ STATION 02 — FRESCO ══════════ */}
+      {/* ══════════ STATION 02 - FRESCO ══════════ */}
       <section
-        aria-label="Station 02 — Fresco"
+        aria-label="Station 02 - Fresco"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
       >
         <div className="station-grid">
@@ -282,11 +308,11 @@ export default function Stations({
                   padding: "4px 10px",
                 }}
               >
-                COLD CHAIN UNIT — 4°C
+                COLD CHAIN UNIT - 4°C
               </div>
               <div
                 style={{
-                  height: 340,
+                  height: "clamp(300px, 72vw, 420px)",
                   position: "relative",
                   display: "flex",
                   justifyContent: "center",
@@ -294,7 +320,7 @@ export default function Stations({
               >
                 <div
                   style={{
-                    width: 230,
+                    width: "clamp(180px, 54vw, 250px)",
                     height: "100%",
                     position: "relative",
                     border: "2px solid var(--ink)",
@@ -319,7 +345,7 @@ export default function Stations({
                   textAlign: "center",
                 }}
               >
-                FIG. 02 — FRESCO / REFRIGERATED DISPLAY
+                FIG. 02 - FRESCO / REFRIGERATED DISPLAY
               </div>
             </div>
             <div style={{ height: 190, position: "relative" }}>
@@ -361,7 +387,7 @@ export default function Stations({
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
               Point a phone camera at fresh produce and Fresco estimates its
-              remaining shelf life — computer vision keeping food out of the bin
+              remaining shelf life - computer vision keeping food out of the bin
               and money in the till.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
@@ -373,20 +399,31 @@ export default function Stations({
               </StationStamp>
             </div>
             <div style={{ marginTop: 24 }}>
-              <span
+              <a
+                href={SITE.projects.fresco}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mono"
-                style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)" }}
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: ".1em",
+                  color: "var(--cargo-blue)",
+                  borderBottom: "2px solid var(--cargo-blue)",
+                  padding: "2px 0",
+                  textDecoration: "none",
+                }}
               >
-                REPORT: SEALED — ON REQUEST
-              </span>
+                LAUNCH FRESCO ↗
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════ STATION 03 — PAYTRACE ══════════ */}
+      {/* ══════════ STATION 03 - PAYTRACE ══════════ */}
       <section
-        aria-label="Station 03 — PayTrace"
+        aria-label="Station 03 - PayTrace"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
       >
         <div className="station-grid">
@@ -403,7 +440,7 @@ export default function Stations({
               <span className="chip">PAYMENTS</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              Payment infrastructure with a paper trail — reconciliation and
+              Payment infrastructure with a paper trail - reconciliation and
               tracing for transactions that are never allowed to go missing.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
@@ -417,7 +454,7 @@ export default function Stations({
                 className="mono"
                 style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)" }}
               >
-                REPORT: SEALED — ON REQUEST
+                REPORT: SEALED - ON REQUEST
               </span>
             </div>
           </div>
@@ -425,15 +462,15 @@ export default function Stations({
             slotId="shot-paytrace"
             slotAlt="PayTrace product screenshot"
             slotLabel="PAYTRACE"
-            caption="FIG. 03 — PAYTRACE / MOUNTED INSPECTION SCREEN"
+            caption="FIG. 03 - PAYTRACE / MOUNTED INSPECTION SCREEN"
             dock="s3"
           />
         </div>
       </section>
 
-      {/* ══════════ STATION 04 — KORTEX ══════════ */}
+      {/* ══════════ STATION 04 - KORTEX ══════════ */}
       <section
-        aria-label="Station 04 — Kortex"
+        aria-label="Station 04 - Kortex"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
       >
         <div className="station-grid">
@@ -442,7 +479,7 @@ export default function Stations({
               slotId="shot-kortex"
               slotAlt="Kortex work-in-progress screenshot"
               slotLabel="KORTEX"
-              caption="FIG. 04 — KORTEX / GANTRY PARTIALLY TAPED"
+              caption="FIG. 04 - KORTEX / GANTRY PARTIALLY TAPED"
               dock="s4"
               beacon
               constructionTape
@@ -462,7 +499,7 @@ export default function Stations({
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
               An agentic content system, being built in public. The line is live,
-              the crate is not yet sealed — watch this station.
+              the crate is not yet sealed - watch this station.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--safety)">STATUS: IN PRODUCTION ●</MetricTag>

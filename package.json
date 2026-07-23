@@ -2,7 +2,7 @@
   "name": "the-shipment",
   "version": "1.0.0",
   "private": true,
-  "description": "SOJ / Native Labs — portfolio as a fulfilment line. The visitor's scroll drives a package through stations to delivery.",
+  "description": "SOJ / Native Labs - portfolio as a fulfilment line. The visitor's scroll drives a package through stations to delivery.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

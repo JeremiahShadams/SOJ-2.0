@@ -1,4 +1,4 @@
-// Real Code 128B barcode as SVG markup. Scannable with a phone camera —
+// Real Code 128B barcode as SVG markup. Scannable with a phone camera -
 // encodes a URL or mailto: so the printed label actually works.
 const PATTERNS = [
   "212222", "222122", "222221", "121223", "121322", "131222", "122213",

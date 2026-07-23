@@ -23,14 +23,14 @@ function now(): string {
   return `${p(t.getHours())}:${p(t.getMinutes())}`;
 }
 
-// Offline dispatcher — used whenever /api/dispatch is unreachable or errors.
+// Offline dispatcher - used whenever /api/dispatch is unreachable or errors.
 function cannedReply(q: string): string {
   const ql = q.toLowerCase();
   if (ql.includes("avail") || ql.includes("hire") || ql.includes("remote")) {
-    return "AFFIRMATIVE — SOJ IS CLEARED FOR U.S. REMOTE ROLES. WAT TIMEZONE, OVERLAPS YOUR MORNINGS. RADIO SHADAMS.DEV@GMAIL.COM OR SIGN FOR DELIVERY BELOW.";
+    return "AFFIRMATIVE - SOJ IS CLEARED FOR U.S. REMOTE ROLES. WAT TIMEZONE, OVERLAPS YOUR MORNINGS. RADIO SHADAMS.DEV@GMAIL.COM OR SIGN FOR DELIVERY BELOW.";
   }
   if (ql.includes("contract")) {
-    return "CONTRACT GUARD: RAG ENGINE FOR LEGAL DOCS. CLAUSE-AWARE CHUNKING, HYBRID RETRIEVAL, GROUNDED CITATIONS. ACCURACY 68 TO 91 PERCENT ACROSS 50 CONTRACT TYPES. FULL REPORT: OPEN CRATE, STATION 01.";
+    return "CONTRACT GUARD: RAG ENGINE FOR LEGAL DOCS. CLAUSE-AWARE CHUNKING, HYBRID RETRIEVAL, GROUNDED CITATIONS. LIVE LINE: CG-AI.ONRENDER.COM. FULL REPORT: OPEN CRATE, STATION 01.";
   }
   if (
     ql.includes("build") ||
@@ -38,9 +38,9 @@ function cannedReply(q: string): string {
     ql.includes("skill") ||
     ql.includes("work")
   ) {
-    return "CARGO ON RECORD: CONTRACT GUARD (RAG, 68 TO 91 PERCENT), FRESCO (CV SHELF-LIFE), PAYTRACE (PAYMENTS), KORTEX (AGENTIC, IN PRODUCTION). SOJ DESIGNS THE INTERFACE AND ENGINEERS THE INTELLIGENCE.";
+    return "CARGO ON RECORD: CONTRACT GUARD (CG-AI.ONRENDER.COM), FRESCO (SHELF-LIFE-CYAN.VERCEL.APP), PAYTRACE, KORTEX. SOJ DESIGNS THE INTERFACE AND ENGINEERS THE INTELLIGENCE.";
   }
-  return "CHANNEL IS RUNNING ON BACKUP POWER — LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, DESIGN ENGINEER, AI PRODUCTS, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD.";
+  return "CHANNEL IS RUNNING ON BACKUP POWER - LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, DESIGN ENGINEER, AI PRODUCTS, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD.";
 }
 
 export default function Dispatch({ snd }: { snd: Snd }) {
@@ -103,7 +103,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
   return (
     <section
       id="dispatch"
-      aria-label="Dispatch — ask the dispatcher"
+      aria-label="Dispatch - ask the dispatcher"
       style={{ position: "relative", zIndex: 5, padding: "13vh 5vw", scrollMarginTop: 70 }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative" }}>
@@ -121,7 +121,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
           ASK DISPATCH.
         </h2>
         <p style={{ fontSize: 17, lineHeight: 1.6, maxWidth: "56ch", margin: "0 0 38px" }}>
-          A live dispatcher is on shift. Ask anything about this consignment — the
+          A live dispatcher is on shift. Ask anything about this consignment - the
           projects, the engineer, the availability. Replies print below.
         </p>
         <div
@@ -286,7 +286,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
                 className="mono"
                 style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".14em" }}
               >
-                RECEIPT PRINTER — TRANSCRIPT
+                RECEIPT PRINTER - TRANSCRIPT
               </span>
               <span
                 className="mono"
@@ -333,7 +333,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
                           marginBottom: 3,
                         }}
                       >
-                        YOU — VISITOR BADGE
+                        YOU - VISITOR BADGE
                       </div>
                       <div
                         className="mono"
@@ -373,7 +373,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
                           marginBottom: 5,
                         }}
                       >
-                        <span>DISPATCH — NATIVE LABS</span>
+                        <span>DISPATCH - NATIVE LABS</span>
                         <span>{m.time}</span>
                       </div>
                       <div

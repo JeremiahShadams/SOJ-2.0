@@ -56,7 +56,7 @@ function BubbleWrap({ snd }: { snd: Snd }) {
           className="mono"
           style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em" }}
         >
-          BUBBLE WRAP — QA STRESS RELIEF
+          BUBBLE WRAP - QA STRESS RELIEF
         </span>
         <span
           className="mono"
@@ -205,7 +205,7 @@ function LabelMaker({ snd }: { snd: Snd }) {
         className="mono"
         style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em", marginBottom: 14 }}
       >
-        LABEL MAKER — MARK THE SITE
+        LABEL MAKER - MARK THE SITE
       </div>
       <div style={{ display: "flex", gap: 10 }}>
         <input
@@ -305,7 +305,7 @@ type TermLine = { t: string; c: string };
 
 function Terminal({ snd }: { snd: Snd }) {
   const [lines, setLines] = useState<TermLine[]>([
-    { t: "NATIVE LABS — RECEIPT TERMINAL v3.0", c: "#1A1A1A" },
+    { t: "NATIVE LABS - RECEIPT TERMINAL v3.0", c: "#1A1A1A" },
     { t: "TYPE 'HELP' AND HIT ENTER", c: "#8a8578" },
   ]);
   const [input, setInput] = useState("");
@@ -329,28 +329,33 @@ function Terminal({ snd }: { snd: Snd }) {
       );
     } else if (cmd === "work" || cmd === "manifest") {
       out.push(
-        { t: "01 CONTRACT GUARD — RAG · RETRIEVAL 68→91%", c: I },
-        { t: "02 FRESCO — CV SHELF-LIFE ESTIMATOR", c: I },
-        { t: "03 PAYTRACE — PAYMENTS, EVERY KOBO TRACED", c: I },
-        { t: "04 KORTEX — AGENTIC AI · IN PRODUCTION", c: O },
+        { t: "01 CONTRACT GUARD - RAG · RETRIEVAL 68→91%", c: I },
+        { t: "02 FRESCO - CV SHELF-LIFE ESTIMATOR", c: I },
+        { t: "03 PAYTRACE - PAYMENTS, EVERY KOBO TRACED", c: I },
+        { t: "04 KORTEX - AGENTIC AI · IN PRODUCTION", c: O },
       );
     } else if (cmd === "contact") {
-      out.push({ t: `${SITE.email.toUpperCase()} — REPLIES FROM WAT`, c: I });
+      out.push(
+        { t: `${SITE.email.toUpperCase()} - REPLIES FROM WAT`, c: I },
+        { t: `GITHUB: ${SITE.github}`, c: I },
+        { t: `LINKEDIN: ${SITE.linkedin}`, c: I },
+        { t: `X: ${SITE.x}`, c: I },
+      );
     } else if (cmd === "track") {
       out.push({ t: `CONSIGNMENT ${SITE.trackingNo}: SEE HUD, BOTTOM-LEFT`, c: I });
     } else if (cmd === "whoami") {
-      out.push({ t: "CURIOUS RECRUITER — WELCOME TO THE DEPOT", c: I });
+      out.push({ t: "CURIOUS RECRUITER - WELCOME TO THE DEPOT", c: I });
     } else if (cmd === "sudo hire soj") {
       out.push(
         { t: "════════ PACKING SLIP ════════", c: I },
-        { t: "1× DESIGN ENGINEER — AI PRODUCTS, END-TO-END", c: I },
+        { t: "1× DESIGN ENGINEER - AI PRODUCTS, END-TO-END", c: I },
         { t: "SHIP TO: YOUR TEAM", c: I },
         { t: `CONTACT: ${SITE.email.toUpperCase()}`, c: I },
         { t: "PERMISSION GRANTED ✓", c: G },
       );
       snd("bell");
     } else {
-      out.push({ t: `COMMAND NOT FOUND: ${cmd.toUpperCase()} — TRY 'HELP'`, c: O });
+      out.push({ t: `COMMAND NOT FOUND: ${cmd.toUpperCase()} - TRY 'HELP'`, c: O });
     }
     setLines((prev) => [...prev, ...out]);
     setInput("");
@@ -374,7 +379,7 @@ function Terminal({ snd }: { snd: Snd }) {
         className="mono"
         style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em", marginBottom: 14 }}
       >
-        RECEIPT TERMINAL — TRY “SUDO HIRE SOJ”
+        RECEIPT TERMINAL - TRY “SUDO HIRE SOJ”
       </div>
       <div
         ref={scrollRef}
@@ -430,7 +435,7 @@ export default function Depot({ snd }: { snd: Snd }) {
   return (
     <section
       id="depot"
-      aria-label="Depot — playground"
+      aria-label="Depot - playground"
       style={{ position: "relative", zIndex: 5, padding: "10vh 5vw", scrollMarginTop: 70 }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", position: "relative" }}>
@@ -458,7 +463,7 @@ export default function Depot({ snd }: { snd: Snd }) {
               letterSpacing: ".14em",
             }}
           >
-            DEPOT — AUTHORIZED PERSONNEL &amp; CURIOUS RECRUITERS ONLY
+            DEPOT - AUTHORIZED PERSONNEL &amp; CURIOUS RECRUITERS ONLY
           </div>
           <h2
             className="stencil"
@@ -474,7 +479,7 @@ export default function Depot({ snd }: { snd: Snd }) {
                 fontWeight: 400,
               }}
             >
-              — A SIDING OFF THE MAIN LINE
+              - A SIDING OFF THE MAIN LINE
             </span>
           </h2>
           <div

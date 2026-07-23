@@ -45,7 +45,7 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Case study — Contract Guard inspection report"
+      aria-label="Case study - Contract Guard inspection report"
       style={{
         position: "fixed",
         inset: 0,
@@ -130,7 +130,7 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
             }}
           >
             <div className="eyebrow" style={{ marginBottom: 0 }}>
-              INSPECTION REPORT — CRATE 01
+              INSPECTION REPORT - CRATE 01
             </div>
             <div style={{ transform: "rotate(6deg)" }}>
               <span
@@ -208,15 +208,15 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
             ))}
           </div>
 
-          <SectionLabel>01 — PROBLEM</SectionLabel>
+          <SectionLabel>01 - PROBLEM</SectionLabel>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: "0 0 34px" }}>
             Legal teams reviewed contracts with keyword search that missed clause
-            context entirely. Baseline retrieval sat at 68% — one in three questions
+            context entirely. Baseline retrieval sat at 68% - one in three questions
             surfaced the wrong clause, and every wrong clause meant a lawyer
             re-reading a 40-page document.
           </p>
 
-          <SectionLabel>02 — APPROACH</SectionLabel>
+          <SectionLabel>02 - APPROACH</SectionLabel>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: "0 0 26px" }}>
             Clause-aware chunking instead of naive splitting, hybrid dense + keyword
             retrieval, a reranking pass, and grounded generation that must cite the
@@ -283,11 +283,11 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
               />
             ))}
             <text x="8" y="132" fontFamily="Space Mono,monospace" fontSize="9.5" fill="#6E6A5E" letterSpacing="1">
-              FIG. A — THE RAG PIPELINE AS A LITERAL PIPELINE. DATA RIDES THE BELT.
+              FIG. A - THE RAG PIPELINE AS A LITERAL PIPELINE. DATA RIDES THE BELT.
             </text>
           </svg>
 
-          <SectionLabel mb={18}>03 — RESULT</SectionLabel>
+          <SectionLabel mb={18}>03 - RESULT</SectionLabel>
           <div
             style={{
               display: "grid",

@@ -28,14 +28,14 @@ type Stamp = {
 type RoutePoint = { x: number; y: number; len: number };
 
 const DOCK_NAMES: Record<string, string> = {
-  hero: "STATION 00 — THE LABEL",
-  s1: "STATION 01 — CONTRACT GUARD",
-  s2: "STATION 02 — FRESCO",
-  s3: "STATION 03 — PAYTRACE",
-  s4: "STATION 04 — KORTEX",
-  customs: "CUSTOMS — GATE 05",
+  hero: "STATION 00 - THE LABEL",
+  s1: "STATION 01 - CONTRACT GUARD",
+  s2: "STATION 02 - FRESCO",
+  s3: "STATION 03 - PAYTRACE",
+  s4: "STATION 04 - KORTEX",
+  customs: "CUSTOMS - GATE 05",
   depot: "DEPOT (SIDING)",
-  dispatch: "GATE 06 — DISPATCH DESK",
+  dispatch: "GATE 06 - DISPATCH DESK",
   delivery: "FRONT DOOR",
 };
 
@@ -75,7 +75,7 @@ export default function TheShipment() {
   const hudNextRef = useRef<HTMLSpanElement>(null);
   const hudBarRef = useRef<HTMLDivElement>(null);
 
-  // Mutable machine state — lives outside React so the rAF loop never
+  // Mutable machine state - lives outside React so the rAF loop never
   // sees a stale closure.
   const calmRef = useRef(false);
   const soundOnRef = useRef(false);
@@ -248,7 +248,7 @@ export default function TheShipment() {
       });
     };
 
-    // entrance choreography — skipped on repeat visits (sessionStorage)
+    // entrance choreography - skipped on repeat visits (sessionStorage)
     let skip = false;
     try {
       skip = !!sessionStorage.getItem("soj-ent");
@@ -390,7 +390,7 @@ export default function TheShipment() {
         if (hudNextRef.current) {
           hudNextRef.current.textContent = nxt
             ? DOCK_NAMES[nxt.k] || nxt.k.toUpperCase()
-            : "— END OF LINE —";
+            : "- END OF LINE -";
         }
         if (hudBarRef.current) hudBarRef.current.style.width = pct + "%";
 
@@ -451,10 +451,10 @@ export default function TheShipment() {
   };
 
   const navLinks = [
-    { href: "#manifest", label: "MANIFEST", title: "MANIFEST — my work" },
-    { href: "#customs", label: "CUSTOMS", title: "CUSTOMS — about me" },
-    { href: "#depot", label: "DEPOT", title: "DEPOT — playground" },
-    { href: "#delivery", label: "DELIVERY", title: "DELIVERY — contact" },
+    { href: "#manifest", label: "MANIFEST", title: "MANIFEST - my work" },
+    { href: "#customs", label: "CUSTOMS", title: "CUSTOMS - about me" },
+    { href: "#depot", label: "DEPOT", title: "DEPOT - playground" },
+    { href: "#delivery", label: "DELIVERY", title: "DELIVERY - contact" },
   ];
 
   return (
@@ -494,7 +494,7 @@ export default function TheShipment() {
                 fontWeight: 700,
               }}
             >
-              DOCK 01 — INBOUND
+              DOCK 01 - INBOUND
             </div>
           </div>
           {entStamp && (
@@ -518,7 +518,7 @@ export default function TheShipment() {
                     "inset 0 0 0 2px var(--concrete), inset 0 0 0 3.5px var(--cargo-blue)",
                 }}
               >
-                ORDER PLACED — {entDate}
+                ORDER PLACED - {entDate}
               </div>
             </div>
           )}
@@ -628,7 +628,7 @@ export default function TheShipment() {
           ▸ <span ref={hudPctRef}>0%</span>
         </div>
         <div>
-          NEXT STOP: <span ref={hudNextRef}>STATION 00 — THE LABEL</span>
+          NEXT STOP: <span ref={hudNextRef}>STATION 00 - THE LABEL</span>
         </div>
         <div
           style={{

@@ -24,7 +24,7 @@ export default function Delivery({
   const signedRef = useRef(signed);
   signedRef.current = signed;
 
-  // signature pad — pointer events on a canvas
+  // signature pad - pointer events on a canvas
   useEffect(() => {
     const c = sigRef.current;
     if (!c) return;
@@ -101,7 +101,7 @@ export default function Delivery({
   return (
     <section
       id="delivery"
-      aria-label="Delivery — contact"
+      aria-label="Delivery - contact"
       style={{ position: "relative", zIndex: 5, padding: "14vh 5vw 0", scrollMarginTop: 70 }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -269,7 +269,7 @@ export default function Delivery({
                   className="mono"
                   style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".14em" }}
                 >
-                  PROOF OF DELIVERY — SIGN HERE ✕
+                  PROOF OF DELIVERY - SIGN HERE ✕
                 </span>
                 <button onClick={clearSig} className="btn-line">
                   CLEAR
@@ -277,7 +277,7 @@ export default function Delivery({
               </div>
               <canvas
                 ref={sigRef}
-                aria-label="Signature pad — draw with cursor or finger (optional)"
+                aria-label="Signature pad - draw with cursor or finger (optional)"
                 style={{
                   width: "100%",
                   height: 150,
@@ -297,7 +297,7 @@ export default function Delivery({
                   marginTop: 8,
                 }}
               >
-                DRAW WITH CURSOR OR FINGER · SIGNING IS OPTIONAL — THE RECEIPT IS YOURS
+                DRAW WITH CURSOR OR FINGER · SIGNING IS OPTIONAL - THE RECEIPT IS YOURS
                 EITHER WAY
               </div>
               {signed && (
@@ -351,7 +351,7 @@ export default function Delivery({
                   marginBottom: 18,
                 }}
               >
-                DELIVERY RECEIPT — {SITE.trackingNo}
+                DELIVERY RECEIPT - {SITE.trackingNo}
               </div>
               <button
                 onClick={copyEmail}
@@ -421,6 +421,15 @@ export default function Delivery({
                 >
                   LINKEDIN ↗
                 </a>
+                <a
+                  href={SITE.x}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-block btn-block--ghost"
+                  style={{ background: "var(--paper)", color: "var(--ink)" }}
+                >
+                  X ↗
+                </a>
               </div>
               <div style={{ maxWidth: 420 }}>
                 <div
@@ -450,7 +459,7 @@ export default function Delivery({
         </div>
       </div>
 
-      {/* footer — the receipt strip */}
+      {/* footer - the receipt strip */}
       <footer
         className="mono"
         style={{
@@ -470,7 +479,7 @@ export default function Delivery({
         <span>
           © 2026 NATIVE LABS · SHIPPED FROM LAGOS · NO TEMPLATES IN THIS CONSIGNMENT
         </span>
-        <span data-clock="1">—:—:— WAT</span>
+        <span data-clock="1">-:-:- WAT</span>
         <button onClick={onReturnToTop} className="btn-line" style={{ fontSize: 10.5 }}>
           RETURN TO SENDER ↑
         </button>

@@ -45,8 +45,8 @@ button {
 }
 /* A11y: scanner-flagged focus outline, per spec §8 */
 :focus-visible {
-  outline: 2px solid var(--safety);
-  outline-offset: 2px;
+  outline: 2px solid var(--safety) !important;
+  outline-offset: 3px !important;
 }
 
 /* ══════════ KEYFRAMES ══════════ */
@@ -170,6 +170,13 @@ button {
 .navlink:hover {
   color: var(--safety);
 }
+/* desktop nav layout to avoid inline style overrides on mobile */
+.nav-links-desktop {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 /* solid pushable button */
 .btn-push {
   font-family: var(--font-mono);
@@ -221,6 +228,16 @@ button {
 .btn-block--ghost:hover {
   background: var(--cargo-blue);
   color: #fff;
+}
+.btn-container {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .btn-container {
+    flex-direction: column;
+  }
 }
 /* circular rubber stamp */
 .stamp-round {
@@ -293,10 +310,10 @@ button {
     transform: scale(0.82);
     transform-origin: left bottom;
   }
-  .nav-links {
+  .nav-links-desktop {
     display: none;
   }
-  .nav-links.open {
+  .nav-links-desktop.open {
     display: flex;
     flex-direction: column;
     position: absolute;

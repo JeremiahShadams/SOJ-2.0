@@ -6,9 +6,12 @@ const CHIPS: { text: string; style: React.CSSProperties }[] = [
   { text: "PYTHON", style: { top: 70, left: "6%", animationDuration: "3.2s" } },
   { text: "TYPESCRIPT", style: { top: 120, right: "5%", animationDuration: "2.7s", animationDelay: ".4s" } },
   { text: "PYTORCH", style: { top: 190, left: "4%", animationDuration: "3.6s", animationDelay: ".8s" } },
+  { text: "LANGCHAIN", style: { top: 210, right: "12%", animationDuration: "3.3s", animationDelay: ".5s" } },
   { text: "FASTAPI", style: { top: 250, right: "7%", animationDuration: "3s", animationDelay: ".2s" } },
   { text: "REACT", style: { top: 300, left: "10%", animationDuration: "3.4s", animationDelay: ".6s" } },
+  { text: "CREWAI", style: { top: 140, left: "20%", animationDuration: "2.8s", animationDelay: ".7s" } },
   { text: "NEXT.JS", style: { top: 64, right: "26%", animationDuration: "2.9s", animationDelay: "1s" } },
+  { text: "PGVECTOR", style: { top: 330, left: "30%", animationDuration: "3.2s", animationDelay: ".9s" } },
   { text: "POSTGRES", style: { top: 310, right: "30%", animationDuration: "3.1s", animationDelay: ".3s" } },
 ];
 
@@ -141,7 +144,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                 paddingTop: 10,
               }}
             >
-              CONTENTS VERIFIED: 1× ENGINEER · FUTA CS ’26 · SHIPS WITHOUT PERMISSION
+              CONTENTS VERIFIED: 1× FULLSTACK AI ENGINEER · ANCHOR UNIVERSITY CS ’26 · BUILDS FIRST, ASKS LATER
             </div>
           </div>
 
@@ -208,25 +211,21 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                 maxWidth: "88%",
               }}
             >
-              OCCUPATION: <strong>DESIGN ENGINEER - AI PRODUCTS</strong>
+              OCCUPATION: <strong>FULLSTACK AI ENGINEER</strong>
               <br />
               DECLARED EXPERIENCE: <strong>TECVISON</strong> - SOFTWARE &amp; AI ENG ·{" "}
               <strong>EMPEROR FINANCIAL</strong> - AI ENG (CONTRACT)
               <br />
-              ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>FUTA CS ’26</strong>
+              ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>ANCHOR UNIVERSITY CS ’26</strong>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
-              Final-year computer science at FUTA. I’ve shipped AI products across
-              contracts, food systems and payments - I don’t wait for permission to
-              build.
+              Final-year CS at Anchor University. I've shipped AI products across legal tech, computer vision, fintech, and agentic systems. I don't wait for the green light. I build until the deploy button turns green.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
-              I work the whole line: design the interface, engineer the intelligence
-              behind it, and carry the thing to production myself.
+              I work the whole line: design the interface, build the backend, wire the AI, and carry the thing to production myself. That's not a job description, that's a Tuesday.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: 0, maxWidth: "56ch" }}>
-              Lagos-based, WAT timezone - a comfortable overlap with U.S. mornings,
-              available for remote roles.
+              Lagos-based, WAT timezone, overlaps U.S. mornings comfortably. Available for remote roles. When I'm not shipping, I write about what I build on Medium.
             </p>
             {cleared && (
               <div

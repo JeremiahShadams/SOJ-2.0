@@ -9,7 +9,7 @@ const RESULTS = [
 ];
 
 const META = [
-  { k: "ROLE", v: "DESIGN ENGINEER, END-TO-END" },
+  { k: "ROLE", v: "FULLSTACK AI ENGINEER" },
   { k: "STACK", v: "PYTHON · FASTAPI · PGVECTOR · NEXT.JS" },
   { k: "TIMELINE", v: "2025" },
   { k: "STATUS", v: "SHIPPED ✓", color: "var(--pass)" },
@@ -213,7 +213,7 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
             Legal teams reviewed contracts with keyword search that missed clause
             context entirely. Baseline retrieval sat at 68% - one in three questions
             surfaced the wrong clause, and every wrong clause meant a lawyer
-            re-reading a 40-page document.
+            re-reading a 40-page document. That's not a retrieval problem. That's a business on fire.
           </p>
 
           <SectionLabel>02 - APPROACH</SectionLabel>
@@ -322,8 +322,7 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
           </div>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: 0 }}>
             Every answer now cites the exact clause it came from. The lawyers stopped
-            re-reading 40-page documents; the harness makes regressions impossible to
-            ship quietly.
+            re-reading 40-page documents. The eval harness makes regressions impossible to ship quietly. This is what happens when the person who designs the interface also engineers the retrieval pipeline.
           </p>
         </div>
         <div style={{ textAlign: "center", marginTop: 36 }}>

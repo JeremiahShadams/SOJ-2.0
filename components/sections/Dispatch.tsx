@@ -7,10 +7,10 @@ type Snd = (k: SoundKind) => void;
 type Msg = { who: "user" | "bot"; text: string; time: string };
 
 const CHIPS = [
-  "WHAT CAN SOJ BUILD?",
+  "WHAT DOES 'FULLSTACK AI' ACTUALLY MEAN?",
   "IS HE AVAILABLE FOR U.S. REMOTE?",
   "TELL ME ABOUT CONTRACT GUARD",
-  "WHY SHOULD WE HIRE HIM?",
+  "DOES HE WRITE ABOUT HIS WORK?",
 ];
 
 // Thermal-paper torn edge on dispatcher bubbles.
@@ -27,7 +27,7 @@ function now(): string {
 function cannedReply(q: string): string {
   const ql = q.toLowerCase();
   if (ql.includes("avail") || ql.includes("hire") || ql.includes("remote")) {
-    return "AFFIRMATIVE - SOJ IS CLEARED FOR U.S. REMOTE ROLES. WAT TIMEZONE, OVERLAPS YOUR MORNINGS. RADIO SHADAMS.DEV@GMAIL.COM OR SIGN FOR DELIVERY BELOW.";
+    return "AFFIRMATIVE: SOJ IS CLEARED FOR U.S. REMOTE ROLES. WAT TIMEZONE, OVERLAPS YOUR MORNINGS. RADIO SHADAMS.DEV@GMAIL.COM OR SIGN FOR DELIVERY BELOW. OVER.";
   }
   if (ql.includes("contract")) {
     return "CONTRACT GUARD: RAG ENGINE FOR LEGAL DOCS. CLAUSE-AWARE CHUNKING, HYBRID RETRIEVAL, GROUNDED CITATIONS. LIVE LINE: CG-AI.ONRENDER.COM. FULL REPORT: OPEN CRATE, STATION 01.";
@@ -38,16 +38,24 @@ function cannedReply(q: string): string {
     ql.includes("skill") ||
     ql.includes("work")
   ) {
-    return "CARGO ON RECORD: CONTRACT GUARD (CG-AI.ONRENDER.COM), FRESCO (SHELF-LIFE-CYAN.VERCEL.APP), PAYTRACE, KORTEX. SOJ DESIGNS THE INTERFACE AND ENGINEERS THE INTELLIGENCE.";
+    return "CARGO ON RECORD: CONTRACT GUARD (CG-AI.ONRENDER.COM), FRESCO (SHELF-LIFE-CYAN.VERCEL.APP), PAYTRACE, KORTEX. SOJ IS A FULLSTACK AI ENGINEER.";
   }
-  return "CHANNEL IS RUNNING ON BACKUP POWER - LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, DESIGN ENGINEER, AI PRODUCTS, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD.";
+  if (
+    ql.includes("write") ||
+    ql.includes("blog") ||
+    ql.includes("medium") ||
+    ql.includes("article")
+  ) {
+    return "DISPATCH LOGS: SOJ WRITES ABOUT HIS WORK ON MEDIUM. YOU CAN READ HIS TECHNICAL WRITING AT HTTPS://MEDIUM.COM/@JEREMIAHSHADAMORO.";
+  }
+  return "CHANNEL IS RUNNING ON BACKUP POWER: LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, FULLSTACK AI ENGINEER, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD. OVER.";
 }
 
 export default function Dispatch({ snd }: { snd: Snd }) {
   const [chat, setChat] = useState<Msg[]>([
     {
       who: "bot",
-      text: 'DISPATCH ON SHIFT. THIS CHANNEL COVERS ONE CONSIGNMENT: JEREMIAH "SOJ" SHADAMORO, DESIGN ENGINEER. GO AHEAD.',
+      text: 'DISPATCH ON SHIFT. ONE CONSIGNMENT ON THE BELT: JEREMIAH "SOJ" SHADAMORO - FULLSTACK AI ENGINEER. INTERFACE TO INTELLIGENCE, ONE PERSON, ZERO EXCUSES. GO AHEAD.',
       time: "--:--",
     },
   ]);
@@ -121,8 +129,7 @@ export default function Dispatch({ snd }: { snd: Snd }) {
           ASK DISPATCH.
         </h2>
         <p style={{ fontSize: 17, lineHeight: 1.6, maxWidth: "56ch", margin: "0 0 38px" }}>
-          A live dispatcher is on shift. Ask anything about this consignment - the
-          projects, the engineer, the availability. Replies print below.
+          A live dispatcher is on shift, powered by the same class of AI SOJ builds. Ask about the projects, the engineer, or the availability. Replies print on thermal paper below.
         </p>
         <div
           style={{

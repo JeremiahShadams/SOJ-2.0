@@ -56,7 +56,7 @@ function BubbleWrap({ snd }: { snd: Snd }) {
           className="mono"
           style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em" }}
         >
-          BUBBLE WRAP - QA STRESS RELIEF
+          BUBBLE WRAP — QA STRESS RELIEF
         </span>
         <span
           className="mono"
@@ -205,7 +205,7 @@ function LabelMaker({ snd }: { snd: Snd }) {
         className="mono"
         style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em", marginBottom: 14 }}
       >
-        LABEL MAKER - MARK THE SITE
+        LABEL MAKER — MARK THE SITE
       </div>
       <div style={{ display: "flex", gap: 10 }}>
         <input
@@ -324,7 +324,7 @@ function Terminal({ snd }: { snd: Snd }) {
     const O = "#FF4D00";
     if (cmd === "help") {
       out.push(
-        { t: "COMMANDS: WORK · CONTACT · TRACK · WHOAMI · CLEAR", c: I },
+        { t: "COMMANDS: WORK · CONTACT · TRACK · BLOG · WHOAMI · CLEAR", c: I },
         { t: "PRIVILEGED: SUDO HIRE SOJ", c: D },
       );
     } else if (cmd === "work" || cmd === "manifest") {
@@ -344,16 +344,22 @@ function Terminal({ snd }: { snd: Snd }) {
     } else if (cmd === "track") {
       out.push({ t: `CONSIGNMENT ${SITE.trackingNo}: SEE HUD, BOTTOM-LEFT`, c: I });
     } else if (cmd === "whoami") {
-      out.push({ t: "CURIOUS RECRUITER - WELCOME TO THE DEPOT", c: I });
+      out.push({ t: "CURIOUS RECRUITER: YOU'RE EXACTLY WHERE YOU SHOULD BE. TYPE 'SUDO HIRE SOJ' WHEN READY.", c: I });
     } else if (cmd === "sudo hire soj") {
       out.push(
         { t: "════════ PACKING SLIP ════════", c: I },
-        { t: "1× DESIGN ENGINEER - AI PRODUCTS, END-TO-END", c: I },
-        { t: "SHIP TO: YOUR TEAM", c: I },
+        { t: "1× FULLSTACK AI ENGINEER - INTERFACE TO INTELLIGENCE", c: I },
+        { t: "SHIP TO: YOUR TEAM (THEY'LL THANK YOU LATER)", c: I },
         { t: `CONTACT: ${SITE.email.toUpperCase()}`, c: I },
         { t: "PERMISSION GRANTED ✓", c: G },
       );
       snd("bell");
+    } else if (cmd === "blog" || cmd === "medium" || cmd === "writing") {
+      out.push(
+        { t: "REDIRECTING TO MEDIUM...", c: I },
+        { t: "URL: HTTPS://MEDIUM.COM/@JEREMIAHSHADAMORO", c: D },
+        { t: "WARNING: MAY CONTAIN HIGHLY OPINIONATED TECHNICAL TAKES", c: O },
+      );
     } else {
       out.push({ t: `COMMAND NOT FOUND: ${cmd.toUpperCase()} - TRY 'HELP'`, c: O });
     }
@@ -379,13 +385,15 @@ function Terminal({ snd }: { snd: Snd }) {
         className="mono"
         style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: ".12em", marginBottom: 14 }}
       >
-        RECEIPT TERMINAL - TRY “SUDO HIRE SOJ”
+        RECEIPT TERMINAL — TRY “SUDO HIRE SOJ”
       </div>
       <div
         ref={scrollRef}
         className="mono"
         style={{
-          height: 236,
+          height: "35vh",
+          minHeight: 220,
+          maxHeight: 280,
           overflowY: "auto",
           fontSize: 11.5,
           lineHeight: 1.85,
@@ -463,7 +471,7 @@ export default function Depot({ snd }: { snd: Snd }) {
               letterSpacing: ".14em",
             }}
           >
-            DEPOT - AUTHORIZED PERSONNEL &amp; CURIOUS RECRUITERS ONLY
+            DEPOT - AUTHORIZED PERSONNEL, CURIOUS RECRUITERS &amp; BORED ENGINEERS ONLY
           </div>
           <h2
             className="stencil"

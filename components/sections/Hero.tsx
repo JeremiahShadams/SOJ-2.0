@@ -105,7 +105,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
             className="mono"
             style={{ fontSize: 12.5, letterSpacing: ".12em" }}
           >
-            DECLARED VALUE: DESIGN ENGINEER AI PRODUCTS, END-TO-END
+            DECLARED VALUE: FULLSTACK AI ENGINEER - INTERFACE TO INTELLIGENCE
           </div>
           <div
             className="mono"
@@ -131,7 +131,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
                 animation: "pulseDot 2s infinite",
               }}
             />
-            HANDLING: AVAILABLE FOR REMOTE ROLES
+            HANDLING: CLEARED FOR REMOTE - AVAILABLE NOW
           </div>
           <p
             style={{
@@ -141,9 +141,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
               margin: "26px 0 30px",
             }}
           >
-            I design the interface <strong>and</strong> engineer the intelligence
-            behind it. Legal Systems, food systems, payments packed, inspected and
-            shipped from Lagos.
+            I design interfaces that earn trust, build the fullstack systems underneath, and wire the AI that makes them think. Legal tech, computer vision, payments, agentic systems: every crate shipped from Lagos, every line of code mine.
           </p>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 18, flexWrap: "wrap" }}>
             <div style={{ flex: 1, minWidth: 230, maxWidth: 380 }}>
@@ -166,7 +164,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
                   marginTop: 6,
                 }}
               >
-                REAL CODE 128 - SCAN WITH A PHONE → MY GITHUB
+                CODE 128 - SCAN WITH YOUR PHONE → GITHUB (YES, IT WORKS)
               </div>
             </div>
           </div>
@@ -208,7 +206,7 @@ export default function Hero({ heroStamp }: { heroStamp: boolean }) {
             animation: "hintP 2.4s infinite",
           }}
         >
-          SCROLL TO START THE LINE ▼
+          SCROLL TO START THE CONVEYOR ▼
         </div>
       </div>
     </section>

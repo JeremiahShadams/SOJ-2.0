@@ -2,30 +2,32 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SOJ / Native Labs - The Shipment",
+  title: "SOJ / Native Labs - Fullstack AI Engineer",
   description:
-    "Jeremiah “SOJ” Shadamoro - design engineer for AI products, end-to-end. Follow the package through the fulfilment line: Contract Guard, Fresco, PayTrace, Kortex. Shipped from Lagos, available for U.S. remote roles.",
+    "Jeremiah “SOJ” Shadamoro - fullstack AI engineer. Interface + backend + intelligence. Specializing in RAG, CV, and agentic systems. Based in Lagos, available for U.S. remote roles.",
   keywords: [
-    "design engineer",
-    "AI products",
+    "fullstack AI engineer",
+    "AI engineer",
     "RAG",
     "computer vision",
+    "agentic AI",
     "portfolio",
     "Lagos",
     "remote",
+    "technical writing",
   ],
   openGraph: {
-    title: "SOJ / Native Labs - The Shipment",
+    title: "SOJ / Native Labs - Fullstack AI Engineer",
     description:
-      "One package. One conveyor line. Every project stamps the box. Sign for delivery at the end.",
+      "Fullstack AI engineer bridging interface, backend, and intelligence. View the fulfillment line of AI projects.",
     type: "website",
     siteName: "Native Labs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOJ / Native Labs - The Shipment",
+    title: "SOJ / Native Labs - Fullstack AI Engineer",
     description:
-      "A portfolio you push down the fulfilment line. Scroll to start the conveyor.",
+      "Fullstack AI engineer bridging interface, backend, and intelligence. View the fulfillment line of AI projects.",
   },
 };
 

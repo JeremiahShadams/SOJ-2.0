@@ -204,13 +204,12 @@ export default function Stations({
               CONTRACT GUARD
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
-              <span className="chip">AI</span>
-              <span className="chip">RAG</span>
-              <span className="chip">LEGAL-TECH</span>
+              <span className="chip">RAG PIPELINE</span>
+              <span className="chip">LEGAL AI</span>
+              <span className="chip">FULLSTACK</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              A RAG engine that reads contracts the way senior counsel does -
-              clause-aware retrieval, grounded answers, a receipt for every claim.
+              Most legal AI is a search bar wearing a suit. Contract Guard actually reads contracts: clause-aware chunking, hybrid retrieval, reranking, and a citation stapled to every answer. I designed the interface, built the API, tuned the retrieval. The jump from 68% to 91% wasn't a model swap. It was engineering.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--pass)">
@@ -383,12 +382,11 @@ export default function Stations({
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
               <span className="chip">COMPUTER VISION</span>
+              <span className="chip">ON-DEVICE ML</span>
               <span className="chip">MOBILE</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              Point a phone camera at fresh produce and Fresco estimates its
-              remaining shelf life - computer vision keeping food out of the bin
-              and money in the till.
+              Point your phone at a tomato. Fresco tells you how many days it has left. Computer vision running on-device: no cloud round-trip, no latency excuse. I designed the UX, trained the model, shipped the fullstack. Because nobody else was going to.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--cargo-blue)">
@@ -437,11 +435,11 @@ export default function Stations({
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
               <span className="chip">FINTECH</span>
-              <span className="chip">PAYMENTS</span>
+              <span className="chip">RECONCILIATION</span>
+              <span className="chip">FULLSTACK</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              Payment infrastructure with a paper trail - reconciliation and
-              tracing for transactions that are never allowed to go missing.
+              Payment infrastructure where every transaction leaves a paper trail. Reconciliation and tracing built for systems that treat 'money went missing' as an unacceptable sentence. Fullstack engineering with zero tolerance for silent failures.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--ink)">EVERY KOBO ACCOUNTED FOR</MetricTag>
@@ -495,11 +493,11 @@ export default function Stations({
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
               <span className="chip">AGENTIC AI</span>
-              <span className="chip">CONTENT SYSTEMS</span>
+              <span className="chip">MULTI-AGENT</span>
+              <span className="chip">BUILT IN PUBLIC</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              An agentic content system, being built in public. The line is live,
-              the crate is not yet sealed - watch this station.
+              An agentic AI content system: multiple agents coordinating, planning, executing. Being built in public because the best way to prove you can build AI agents is to let people watch. The line is live. The crate is not yet sealed. Watch this station.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--safety)">STATUS: IN PRODUCTION ●</MetricTag>

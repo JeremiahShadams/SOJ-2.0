@@ -395,7 +395,7 @@ export default function Delivery({
               >
                 COPIED ✓
               </span>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", margin: "24px 0 26px" }}>
+              <div className="btn-container" style={{ margin: "24px 0 26px" }}>
                 <a
                   href={SITE.resume}
                   className="btn-block"
@@ -429,6 +429,15 @@ export default function Delivery({
                   style={{ background: "var(--paper)", color: "var(--ink)" }}
                 >
                   X ↗
+                </a>
+                <a
+                  href="https://medium.com/@jeremiahshadamoro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-block btn-block--ghost"
+                  style={{ background: "var(--paper)", color: "var(--ink)" }}
+                >
+                  MEDIUM ↗
                 </a>
               </div>
               <div style={{ maxWidth: 420 }}>
@@ -477,7 +486,7 @@ export default function Delivery({
         }}
       >
         <span>
-          © 2026 NATIVE LABS · SHIPPED FROM LAGOS · NO TEMPLATES IN THIS CONSIGNMENT
+          © 2026 NATIVE LABS · SHIPPED FROM LAGOS · DESIGNED, BUILT & DEPLOYED BY SOJ · NO TEMPLATES
         </span>
         <span data-clock="1">-:-:- WAT</span>
         <button onClick={onReturnToTop} className="btn-line" style={{ fontSize: 10.5 }}>

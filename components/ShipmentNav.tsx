@@ -7,6 +7,18 @@ type ShipmentNavProps = {
   toggleSound: () => void;
 };
 
+
+type ShipmentNavProps = {
+  navOpen: boolean;
+  setNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  soundOn: boolean;
+  toggleSound: () => void;
+};
+
+
+
+
+
 const navLinks = [
   { href: "#manifest", label: "MANIFEST", title: "MANIFEST - my work" },
   { href: "#customs", label: "CUSTOMS", title: "CUSTOMS - about me" },

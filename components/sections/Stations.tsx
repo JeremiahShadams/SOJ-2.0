@@ -208,6 +208,12 @@ export default function Stations({
               <span className="chip">LEGAL AI</span>
               <span className="chip">FULLSTACK</span>
             </div>
+            <div className="mono" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18, fontSize: 10, fontWeight: 700, color: "var(--ink)" }}>
+              <span>[ PYTHON ]</span>
+              <span>[ FASTAPI ]</span>
+              <span>[ PGVECTOR ]</span>
+              <span>[ NEXT.JS ]</span>
+            </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
               Most legal AI is a search bar wearing a suit. Contract Guard actually reads contracts: clause-aware chunking, hybrid retrieval, reranking, and a citation stapled to every answer. I designed the interface, built the API, tuned the retrieval. The jump from 68% to 91% wasn't a model swap. It was engineering.
             </p>
@@ -237,6 +243,31 @@ export default function Stations({
                   }}
                 >
                   LAUNCH CONTRACT GUARD ↗
+                </a>
+                <a
+                  href={SITE.projects.contractGuardGithub}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mono"
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 700,
+                    letterSpacing: ".1em",
+                    color: "var(--cargo-blue)",
+                    borderBottom: "2px solid var(--cargo-blue)",
+                    padding: "2px 0",
+                    textDecoration: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--safety)";
+                    e.currentTarget.style.borderColor = "var(--safety)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--cargo-blue)";
+                    e.currentTarget.style.borderColor = "var(--cargo-blue)";
+                  }}
+                >
+                  SOURCE CODE [GITHUB] ↗
                 </a>
               <button
                 onClick={onOpenCrate}
@@ -384,6 +415,11 @@ export default function Stations({
               <span className="chip">COMPUTER VISION</span>
               <span className="chip">ON-DEVICE ML</span>
               <span className="chip">MOBILE</span>
+            </div>
+            <div className="mono" style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18, fontSize: 10, fontWeight: 700, color: "var(--ink)" }}>
+              <span>[ PYTORCH MOBILE ]</span>
+              <span>[ TENSORFLOW LITE ]</span>
+              <span>[ REACT NATIVE ]</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
               Point your phone at a tomato. Fresco tells you how many days it has left. Computer vision running on-device: no cloud round-trip, no latency excuse. I designed the UX, trained the model, shipped the fullstack. Because nobody else was going to.

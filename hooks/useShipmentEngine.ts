@@ -17,8 +17,9 @@ const DOCK_NAMES: Record<string, string> = {
   hero: "STATION 00 - THE LABEL",
   s1: "STATION 01 - CONTRACT GUARD",
   s2: "STATION 02 - FRESCO",
-  s3: "STATION 03 - PAYTRACE",
-  s4: "STATION 04 - KORTEX",
+  s3: "STATION 03 - CODEBASE Q&A AGENT",
+  s4: "STATION 04 - MCP SERVER",
+  s5: "STATION 05 - NL TO SQL AGENT",
   customs: "CUSTOMS - GATE 05",
   depot: "DEPOT (SIDING)",
   dispatch: "GATE 06 - DISPATCH DESK",
@@ -103,10 +104,11 @@ export function useShipmentEngine() {
       if (firedRef.current.has(k)) return;
       firedRef.current.add(k);
       setFired((f) => ({ ...f, [k]: true }));
-      if (k === "s1") addStamp("INSPECTED 68→91", "#1E7A46");
+      if (k === "s1") addStamp("QUALITY ASSURED", "#1E7A46");
       else if (k === "s2") addStamp("KEEP CHILLED", "#1F4FD8");
-      else if (k === "s3") addStamp("SETTLED ✓", "#1A1A1A");
-      else if (k === "s4") addStamp("IN PROD", "#FF4D00");
+      else if (k === "s3") addStamp("LANGGRAPH LIVE", "#1A1A1A");
+      else if (k === "s4") addStamp("CONNECTED", "#FF4D00");
+      else if (k === "s5") addStamp("EXECUTED", "#1E7A46");
       else if (k === "customs") {
         addStamp("CLEARED", "#1E7A46");
         snd("beep");

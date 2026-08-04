@@ -329,10 +329,11 @@ function Terminal({ snd }: { snd: Snd }) {
       );
     } else if (cmd === "work" || cmd === "manifest") {
       out.push(
-        { t: "01 CONTRACT GUARD - RAG · RETRIEVAL 68→91%", c: I },
+        { t: "01 CONTRACT GUARD - RAG · HYBRID RETRIEVAL", c: I },
         { t: "02 FRESCO - CV SHELF-LIFE ESTIMATOR", c: I },
-        { t: "03 PAYTRACE - PAYMENTS, EVERY KOBO TRACED", c: I },
-        { t: "04 KORTEX - AGENTIC AI · IN PRODUCTION", c: O },
+        { t: "03 CODEBASE Q&A - LANGGRAPH SEMANTIC SEARCH", c: I },
+        { t: "04 MCP SERVER - CLAUDE DESKTOP INTEGRATION", c: I },
+        { t: "05 NL TO SQL - SCHEMA INTROSPECTION", c: O },
       );
     } else if (cmd === "contact") {
       out.push(

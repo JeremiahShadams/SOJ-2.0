@@ -215,11 +215,11 @@ export default function Stations({
               <span>[ NEXT.JS ]</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              Most legal AI is a search bar wearing a suit. Contract Guard actually reads contracts: clause-aware chunking, hybrid retrieval, reranking, and a citation stapled to every answer. I designed the interface, built the API, tuned the retrieval. The jump from 68% to 91% wasn't a model swap. It was engineering.
+              Most legal AI is a search bar wearing a suit. Contract Guard actually reads contracts: clause-aware chunking, hybrid retrieval, reranking, and a citation stapled to every answer. I designed the interface, built the API, and wired the Groq inference engine. It doesn't just search; it explains risk.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
               <MetricTag color="var(--pass)">
-                RETRIEVAL 68% → 91% · 50 CONTRACT TYPES
+                CLAUSE-LEVEL RISK SCORING · GROQ INFERENCE
               </MetricTag>
               <StationStamp show={!!fired.s1} color="#1E7A46" rot={-8}>
                 QUALITY INSPECTED
@@ -455,90 +455,87 @@ export default function Stations({
         </div>
       </section>
 
-      {/* ══════════ STATION 03 - PAYTRACE ══════════ */}
+      {/* ══════════ STATION 03 - Q&A AGENT ══════════ */}
       <section
-        aria-label="Station 03 - PayTrace"
+        aria-label="Station 03 - Codebase Q&A Agent"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
       >
         <div className="station-grid">
           <div style={cardStyle}>
-            <div className="eyebrow">STATION 03 / SETTLEMENTS</div>
+            <div className="eyebrow">STATION 03 / HYBRID RETRIEVAL</div>
             <h2
               className="stencil"
               style={{ fontSize: "clamp(2.2rem,4vw,3.6rem)", lineHeight: 1, margin: "0 0 16px" }}
             >
-              PAYTRACE
+              CODEBASE Q&A AGENT
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
-              <span className="chip">FINTECH</span>
-              <span className="chip">RECONCILIATION</span>
-              <span className="chip">FULLSTACK</span>
+              <span className="chip">LANGGRAPH</span>
+              <span className="chip">OPENAI EMBEDDINGS</span>
+              <span className="chip">PGVECTOR</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              Payment infrastructure where every transaction leaves a paper trail. Reconciliation and tracing built for systems that treat 'money went missing' as an unacceptable sentence. Fullstack engineering with zero tolerance for silent failures.
+              A complex LangGraph agent that ingests entire codebases, performs hybrid semantic chunk search, and generates grounded citations with human-in-the-loop fallbacks. Real-time SSE streaming via FastAPI.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-              <MetricTag color="var(--ink)">EVERY KOBO ACCOUNTED FOR</MetricTag>
+              <MetricTag color="var(--ink)">TRACING VIA LANGSMITH</MetricTag>
               <StationStamp show={!!fired.s3} color="#1A1A1A" rot={-6}>
-                SETTLED ✓
+                LANGGRAPH LIVE
               </StationStamp>
             </div>
-            <div style={{ marginTop: 24 }}>
+            <div style={{ marginTop: 24, display: "flex", gap: 16 }}>
               <span
                 className="mono"
-                style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)" }}
+                style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)", alignSelf: "center" }}
               >
-                REPORT: SEALED - ON REQUEST
+                STATUS: IN PRODUCTION
               </span>
             </div>
           </div>
           <BoltedFrame
-            slotId="shot-paytrace"
-            slotAlt="PayTrace product screenshot"
-            slotLabel="PAYTRACE"
-            caption="FIG. 03 - PAYTRACE / MOUNTED INSPECTION SCREEN"
+            slotId="shot-qa-agent"
+            slotAlt="Codebase Q&A Agent UI"
+            slotLabel="Q&A AGENT"
+            caption="FIG. 03 - Q&A AGENT / SEMANTIC CACHE"
             dock="s3"
           />
         </div>
       </section>
 
-      {/* ══════════ STATION 04 - KORTEX ══════════ */}
+      {/* ══════════ STATION 04 - MCP SERVER ══════════ */}
       <section
-        aria-label="Station 04 - Kortex"
+        aria-label="Station 04 - MCP Server"
         style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
       >
         <div className="station-grid">
           <div style={{ order: 0 }}>
             <BoltedFrame
-              slotId="shot-kortex"
-              slotAlt="Kortex work-in-progress screenshot"
-              slotLabel="KORTEX"
-              caption="FIG. 04 - KORTEX / GANTRY PARTIALLY TAPED"
+              slotId="shot-mcp"
+              slotAlt="MCP Server terminal output"
+              slotLabel="MCP SERVER"
+              caption="FIG. 04 - MCP SERVER / CLAUDE DESKTOP INTEGRATION"
               dock="s4"
-              beacon
-              constructionTape
             />
           </div>
           <div style={{ ...cardStyle, order: 1 }}>
-            <div className="eyebrow">STATION 04 / IN PRODUCTION</div>
+            <div className="eyebrow">STATION 04 / PROTOCOL</div>
             <h2
               className="stencil"
               style={{ fontSize: "clamp(2.2rem,4vw,3.6rem)", lineHeight: 1, margin: "0 0 16px" }}
             >
-              KORTEX
+              MCP SERVER
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
-              <span className="chip">AGENTIC AI</span>
-              <span className="chip">MULTI-AGENT</span>
-              <span className="chip">BUILT IN PUBLIC</span>
+              <span className="chip">MODEL CONTEXT PROTOCOL</span>
+              <span className="chip">CLAUDE DESKTOP</span>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
-              An agentic AI content system: multiple agents coordinating, planning, executing. Being built in public because the best way to prove you can build AI agents is to let people watch. The line is live. The crate is not yet sealed. Watch this station.
+              A Model Context Protocol (MCP) server that exposes codebase retrieval endpoints directly to Claude Desktop. Allows local LLMs to natively search and analyze your specific repository vectors without context window limits.
             </p>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
-              <MetricTag color="var(--safety)">STATUS: IN PRODUCTION ●</MetricTag>
+              <MetricTag color="var(--safety)">NATIVE AI TOOLING</MetricTag>
               <StationStamp show={!!fired.s4} color="#FF4D00" rot={8}>
-                IN PROD
+                CONNECTED
               </StationStamp>
             </div>
             <div style={{ marginTop: 24 }}>
@@ -546,10 +543,57 @@ export default function Stations({
                 className="mono"
                 style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)" }}
               >
-                CRATE NOT YET SEALED
+                REPORT: PROTOCOL ACTIVE
               </span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════════ STATION 05 - NL TO SQL AGENT ══════════ */}
+      <section
+        aria-label="Station 05 - NL to SQL Agent"
+        style={{ position: "relative", zIndex: 5, padding: "13vh 5vw" }}
+      >
+        <div className="station-grid">
+          <div style={cardStyle}>
+            <div className="eyebrow">STATION 05 / INTROSPECTION</div>
+            <h2
+              className="stencil"
+              style={{ fontSize: "clamp(2.2rem,4vw,3.6rem)", lineHeight: 1, margin: "0 0 16px" }}
+            >
+              NL → SQL AGENT
+            </h2>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 18 }}>
+              <span className="chip">LLM TO SQL</span>
+              <span className="chip">POSTGRESQL</span>
+              <span className="chip">STRUCTURED DATA</span>
+            </div>
+            <p style={{ fontSize: 17, lineHeight: 1.65, margin: "0 0 18px", maxWidth: "52ch" }}>
+              An agent that takes plain English queries, dynamically introspects PostgreSQL database schemas, generates safe read-only SQL, and interprets the results back to the user. Closing the gap between natural language and structured data.
+            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+              <MetricTag color="var(--ink)">DYNAMIC SCHEMA INTROSPECTION</MetricTag>
+              <StationStamp show={!!fired.s5} color="#1E7A46" rot={-4}>
+                EXECUTED
+              </StationStamp>
+            </div>
+            <div style={{ marginTop: 24 }}>
+              <span
+                className="mono"
+                style={{ fontSize: 12, letterSpacing: ".1em", color: "var(--muted)" }}
+              >
+                REPORT: QUERIES ROUTED
+              </span>
+            </div>
+          </div>
+          <BoltedFrame
+            slotId="shot-sql-agent"
+            slotAlt="NL to SQL Agent"
+            slotLabel="SQL AGENT"
+            caption="FIG. 05 - SQL AGENT / QUERY GENERATION"
+            dock="s5"
+          />
         </div>
       </section>
     </>

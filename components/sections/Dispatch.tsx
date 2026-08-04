@@ -38,7 +38,7 @@ function cannedReply(q: string): string {
     ql.includes("skill") ||
     ql.includes("work")
   ) {
-    return "CARGO ON RECORD: CONTRACT GUARD (CG-AI.ONRENDER.COM), FRESCO (SHELF-LIFE-CYAN.VERCEL.APP), PAYTRACE, KORTEX. SOJ IS A FULLSTACK AI ENGINEER.";
+    return "CARGO ON RECORD: CONTRACT GUARD, FRESCO, CODEBASE Q&A AGENT, MCP SERVER, NL TO SQL AGENT. SOJ IS A FULLSTACK AI ENGINEER.";
   }
   if (
     ql.includes("write") ||

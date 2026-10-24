@@ -32,6 +32,21 @@ function cannedReply(q: string): string {
   if (ql.includes("contract")) {
     return "CONTRACT GUARD: RAG ENGINE FOR LEGAL DOCS. CLAUSE-AWARE CHUNKING, HYBRID RETRIEVAL, GROUNDED CITATIONS. LIVE LINE: CG-AI.ONRENDER.COM. FULL REPORT: OPEN CRATE, STATION 01.";
   }
+  if (ql.includes("fresco") || ql.includes("produce") || ql.includes("shelf") || ql.includes("vision")) {
+    return "FRESCO: ON-DEVICE COMPUTER VISION SHELF-LIFE ESTIMATOR. 89.3% TOP-1 ACCURACY IN AN 11.6MB PYTORCH MODEL RUNNING CLIENT-SIDE. LIVE AT SHELF-LIFE-CYAN.VERCEL.APP. STATION 02.";
+  }
+  if (ql.includes("qa") || ql.includes("codebase") || ql.includes("langgraph")) {
+    return "CODEBASE Q&A AGENT: LANGGRAPH-POWERED SEMANTIC CODEBASE REASONING ENGINE WITH CITATIONS AND HUMAN-IN-THE-LOOP RETRIEVAL FALLBACKS. STATION 03.";
+  }
+  if (ql.includes("mcp") || ql.includes("claude") || ql.includes("desktop")) {
+    return "MCP SERVER: MODEL CONTEXT PROTOCOL SYSTEM INTEGRATING LOCAL REPOSITORIES DIRECTLY INTO CLAUDE DESKTOP WITH DYNAMIC RETRIEVAL. STATION 04.";
+  }
+  if (ql.includes("sql") || ql.includes("postgres") || ql.includes("database")) {
+    return "NL TO SQL AGENT: NATURAL LANGUAGE TO SAFE POSTGRESQL QUERY GENERATION WITH DYNAMIC SCHEMA INTROSPECTION AND REASONING. STATION 05.";
+  }
+  if (ql.includes("university") || ql.includes("school") || ql.includes("anchor") || ql.includes("aul") || ql.includes("degree") || ql.includes("education")) {
+    return "EDUCATION RECORD: FINAL-YEAR COMPUTER SCIENCE AT ANCHOR UNIVERSITY (AUL), CLASS OF 2026. LAGOS, NIGERIA. OVER.";
+  }
   if (
     ql.includes("build") ||
     ql.includes("do") ||
@@ -48,7 +63,7 @@ function cannedReply(q: string): string {
   ) {
     return "DISPATCH LOGS: SOJ WRITES ABOUT HIS WORK ON MEDIUM. YOU CAN READ HIS TECHNICAL WRITING AT HTTPS://MEDIUM.COM/@JEREMIAHSHADAMORO.";
   }
-  return "CHANNEL IS RUNNING ON BACKUP POWER: LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, FULLSTACK AI ENGINEER, LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, WHAT CAN HE BUILD. OVER.";
+  return "CHANNEL IS RUNNING ON BACKUP POWER: LIVE DISPATCHER UNREACHABLE. KNOWN FACTS: SOJ, FULLSTACK AI ENGINEER, ANCHOR UNIVERSITY (AUL), LAGOS, AVAILABLE U.S. REMOTE. TRY: AVAILABILITY, CONTRACT GUARD, FRESCO, CODEBASE Q&A, OR WHAT CAN HE BUILD. OVER.";
 }
 
 export default function Dispatch({ snd }: { snd: Snd }) {

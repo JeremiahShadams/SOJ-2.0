@@ -324,7 +324,7 @@ function Terminal({ snd }: { snd: Snd }) {
     const O = "#FF4D00";
     if (cmd === "help") {
       out.push(
-        { t: "COMMANDS: WORK · CONTACT · TRACK · BLOG · WHOAMI · CLEAR", c: I },
+        { t: "COMMANDS: WORK · CONTACT · TRACK · BLOG · EDU · WHOAMI · CLEAR", c: I },
         { t: "PRIVILEGED: SUDO HIRE SOJ", c: D },
       );
     } else if (cmd === "work" || cmd === "manifest") {
@@ -334,6 +334,13 @@ function Terminal({ snd }: { snd: Snd }) {
         { t: "03 CODEBASE Q&A - LANGGRAPH SEMANTIC SEARCH", c: I },
         { t: "04 MCP SERVER - CLAUDE DESKTOP INTEGRATION", c: I },
         { t: "05 NL TO SQL - SCHEMA INTROSPECTION", c: O },
+      );
+    } else if (cmd === "edu" || cmd === "school" || cmd === "aul" || cmd === "anchor" || cmd === "education") {
+      out.push(
+        { t: "════════ ACADEMIC RECORD ════════", c: I },
+        { t: "INSTITUTION: ANCHOR UNIVERSITY (AUL), LAGOS", c: I },
+        { t: "DEGREE: B.SC. COMPUTER SCIENCE · CLASS OF 2026", c: I },
+        { t: "STATUS: FINAL YEAR · CLEARED FOR REMOTE ENGINEERING", c: G },
       );
     } else if (cmd === "contact") {
       out.push(

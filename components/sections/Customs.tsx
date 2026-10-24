@@ -144,7 +144,7 @@ export default function Customs({ cleared }: { cleared: boolean }) {
                 paddingTop: 10,
               }}
             >
-              CONTENTS VERIFIED: 1× FULLSTACK AI ENGINEER · ANCHOR UNIVERSITY CS ’26 · BUILDS FIRST, ASKS LATER
+              CONTENTS VERIFIED: 1× FULLSTACK AI ENGINEER · ANCHOR UNIVERSITY (AUL) CS ’26 · BUILDS FIRST, ASKS LATER
             </div>
           </div>
 
@@ -216,10 +216,10 @@ export default function Customs({ cleared }: { cleared: boolean }) {
               DECLARED EXPERIENCE: <strong>TECVISON</strong> - SOFTWARE &amp; AI ENG ·{" "}
               <strong>EMPEROR FINANCIAL</strong> - AI ENG (CONTRACT)
               <br />
-              ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>ANCHOR UNIVERSITY CS ’26</strong>
+              ORIGIN: <strong>LAGOS, NG (WAT)</strong> · EDUCATION: <strong>ANCHOR UNIVERSITY (AUL) CS ’26</strong>
             </div>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
-              Final-year CS at Anchor University. I've shipped AI products across legal tech, computer vision, fintech, and agentic systems. I don't wait for the green light. I build until the deploy button turns green.
+              Final-year CS at Anchor University (AUL). I've shipped AI products across legal tech, computer vision, fintech, and agentic systems. I don't wait for the green light. I build until the deploy button turns green.
             </p>
             <p style={{ fontSize: 17, lineHeight: 1.7, margin: "0 0 14px", maxWidth: "56ch" }}>
               I work the whole line: design the interface, build the backend, wire the AI, and carry the thing to production myself. That's not a job description, that's a Tuesday.

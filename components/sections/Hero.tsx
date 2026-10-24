@@ -1,212 +1,183 @@
 "use client";
 
-import Barcode from "@/components/Barcode";
 import { SITE } from "@/lib/site";
 
-export default function Hero({ heroStamp }: { heroStamp: boolean }) {
+export default function Hero({
+  activeSide = "A",
+  onFlipSide = () => {},
+  onOpenProof = () => {},
+  onSound,
+  heroStamp,
+}: {
+  activeSide?: "A" | "B";
+  onFlipSide?: () => void;
+  onOpenProof?: () => void;
+  onSound?: () => void;
+  heroStamp?: boolean;
+}) {
   return (
     <section
-      id="label"
-      aria-label="Station 00 - The Label"
+      id="hero"
+      aria-label="Side A Track 01 - The Needle Drop"
       style={{
         position: "relative",
-        zIndex: 5,
-        padding: "86px 5vw 6vh",
-        scrollMarginTop: 70,
+        paddingTop: "clamp(120px, 20vh, 180px)",
+        paddingBottom: "clamp(60px, 10vh, 100px)",
+        overflow: "hidden",
       }}
     >
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* Background Vinyl Record Glow Graphic */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "10%",
+          right: "-120px",
+          width: "clamp(340px, 45vw, 600px)",
+          height: "clamp(340px, 45vw, 600px)",
+          borderRadius: "50%",
+          background: "radial-gradient(circle at center, rgba(255, 229, 0, 0.04) 0%, transparent 68%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
+
+      <div className="site-container" style={{ position: "relative", zIndex: 2 }}>
+        {/* Release Metadata Header */}
         <div
-          className="mono"
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            fontSize: 10.5,
-            letterSpacing: ".12em",
-            color: "var(--muted)",
-            borderTop: "1px solid var(--ink)",
-            borderBottom: "1px solid var(--ink)",
-            padding: "8px 2px",
+            alignItems: "center",
+            gap: "12px",
+            marginBottom: "24px",
             flexWrap: "wrap",
-            gap: 6,
           }}
         >
-          <span>SOJ</span>
-          <span>
-            <span data-clock="1">-:-:- WAT</span> · LAGOS, NG
+          <div className="badge-yellow">RELEASE // 2026.01</div>
+          <span className="font-mono" style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>
+            SIDE {activeSide} · TRACK 01 // MASTER OUTPUT
+          </span>
+          <span className="badge-live" style={{ marginLeft: "auto" }}>
+            AVAILABLE REMOTE (US / EU)
           </span>
         </div>
 
-        {/* labeling machine */}
-        <svg
-          width="240"
-          height="132"
-          viewBox="0 0 240 132"
-          aria-hidden="true"
-          style={{ display: "block", margin: "26px auto 0" }}
-        >
-          <line x1="120" y1="0" x2="120" y2="46" stroke="#1A1A1A" strokeWidth="5" />
-          <rect x="66" y="46" width="108" height="36" fill="#FFFDF8" stroke="#1A1A1A" strokeWidth="3" />
-          <text
-            x="120"
-            y="69"
-            textAnchor="middle"
-            fontFamily="Space Mono,monospace"
-            fontSize="11"
-            fontWeight="700"
-            fill="#1A1A1A"
-            letterSpacing="1"
-          >
-            LABELER-01
-          </text>
-          <circle cx="182" cy="52" r="5" fill="#FF4D00" />
-          <line x1="96" y1="82" x2="96" y2="114" stroke="#1A1A1A" strokeWidth="3" />
-          <line x1="144" y1="82" x2="144" y2="114" stroke="#1A1A1A" strokeWidth="3" />
-          <rect x="80" y="114" width="80" height="12" fill="#1A1A1A" />
-        </svg>
-        <div data-dock="hero" style={{ width: 2, height: 150, margin: "0 auto" }} />
-
-        {/* the shipping label = hero content */}
-        <div
-          style={{
-            position: "relative",
-            background: "var(--paper)",
-            border: "2px solid var(--ink)",
-            boxShadow: "10px 10px 0 rgba(26,26,26,.9)",
-            maxWidth: 920,
-            margin: "60px auto 0",
-            padding: "42px 48px 44px",
-          }}
-        >
-          <div
-            data-type="1"
-            className="mono"
-            style={{ fontSize: 12.5, letterSpacing: ".12em", color: "var(--ink)" }}
-          >
-            SHIP FROM: LAGOS, NIGERIA (WAT)
-          </div>
+        {/* Hero Title & Identity */}
+        <div style={{ maxWidth: "900px" }}>
           <h1
-            className="stencil"
+            className="font-display"
             style={{
-              fontSize: "clamp(2.6rem,8.4vw,7rem)",
-              lineHeight: 0.98,
-              letterSpacing: ".01em",
-              margin: "18px 0 14px",
-              width: "110%",
-              marginLeft: "-5%",
-              animation: "sprayIn .7s ease .4s both",
-              textWrap: "balance",
+              fontSize: "clamp(2.5rem, 6.5vw, 5.2rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              margin: "0 0 20px 0",
+              color: "#fff",
             }}
           >
-            {SITE.name}
+            Jeremiah Shadamoro
           </h1>
+
           <div
-            data-type="1"
-            className="mono"
-            style={{ fontSize: 12.5, letterSpacing: ".12em" }}
+            className="font-mono"
+            style={{
+              fontSize: "clamp(1rem, 2.2vw, 1.4rem)",
+              fontWeight: 600,
+              color: "var(--yellow)",
+              letterSpacing: "-0.01em",
+              marginBottom: "20px",
+            }}
           >
-            DECLARED VALUE: FULLSTACK AI ENGINEER - INTERFACE TO INTELLIGENCE
+            Software Engineer | Full-Stack (AI)
           </div>
+
+          <p
+            className="font-body"
+            style={{
+              fontSize: "clamp(1.05rem, 1.8vw, 1.3rem)",
+              lineHeight: 1.6,
+              color: "var(--text-secondary)",
+              maxWidth: "700px",
+              margin: "0 0 32px 0",
+            }}
+          >
+            I architect high-throughput full-stack products, fault-tolerant payment systems, and low-latency AI pipelines. Shipped across a 30+ person Swedish remote team, Lagos state infrastructure, and on-device machine learning.
+          </p>
+
+          {/* 3 Proof Chips */}
           <div
-            className="mono"
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: 10,
-              marginTop: 14,
-              fontSize: 12.5,
-              letterSpacing: ".12em",
-              fontWeight: 700,
-              color: "var(--pass)",
+              gap: "8px",
+              flexWrap: "wrap",
+              marginBottom: "36px",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                background: "var(--pass)",
-                display: "inline-block",
-                animation: "pulseDot 2s infinite",
-              }}
-            />
-            HANDLING: CLEARED FOR REMOTE - AVAILABLE NOW
+            <span className="badge-tech" style={{ padding: "6px 12px", fontSize: "0.75rem" }}>
+              STRIPE &amp; PAYSTACK WEBHOOKS
+            </span>
+            <span className="badge-tech" style={{ padding: "6px 12px", fontSize: "0.75rem" }}>
+              AGENTIC RAG &amp; PGVECTOR
+            </span>
+            <span className="badge-tech" style={{ padding: "6px 12px", fontSize: "0.75rem" }}>
+              ON-DEVICE CV / TENSORFLOW.JS
+            </span>
+            <span className="badge-tech" style={{ padding: "6px 12px", fontSize: "0.75rem" }}>
+              FASTAPI &amp; NEXT.JS
+            </span>
           </div>
-          <p
+
+          {/* CTAs */}
+          <div
             style={{
-              fontSize: "clamp(17px,2vw,21px)",
-              lineHeight: 1.55,
-              maxWidth: "58ch",
-              margin: "26px 0 30px",
+              display: "flex",
+              gap: "14px",
+              alignItems: "center",
+              flexWrap: "wrap",
             }}
           >
-            I design interfaces that earn trust, build the fullstack systems underneath, and wire the AI that makes them think. Legal tech, computer vision, payments, agentic systems: every crate shipped from Lagos, every line of code mine.
-          </p>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 18, flexWrap: "wrap" }}>
-            <div style={{ flex: 1, minWidth: 230, maxWidth: 380 }}>
-              <div
-                style={{
-                  height: 58,
-                  background: "#fff",
-                  border: "2px solid var(--ink)",
-                  padding: 5,
-                }}
-              >
-                <Barcode value={SITE.github} />
-              </div>
-              <div
-                className="mono"
-                style={{
-                  fontSize: 9.5,
-                  letterSpacing: ".1em",
-                  color: "var(--muted)",
-                  marginTop: 6,
-                }}
-              >
-                CODE 128 - SCAN WITH YOUR PHONE → GITHUB (YES, IT WORKS)
-              </div>
-            </div>
-          </div>
-          {heroStamp && (
-            <div
+            <a
+              href="#work"
+              onClick={() => onSound?.()}
+              className="btn-yellow"
+            >
+              SEE THE WORK [SIDE A] ↓
+            </a>
+            <a
+              href={SITE.resume}
+              download
+              onClick={() => onSound?.()}
+              className="btn-outline"
+            >
+              DOWNLOAD RESUME ↓
+            </a>
+            <button
+              onClick={() => {
+                onSound?.();
+                onOpenProof();
+              }}
+              className="btn-ghost"
+              style={{ fontSize: "0.8125rem", textDecoration: "underline" }}
+            >
+              Recruiter 60-Sec Brief →
+            </button>
+            <button
+              onClick={() => {
+                onSound?.();
+                onFlipSide();
+              }}
+              className="btn-ghost"
               style={{
-                position: "absolute",
-                top: -22,
-                right: -18,
-                transform: "rotate(9deg)",
+                fontSize: "0.8125rem",
+                color: "var(--yellow)",
+                border: "1px dashed var(--yellow-border)",
+                padding: "8px 14px",
+                marginLeft: "auto",
               }}
             >
-              <div
-                className="stamp-rect"
-                style={{
-                  border: "3px solid var(--safety)",
-                  color: "var(--safety)",
-                  fontSize: 12,
-                  letterSpacing: ".1em",
-                  padding: "8px 14px",
-                  background: "var(--paper)",
-                  boxShadow:
-                    "inset 0 0 0 2px var(--paper), inset 0 0 0 3.5px var(--safety)",
-                }}
-              >
-                FRAGILE: HANDLE WITH AMBITION
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div
-          className="mono"
-          style={{
-            textAlign: "center",
-            marginTop: "9vh",
-            fontSize: 11,
-            letterSpacing: ".18em",
-            animation: "hintP 2.4s infinite",
-          }}
-        >
-          SCROLL TO START THE CONVEYOR ▼
+              Flip to Side B (The Studio) ↷
+            </button>
+          </div>
         </div>
       </div>
     </section>

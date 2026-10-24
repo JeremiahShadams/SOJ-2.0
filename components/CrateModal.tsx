@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 
 const RESULTS = [
-  { big: "91%", small: "RETRIEVAL ACCURACY", delay: "1.9s" },
-  { big: "+23", small: "POINTS OVER 68% BASELINE", delay: "2.05s" },
-  { big: "50", small: "CONTRACT TYPES IN THE EVAL HARNESS", delay: "2.2s" },
+  { big: "100%", small: "GROUNDED CLAUSE CITATIONS", delay: "1.9s" },
+  { big: "<1.2s", small: "GROQ LPU RISK ANALYSIS LATENCY", delay: "2.05s" },
+  { big: "HYBRID", small: "BM25 KEYWORD + PGVECTOR DENSE RETRIEVAL", delay: "2.2s" },
 ];
 
 const META = [
@@ -210,18 +210,18 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
 
           <SectionLabel>01 - PROBLEM</SectionLabel>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: "0 0 34px" }}>
-            Legal teams reviewed contracts with keyword search that missed clause
-            context entirely. Baseline retrieval sat at 68% - one in three questions
-            surfaced the wrong clause, and every wrong clause meant a lawyer
-            re-reading a 40-page document. That's not a retrieval problem. That's a business on fire.
+            Legal teams reviewed complex contracts with naive search that severed critical clause
+            boundaries. Without clause-aware context, answers missed subtle indemnities, liability caps,
+            and governing law nuances. Every hallucinated or misattributed clause meant a lawyer
+            re-reading a 40-page document. That is not just a search defect; that is enterprise liability.
           </p>
 
           <SectionLabel>02 - APPROACH</SectionLabel>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: "0 0 26px" }}>
-            Clause-aware chunking instead of naive splitting, hybrid dense + keyword
-            retrieval, a reranking pass, and grounded generation that must cite the
-            exact clause it answers from. An evaluation harness across 50 contract
-            types kept every change honest.
+            Structure-aware clause segmentation preserving legal hierarchy, hybrid dense
+            (pgvector) + sparse (BM25) retrieval, cross-encoder reranking, and grounded generation strictly
+            constrained to cited contract clauses. Powered by high-speed Groq LPU inference for real-time
+            risk scoring.
           </p>
 
           {/* the RAG pipeline as a literal conveyor pipeline */}
@@ -321,8 +321,9 @@ export default function CrateModal({ onClose }: { onClose: () => void }) {
             ))}
           </div>
           <p style={{ fontSize: 17.5, lineHeight: 1.7, maxWidth: "66ch", margin: 0 }}>
-            Every answer now cites the exact clause it came from. The lawyers stopped
-            re-reading 40-page documents. The eval harness makes regressions impossible to ship quietly. This is what happens when the person who designs the interface also engineers the retrieval pipeline.
+            Every answer now cites the exact contractual clause it originates from, with plain-English
+            risk explanations. Lawyers get instant, verified clause attribution instead of generic summaries.
+            This is what happens when the engineer designing the interface also builds the retrieval and inference pipeline.
           </p>
         </div>
         <div style={{ textAlign: "center", marginTop: 36 }}>

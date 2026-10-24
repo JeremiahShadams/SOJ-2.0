@@ -1,23 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* ══════════════════════════════════════════════════════════════════
+   JEREMIAH SHADAMORO — ARCHETYPE 2: DARK EDITORIAL + MANIFESTO YELLOW
+   ══════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ══════════ ARCHETYPE 2: DARK EDITORIAL + MANIFESTO YELLOW ══════════ */
   --bg-root: #09090b;
   --bg-surface: #111114;
   --bg-surface-elevated: #16161a;
   --bg-surface-hover: #1c1c22;
-  --bg-glass: rgba(17, 17, 20, 0.75);
+  --bg-glass: rgba(17, 17, 20, 0.85);
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.28);
 
-  /* The Signature Yellow Manifesto Accent */
+  /* Signature Yellow Manifesto Accent */
   --yellow: #ffe500;
   --yellow-hover: #ffd000;
   --yellow-glow: rgba(255, 229, 0, 0.18);
-  --yellow-glow-strong: rgba(255, 229, 0, 0.32);
-  --yellow-border: rgba(255, 229, 0, 0.4);
+  --yellow-glow-strong: rgba(255, 229, 0, 0.35);
+  --yellow-border: rgba(255, 229, 0, 0.45);
 
   --text-primary: #f4f4f5;
   --text-secondary: #a1a1aa;
@@ -25,11 +26,11 @@
   --text-inverse: #09090b;
 
   --signal-green: #22c55e;
-  --signal-green-glow: rgba(34, 197, 94, 0.2);
+  --signal-green-glow: rgba(34, 197, 94, 0.25);
 
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Space Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: var(--font-space, 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  --font-body: var(--font-inter, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  --font-mono: var(--font-mono, 'JetBrains Mono', 'Space Mono', SFMono-Regular, Menlo, monospace);
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -41,12 +42,11 @@
   --transition-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ══════════ AFTER HOURS MODE (DEEPER AMBER / CLUB LIGHTING) ══════════ */
 body.after-hours {
   --yellow: #ff9900;
   --yellow-hover: #ff8800;
-  --yellow-glow: rgba(255, 153, 0, 0.22);
-  --yellow-border: rgba(255, 153, 0, 0.45);
+  --yellow-glow: rgba(255, 153, 0, 0.25);
+  --yellow-border: rgba(255, 153, 0, 0.5);
   --bg-surface: #0e0d10;
   --bg-surface-elevated: #151319;
 }
@@ -54,6 +54,7 @@ body.after-hours {
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  background-color: #09090b;
 }
 
 * {
@@ -62,19 +63,40 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--bg-root);
-  color: var(--text-primary);
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   overflow-x: hidden;
-  selection-background-color: var(--yellow);
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 229, 0, 0.05), transparent),
+    radial-gradient(circle at 100% 50%, rgba(255, 255, 255, 0.015), transparent 40%);
 }
 
 ::selection {
   background: var(--yellow);
-  color: var(--text-inverse);
+  color: #09090b;
+}
+
+/* ══════════ RESET LINKS & BUTTONS ══════════ */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--yellow);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
 }
 
 /* ══════════ ACCESSIBILITY & FOCUS ══════════ */
@@ -96,18 +118,18 @@ body {
 
 /* ══════════ TYPOGRAPHY UTILITIES ══════════ */
 .font-display {
-  font-family: var(--font-display);
+  font-family: var(--font-display) !important;
 }
 
 .font-body {
-  font-family: var(--font-body);
+  font-family: var(--font-body) !important;
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-mono) !important;
 }
 
-/* ══════════ CONTAINER & SHELL ══════════ */
+/* ══════════ CONTAINER ══════════ */
 .site-container {
   max-width: var(--container-max);
   margin-left: auto;
@@ -118,29 +140,30 @@ body {
 
 /* ══════════ BUTTONS & CHIPS ══════════ */
 .btn-yellow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: var(--yellow);
-  color: var(--text-inverse);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-decoration: none;
-  box-shadow: 0 0 16px var(--yellow-glow);
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background-color: var(--yellow) !important;
+  color: #09090b !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  padding: 10px 18px !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--yellow) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  text-decoration: none !important;
+  box-shadow: 0 0 16px var(--yellow-glow) !important;
 }
 
 .btn-yellow:hover {
-  background-color: var(--yellow-hover);
+  background-color: var(--yellow-hover) !important;
   transform: translateY(-1px);
-  box-shadow: 0 0 24px var(--yellow-glow-strong);
+  box-shadow: 0 0 24px var(--yellow-glow-strong) !important;
+  color: #09090b !important;
 }
 
 .btn-yellow:active {
@@ -148,98 +171,99 @@ body {
 }
 
 .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-color: transparent;
-  color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 10px 18px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-medium);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  text-decoration: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 10px 18px !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-medium) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  text-decoration: none !important;
 }
 
 .btn-outline:hover {
-  background-color: var(--bg-surface-elevated);
-  border-color: var(--border-strong);
-  color: #fff;
+  background-color: var(--bg-surface-elevated) !important;
+  border-color: var(--border-strong) !important;
+  color: #fff !important;
   transform: translateY(-1px);
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: transparent;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 6px 10px;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: color var(--transition-fast);
-  text-decoration: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  padding: 6px 12px !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--radius-sm) !important;
+  cursor: pointer !important;
+  transition: all var(--transition-fast) !important;
+  text-decoration: none !important;
 }
 
 .btn-ghost:hover {
-  color: var(--yellow);
+  color: var(--yellow) !important;
+  background: rgba(255, 229, 0, 0.06) !important;
 }
 
 /* ══════════ BADGES & LABELS ══════════ */
 .badge-tech {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  text-transform: uppercase;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  padding: 4px 8px !important;
+  border-radius: 3px !important;
+  background-color: var(--bg-surface-elevated) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+  text-transform: uppercase !important;
 }
 
 .badge-yellow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 8px;
-  background: var(--yellow-glow);
-  color: var(--yellow);
-  border: 1px solid var(--yellow-border);
-  border-radius: 3px;
-  text-transform: uppercase;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 3px 8px !important;
+  background: var(--yellow-glow) !important;
+  color: var(--yellow) !important;
+  border: 1px solid var(--yellow-border) !important;
+  border-radius: 3px !important;
+  text-transform: uppercase !important;
 }
 
 .badge-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 8px;
-  background: var(--signal-green-glow);
-  color: var(--signal-green);
-  border: 1px solid rgba(34, 197, 94, 0.35);
-  border-radius: 3px;
-  text-transform: uppercase;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.6875rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 3px 8px !important;
+  background: var(--signal-green-glow) !important;
+  color: var(--signal-green) !important;
+  border: 1px solid rgba(34, 197, 94, 0.35) !important;
+  border-radius: 3px !important;
+  text-transform: uppercase !important;
 }
 
 .badge-live::before {
@@ -254,21 +278,24 @@ body {
 
 /* ══════════ CARDS & SURFACES ══════════ */
 .card-editorial {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-surface) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-md) !important;
   padding: clamp(1.5rem, 3vw, 2.25rem);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: all var(--transition-fast) !important;
   position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .card-editorial:hover {
-  background-color: var(--bg-surface-elevated);
-  border-color: var(--border-medium);
+  background-color: var(--bg-surface-elevated) !important;
+  border-color: var(--border-medium) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
 }
 
 .card-yellow-border {
-  border-left: 3px solid var(--yellow);
+  border-left: 3px solid var(--yellow) !important;
 }
 
 /* ══════════ RECORD GROOVES & TURNTABLE VIBES ══════════ */
@@ -299,16 +326,21 @@ body {
   50% { opacity: 0.3; transform: scale(0.85); }
 }
 
+@keyframes manifestoSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 /* ══════════ SCROLLBAR ══════════ */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-root);
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-medium);
+  background: rgba(255, 255, 255, 0.16);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {

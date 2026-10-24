@@ -9,10 +9,9 @@ export default function ProofStrip({ onSound }: { onSound?: () => void }) {
       aria-label="Side A Track 02 - Verified Proof Strip"
       style={{
         position: "relative",
-        padding: "clamp(30px, 5vh, 50px) 0",
-        borderTop: "1px solid var(--border-subtle)",
+        padding: "clamp(36px, 6vh, 60px) 0",
         borderBottom: "1px solid var(--border-subtle)",
-        background: "rgba(17, 17, 20, 0.4)",
+        background: "#0c0c0f",
       }}
     >
       <div className="site-container">
@@ -21,13 +20,23 @@ export default function ProofStrip({ onSound }: { onSound?: () => void }) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginBottom: "20px",
+            marginBottom: "24px",
+            flexWrap: "wrap",
+            gap: "12px",
           }}
         >
-          <div className="font-mono" style={{ fontSize: "0.6875rem", letterSpacing: "0.14em", color: "var(--text-tertiary)" }}>
-            TRACK 02 // PROOF STRIP — NO ESTIMATES, VERIFIED METRICS
+          <div
+            className="font-mono"
+            style={{
+              fontSize: "0.75rem",
+              letterSpacing: "0.14em",
+              color: "var(--text-tertiary)",
+              fontWeight: 700,
+            }}
+          >
+            TRACK 02 // PROOF STRIP — VERIFIED PRODUCTION OUTCOMES
           </div>
-          <span className="badge-tech" style={{ fontSize: "0.625rem" }}>
+          <span className="badge-tech" style={{ fontSize: "0.6875rem" }}>
             100% PRODUCTION ACCREDITED
           </span>
         </div>
@@ -36,7 +45,7 @@ export default function ProofStrip({ onSound }: { onSound?: () => void }) {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "16px",
+            gap: "18px",
           }}
         >
           {HEADLINE_METRICS.map((m) => (
@@ -50,19 +59,20 @@ export default function ProofStrip({ onSound }: { onSound?: () => void }) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                padding: "20px 22px",
-                gap: "8px",
+                padding: "24px 26px",
+                gap: "10px",
+                background: "var(--bg-surface)",
               }}
             >
               <div>
                 <div
                   className="font-display"
                   style={{
-                    fontSize: "clamp(2rem, 3.8vw, 2.75rem)",
+                    fontSize: "clamp(2.4rem, 4.2vw, 3.2rem)",
                     fontWeight: 700,
                     lineHeight: 1,
                     color: "var(--yellow)",
-                    letterSpacing: "-0.02em",
+                    letterSpacing: "-0.03em",
                   }}
                 >
                   {m.value}
@@ -70,32 +80,34 @@ export default function ProofStrip({ onSound }: { onSound?: () => void }) {
                 <div
                   className="font-mono"
                   style={{
-                    fontSize: "0.8125rem",
+                    fontSize: "0.875rem",
                     fontWeight: 700,
-                    color: "#fff",
-                    margin: "8px 0 4px",
+                    color: "#ffffff",
+                    margin: "12px 0 4px",
                   }}
                 >
                   {m.label}
                 </div>
               </div>
+
               <div
                 className="font-body"
                 style={{
-                  fontSize: "0.75rem",
+                  fontSize: "0.8125rem",
                   color: "var(--text-secondary)",
-                  lineHeight: 1.45,
+                  lineHeight: 1.5,
                 }}
               >
                 {m.sub}
               </div>
+
               <div
                 className="font-mono"
                 style={{
-                  fontSize: "0.6875rem",
+                  fontSize: "0.75rem",
                   color: "var(--yellow)",
-                  fontWeight: 600,
-                  marginTop: "6px",
+                  fontWeight: 700,
+                  marginTop: "8px",
                   display: "flex",
                   alignItems: "center",
                   gap: "4px",

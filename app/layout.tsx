@@ -1,89 +1,54 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { SITE } from "@/lib/site";
+import { Analytics } from '@vercel/analytics/next'
+import type { Metadata, Viewport } from 'next'
+import '@fontsource/instrument-serif/400.css'
+import '@fontsource/instrument-serif/400-italic.css'
+import '@fontsource-variable/geist'
+import '@fontsource-variable/geist-mono'
+import './globals.css'
+
+const metadataBase = new URL(
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
+)
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — ${SITE.role}`,
-  description: SITE.headline + " " + SITE.subheadline,
-  keywords: [
-    "Jeremiah Shadamoro",
-    "SOJ",
-    "Software Engineer",
-    "Full-Stack Engineer",
-    "AI Engineer",
-    "FastAPI",
-    "Next.js",
-    "TypeScript",
-    "Python",
-    "pgvector",
-    "LangGraph",
-    "Stripe",
-    "Paystack",
-    "TensorFlow.js",
-    "Lagos",
-    "Remote Engineer",
-  ],
-  authors: [{ name: SITE.name, url: SITE.github }],
-  creator: SITE.name,
+  metadataBase,
+  title: 'Jeremiah Shadamoro (S.O.J) — Full-Stack AI Engineer',
+  description: 'Jeremiah Shadamoro (S.O.J) is a Lagos-based Full-Stack AI Engineer architecting high-throughput products, low-latency AI pipelines, and resilient payment systems.',
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
   },
-  openGraph: {
-    title: `${SITE.name} — ${SITE.role}`,
-    description: SITE.headline,
-    type: "website",
-    siteName: "Jeremiah Shadamoro",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.role}`,
-    description: SITE.headline,
-    creator: "@jerry_fire17",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: '#0e0d0b',
+}
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: SITE.name,
-    jobTitle: SITE.role,
-    email: `mailto:${SITE.email}`,
-    telephone: SITE.phone,
-    url: "https://shadams.dev",
-    sameAs: [SITE.github, SITE.linkedin, SITE.x, SITE.medium],
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: SITE.education.institution,
-    },
-    knowsAbout: [
-      "Software Engineering",
-      "Full-Stack Development",
-      "Artificial Intelligence",
-      "Retrieval-Augmented Generation (RAG)",
-      "Payment Systems",
-      "Computer Vision",
-    ],
-  };
-
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "#09090b", color: "#f4f4f5", margin: 0 }}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+      <body className="antialiased">
         {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
-  );
+  )
 }

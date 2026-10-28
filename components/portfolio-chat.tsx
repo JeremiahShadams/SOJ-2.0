@@ -31,6 +31,9 @@ export default function PortfolioChat() {
 
     setQuestion('')
     setBusy(true)
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('chat-thinking'))
+    }
     let response = answer(trimmed)
 
     try {
@@ -46,6 +49,10 @@ export default function PortfolioChat() {
       }
     } catch {
       response = answer(trimmed)
+    } finally {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('chat-answered'))
+      }
     }
 
     setTurns((current) => [...current, { question: trimmed, response }])

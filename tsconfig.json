@@ -31,8 +31,10 @@
   ],
   "exclude": [
     "node_modules",
+    "zipped soj_2.0",
     "_backup_the_shipment",
     "_extracted_spec",
+    "_extracted_v6",
     ".challenge-import"
   ]
 }

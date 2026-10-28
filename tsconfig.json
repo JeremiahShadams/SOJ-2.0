@@ -31,6 +31,7 @@
   ],
   "exclude": [
     "node_modules",
+    "useless",
     "zipped soj_2.0",
     "_backup_the_shipment",
     "_extracted_spec",

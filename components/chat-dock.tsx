@@ -12,6 +12,7 @@ const ChatBot3D = dynamic(() => import('@/components/chat-bot-3d'), {
 
 export default function ChatDock() {
   const [open, setOpen] = useState(false)
+  const [dockPosition, setDockPosition] = useState<'center' | 'corner'>('center')
   const [tipVisible, setTipVisible] = useState(false)
   const [use3D, setUse3D] = useState(false)
   const [hopRatio, setHopRatio] = useState(0)
@@ -120,71 +121,86 @@ export default function ChatDock() {
   }
 
   return (
-    <div className="chat-dock">
+    <>
       {open && (
         <div
-          className="chat-dock-panel"
-          id="chat-dock-panel"
-          role="dialog"
-          aria-label="Ask about Jeremiah"
+          className={`soj-chat-overlay ${dockPosition === 'corner' ? 'is-corner-docked' : 'is-centered'}`}
         >
-          <PortfolioChat onClose={() => setOpen(false)} />
+          {dockPosition === 'center' && (
+            <div
+              className="soj-chat-backdrop"
+              onClick={() => setOpen(false)}
+              aria-hidden="true"
+            />
+          )}
+
+          <div
+            className="soj-chat-window-wrapper"
+            id="chat-dock-panel"
+            role="dialog"
+            aria-modal={dockPosition === 'center'}
+            aria-label="Ask about Jeremiah"
+          >
+            <PortfolioChat
+              onClose={() => setOpen(false)}
+              dockPosition={dockPosition}
+              onToggleDock={() =>
+                setDockPosition((prev) => (prev === 'center' ? 'corner' : 'center'))
+              }
+            />
+          </div>
         </div>
       )}
 
-      {/* Tooltip bubble (once per visit for 6s) */}
-      {!open && tipVisible && (
-        <div className="chat-mascot-tip" role="status">
-          <span className="chat-mascot-tip-dot" aria-hidden="true" />
-          <span>Ask S.O.J&apos;s AI</span>
-        </div>
-      )}
-
-      {/* Mascot Wrapper with Contact Shadow & Pulse Ring */}
-      <div className="chat-mascot-wrapper">
-        {/* Soft Laterite Attention Pulse (stops after first open) */}
-        {!hasOpened && !open && (
-          <div className="chat-mascot-pulse-ring" aria-hidden="true" />
+      {/* Mascot Corner Dock */}
+      <div className="chat-dock">
+        {/* Tooltip bubble (once per visit for 6s) */}
+        {!open && tipVisible && (
+          <div className="chat-mascot-tip" role="status">
+            <span className="chat-mascot-tip-dot" aria-hidden="true" />
+            <span>Ask S.O.J&apos;s AI</span>
+          </div>
         )}
 
-        {/* Contact Shadow that scales down while bot hops */}
-        <div
-          className="chat-mascot-shadow"
-          style={{
-            transform: `scale(${Math.max(0.4, 1 - hopRatio * 0.55)})`,
-            opacity: Math.max(0.12, 0.35 - hopRatio * 0.2),
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Interactive Button */}
-        <button
-          ref={triggerRef}
-          className={`chat-mascot-btn ${open ? 'is-open' : ''}`}
-          type="button"
-          aria-controls="chat-dock-panel"
-          aria-expanded={open}
-          aria-label="Ask S.O.J's AI assistant"
-          onClick={toggle}
-        >
-          {use3D ? (
-            <ChatBot3D
-              open={open}
-              onToggle={toggle}
-              onHopChange={setHopRatio}
-            />
-          ) : (
-            <ChatBot2D open={open} />
+        {/* Mascot Wrapper with Contact Shadow & Pulse Ring */}
+        <div className="chat-mascot-wrapper">
+          {/* Soft Laterite Attention Pulse (stops after first open) */}
+          {!hasOpened && !open && (
+            <div className="chat-mascot-pulse-ring" aria-hidden="true" />
           )}
 
-          {/* Close indicator overlay if open */}
-          {open && (
-            <span className="chat-mascot-close-badge" aria-hidden="true">
-              ✕
-            </span>
-          )}
-        </button>
+          {/* Contact Shadow that scales down while bot hops */}
+          <div
+            className="chat-mascot-shadow"
+            style={{
+              transform: `scale(${Math.max(0.4, 1 - hopRatio * 0.55)})`,
+              opacity: Math.max(0.12, 0.35 - hopRatio * 0.2),
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Interactive Button */}
+          <button
+            ref={triggerRef}
+            className={`chat-mascot-btn ${open ? 'is-open' : ''}`}
+            type="button"
+            aria-controls="chat-dock-panel"
+            aria-expanded={open}
+            aria-label={open ? 'Close Jeremiah AI chat' : "Ask S.O.J's AI assistant"}
+            onClick={toggle}
+          >
+            {use3D ? (
+              <ChatBot3D
+                open={open}
+                onToggle={toggle}
+                onHopChange={setHopRatio}
+              />
+            ) : (
+              <ChatBot2D open={open} />
+            )}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   )
 }

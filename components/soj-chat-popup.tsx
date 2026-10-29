@@ -31,7 +31,15 @@ interface MessageTurn {
 
 type ChatReply = { answer?: unknown }
 
-export default function SojChatPopup({ onClose }: { onClose: () => void }) {
+export default function SojChatPopup({
+  onClose,
+  dockPosition = 'center',
+  onToggleDock,
+}: {
+  onClose: () => void
+  dockPosition?: 'center' | 'corner'
+  onToggleDock?: () => void
+}) {
   const [question, setQuestion] = useState('')
   const [busy, setBusy] = useState(false)
   const [activeStep, setActiveStep] = useState<number>(0)
@@ -278,11 +286,22 @@ export default function SojChatPopup({ onClose }: { onClose: () => void }) {
           >
             ↺
           </button>
+          {onToggleDock && (
+            <button
+              type="button"
+              className="header-btn btn--dock"
+              onClick={onToggleDock}
+              title={dockPosition === 'center' ? 'Dock to corner' : 'Center on screen'}
+              aria-label={dockPosition === 'center' ? 'Dock to corner' : 'Center on screen'}
+            >
+              {dockPosition === 'center' ? '⤡' : '⤢'}
+            </button>
+          )}
           <button
             type="button"
             className="header-btn btn--close"
             onClick={onClose}
-            title="Close chat"
+            title="Close chat (Esc)"
             aria-label="Close chat"
           >
             ✕

@@ -1098,44 +1098,139 @@ h1 {
   opacity: 0.95;
 }
 /* =====================================================================
-   S.O.J Neural Dispatch Pop-up Window
+   S.O.J Neural Dispatch Pop-up Window & Overlays
    ===================================================================== */
 .chat-dock {
   position: fixed;
-  z-index: 80;
+  z-index: 85;
   right: 20px;
   bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 12px;
+  pointer-events: auto;
 }
-.chat-dock-panel {
-  width: min(94vw, 430px);
-  height: min(84vh, 640px);
-  max-height: 640px;
+
+/* Overlay System */
+.soj-chat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 990;
+  pointer-events: none;
+}
+.soj-chat-overlay.is-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Backdrop for Centered Mode */
+.soj-chat-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 7, 6, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 991;
+  pointer-events: auto;
+  animation: sojBackdropFade 0.22s ease-out;
+}
+
+@keyframes sojBackdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Floating Window Wrapper */
+.soj-chat-window-wrapper {
+  position: fixed;
+  pointer-events: auto;
   overflow: hidden;
-  padding: 0;
-  border: 1px solid rgba(228, 73, 31, 0.4);
+  border: 1px solid rgba(228, 73, 31, 0.45);
   background: #0d0c0a;
   border-radius: 22px;
   box-shadow:
-    0 28px 90px rgba(0, 0, 0, 0.9),
-    0 0 50px rgba(228, 73, 31, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transform-origin: bottom right;
-  animation: chatDockPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    0 32px 100px rgba(0, 0, 0, 0.95),
+    0 0 60px rgba(228, 73, 31, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
   display: flex;
   flex-direction: column;
 }
-@keyframes chatDockPopIn {
+
+/* 1. Centered Placement (Default) */
+.soj-chat-overlay.is-centered .soj-chat-window-wrapper {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 560px);
+  height: min(80vh, 620px);
+  max-height: 620px;
+  z-index: 995;
+  animation: sojHudCenterIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sojHudCenterIn {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: translate(-50%, -47%) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 2. Corner Docked Placement */
+.soj-chat-overlay.is-corner-docked .soj-chat-window-wrapper {
+  right: 24px;
+  bottom: 126px;
+  width: min(92vw, 420px);
+  height: min(72vh, 530px);
+  max-height: calc(100dvh - 148px);
+  z-index: 995;
+  transform-origin: bottom right;
+  animation: sojCornerPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sojCornerPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile: Clean Bottom Sheet */
+@media (max-width: 640px) {
+  .soj-chat-overlay.is-centered .soj-chat-window-wrapper,
+  .soj-chat-overlay.is-corner-docked .soj-chat-window-wrapper {
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 100vw !important;
+    height: 86vh !important;
+    max-height: 86vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    animation: sojMobileSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+}
+
+@keyframes sojMobileSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -1668,12 +1763,6 @@ h1 {
 
 @media (max-width: 700px) {
   .chat-dock { right: 14px; bottom: 14px; }
-  .chat-dock-panel {
-    width: calc(100vw - 28px);
-    height: min(78vh, 580px);
-    max-height: 580px;
-    border-radius: 18px;
-  }
 }
 
 /* v4 */
@@ -3132,23 +3221,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}html.has-cursor input,ht
   }
 }
 
-.chat-mascot-close-badge {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--laterite);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
-  border: 1.5px solid rgba(242, 237, 228, 0.35);
-  z-index: 10;
+.chat-mascot-btn.is-open {
+  filter: drop-shadow(0 0 16px rgba(228, 73, 31, 0.45));
 }
 
 .chat-mascot-tip {

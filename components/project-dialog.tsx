@@ -35,7 +35,17 @@ export default function ProjectDialog({ project, onClose }: ProjectDialogProps) 
           <button className="dialog-close" type="button" onClick={onClose} aria-label={`Close ${project.name} details`}>
             Close <span aria-hidden="true">×</span>
           </button>
-          <div className="dialog-demo"><ProjectDemo base={project.demo} name={project.name} playing /></div>
+          <div className={`dialog-demo ${project.format === 'web' ? 'is-web' : 'is-mobile'}`}>
+            <ProjectDemo
+              key={project.key}
+              projectKey={project.key}
+              base={project.demo}
+              name={project.name}
+              format={project.format}
+              liveUrl={project.live}
+              playing
+            />
+          </div>
           <p className="section-label">{project.n} / {project.type}</p>
           <h2 id="project-dialog-title">{project.name}</h2>
           <p className="dialog-summary">{project.line}</p>

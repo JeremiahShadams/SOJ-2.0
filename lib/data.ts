@@ -1,5 +1,6 @@
 export type Project = {
-  key: 'cg' | 'fresco' | 'tecvision' | 'citer'
+  key: 'cg' | 'fresco' | 'harvest-link' | 'citer'
+  format: 'web' | 'mobile'
   n: string
   name: string
   type: string
@@ -18,6 +19,7 @@ type Fact = { terms: string[]; text: string; source: string }
 export const projects: Project[] = [
   {
     key: 'cg',
+    format: 'web',
     demo: '/demos/cg',
     n: '01',
     name: 'ContractGuard',
@@ -35,6 +37,7 @@ export const projects: Project[] = [
   },
   {
     key: 'fresco',
+    format: 'mobile',
     demo: '/demos/fresco',
     n: '02',
     name: 'Fresco',
@@ -51,24 +54,26 @@ export const projects: Project[] = [
     repo: 'https://github.com/JeremiahShadams/Shelf-Life',
   },
   {
-    key: 'tecvision',
-    demo: '/demos/tecvision',
+    key: 'harvest-link',
+    format: 'mobile',
+    demo: '/demos/harvest-link',
     n: '03',
-    name: 'Tecvision',
-    type: 'Property platform / payments',
+    name: 'Harvest-Link',
+    type: 'Agritech logistics & mobile market',
     year: '2025',
     color: 'laterite',
-    line: 'Property listing, ownership, and payment flows for Immovvel, shipped with a remote product team.',
-    stack: 'Next.js, Node.js, PostgreSQL, Stripe, Paystack, Webhooks, TypeScript',
+    line: 'Offline-first mobile platform connecting smallholder farmers to bulk buyers, harvest forecasting, and automated price matching.',
+    stack: 'React Native, Expo, SQLite, Node.js, Fastify, PostgreSQL, WebSockets',
     points: [
-      'Shipped listing, ownership, and payment flows for Immovvel as part of a 30+ person remote team.',
-      'Integrated Stripe and Paystack with idempotent webhooks so retried events do not double-charge.',
+      'Offline-first sync engine queues field updates without cellular coverage and resolves conflicts when reconnecting.',
+      'Cut middleman transit matching from 24+ hours down to 45 minutes across 8 agricultural clusters.',
     ],
     live: null,
-    repo: null,
+    repo: 'https://github.com/JeremiahShadams/harvest-link',
   },
   {
     key: 'citer',
+    format: 'web',
     demo: '/demos/citer',
     n: '04',
     name: 'Citer',
@@ -146,6 +151,11 @@ export const facts: Fact[] = [
     source: 'Citer case study',
   },
   {
+    terms: ['harvest-link', 'harvest', 'agritech', 'farm', 'farmer', 'produce', 'logistics', 'market'],
+    text: 'Harvest-Link is an offline-first mobile exchange connecting smallholder farmers with buyers, harvest tracking, and automated transit pricing. Its offline sync engine queues field updates and cut middleman matching to 45 minutes.',
+    source: 'Harvest-Link case study',
+  },
+  {
     terms: ['ai', 'llm', 'llms', 'rag', 'agentic', 'machine', 'learning'],
     text: 'Jeremiah’s AI work includes ContractGuard, a contract-review assistant that answers with citations to source clauses, and Citer, an agentic repository Q&A tool that cites exact file and line references.',
     source: 'AI case studies',
@@ -187,7 +197,7 @@ export const facts: Fact[] = [
   },
 ]
 
-export const REFUSAL = 'That’s outside what I can answer here. I only know Jeremiah’s projects, experience, and how he builds. Ask me about ContractGuard, Fresco, or his AI work.'
+export const REFUSAL = 'That’s outside what I can answer here. I only know Jeremiah’s projects, experience, and how he builds. Ask me about ContractGuard, Fresco, Harvest-Link, Citer, or his AI work.'
 
 export const answer = (question: string) => {
   const words = new Set(question.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean))

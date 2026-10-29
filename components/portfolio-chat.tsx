@@ -1,7 +1,7 @@
 'use client'
 
-import IntelligenceTerminal from '@/components/intelligence-terminal'
+import SojChatPopup from '@/components/soj-chat-popup'
 
-export default function PortfolioChat() {
-  return <IntelligenceTerminal id="chat-dock-terminal" isModal={false} />
+export default function PortfolioChat({ onClose }: { onClose?: () => void }) {
+  return <SojChatPopup onClose={onClose || (() => {})} />
 }

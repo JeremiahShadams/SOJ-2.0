@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 const TABS = [
   { id: 'work', label: 'Work' },
   { id: 'studio', label: 'Studio' },
-  { id: 'process', label: 'Process' },
+  { id: 'process', label: 'Terminal' },
   { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ]

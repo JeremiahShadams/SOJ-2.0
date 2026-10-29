@@ -8,6 +8,7 @@ import CustomCursor from '@/components/custom-cursor'
 import StudioGallery from '@/components/studio-gallery'
 import DemoPopup from '@/components/demo-popup'
 import ProjectDialog from '@/components/project-dialog'
+import IntelligenceTerminal from '@/components/intelligence-terminal'
 import { experience, projects, type Project } from '@/lib/data'
 
 const EMAIL = 'jeremiahshadamoro@gmail.com'
@@ -264,8 +265,8 @@ export default function PortfolioPage() {
 
       <section className="process section-pad" id="process" aria-labelledby="process-title">
         <div className="section-top">
-          <p className="section-label" id="process-title">04 / How I build</p>
-          <p className="section-note">Retrieve first. Answer only what you can cite.</p>
+          <p className="section-label" id="process-title">04 / S.O.J Intelligence Terminal</p>
+          <p className="section-note">Retrieve first. Answer only what you can cite. Try the live model below.</p>
         </div>
         <div className="pipeline" aria-label="Question, retrieve, ground, answer with a source">
           {['Question', 'Retrieve', 'Ground', 'Answer + cite'].map((step, index) => (
@@ -278,7 +279,11 @@ export default function PortfolioPage() {
             </div>
           ))}
         </div>
-        <p className="chat-caption">Questions? The AI assistant in the corner answers from my verified CV and case studies.</p>
+
+        {/* The Dedicated S.O.J Intelligence Terminal */}
+        <div className="terminal-section-wrap">
+          <IntelligenceTerminal id="chat-terminal" />
+        </div>
       </section>
 
       <section className="experience section-pad" id="experience" aria-labelledby="experience-title">

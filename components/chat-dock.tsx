@@ -93,7 +93,17 @@ export default function ChatDock() {
       if (e.key === 'Escape') setOpen(false)
     }
     const handleOpenChat = () => {
-      setOpen(true)
+      const terminal = document.getElementById('chat-terminal')
+      if (terminal) {
+        terminal.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        const input = document.getElementById('terminal-query-input') as HTMLInputElement | null
+        if (input) setTimeout(() => input.focus(), 450)
+        terminal.classList.remove('term-highlight-pulse')
+        void terminal.offsetWidth
+        terminal.classList.add('term-highlight-pulse')
+      } else {
+        setOpen(true)
+      }
       setHasOpened(true)
       setTipVisible(false)
       sessionStorage.setItem('soj_chat_tip_seen', 'true')
@@ -108,15 +118,28 @@ export default function ChatDock() {
   }, [])
 
   const toggle = () => {
-    setOpen((prev) => {
-      const next = !prev
-      if (next) {
-        setHasOpened(true)
-        setTipVisible(false)
-        sessionStorage.setItem('soj_chat_tip_seen', 'true')
-      }
-      return next
-    })
+    const terminal = document.getElementById('chat-terminal')
+    if (terminal) {
+      terminal.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      const input = document.getElementById('terminal-query-input') as HTMLInputElement | null
+      if (input) setTimeout(() => input.focus(), 450)
+      terminal.classList.remove('term-highlight-pulse')
+      void terminal.offsetWidth
+      terminal.classList.add('term-highlight-pulse')
+      setHasOpened(true)
+      setTipVisible(false)
+      sessionStorage.setItem('soj_chat_tip_seen', 'true')
+    } else {
+      setOpen((prev) => {
+        const next = !prev
+        if (next) {
+          setHasOpened(true)
+          setTipVisible(false)
+          sessionStorage.setItem('soj_chat_tip_seen', 'true')
+        }
+        return next
+      })
+    }
   }
 
   return (
@@ -136,7 +159,7 @@ export default function ChatDock() {
       {!open && tipVisible && (
         <div className="chat-mascot-tip" role="status">
           <span className="chat-mascot-tip-dot" aria-hidden="true" />
-          <span>Ask S.O.J&apos;s AI</span>
+          <span>Ask S.O.J&apos;s AI ↓</span>
         </div>
       )}
 

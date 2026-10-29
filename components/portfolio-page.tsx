@@ -18,9 +18,44 @@ export default function PortfolioPage() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [copied, setCopied] = useState(false)
   const [hovered, setHovered] = useState<Project | null>(null)
+  const clearTimerRef = useRef<NodeJS.Timeout | null>(null)
   const scrollProgress = useRef(0)
   const statementRef = useRef<HTMLHeadingElement>(null)
   const timelineProgressRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleGlobalPointerMove = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null
+      const row = target?.closest('.project-row')
+      if (!row) {
+        if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+        clearTimerRef.current = setTimeout(() => {
+          setHovered((curr) => (curr ? null : curr))
+        }, 60)
+      }
+    }
+
+    const handleWindowLeave = () => {
+      if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+      setHovered(null)
+    }
+
+    const handleScroll = () => {
+      if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+      setHovered(null)
+    }
+
+    window.addEventListener('pointermove', handleGlobalPointerMove, { passive: true })
+    window.addEventListener('mouseleave', handleWindowLeave)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('pointermove', handleGlobalPointerMove)
+      window.removeEventListener('mouseleave', handleWindowLeave)
+      window.removeEventListener('scroll', handleScroll)
+      if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     const formatter = new Intl.DateTimeFormat('en-NG', {
@@ -153,17 +188,41 @@ export default function PortfolioPage() {
           <p className="section-label" id="work-title">02 / Selected work</p>
           <p className="section-note">Four case studies. Hover for a demo, select one for architecture &amp; links.</p>
         </div>
-        <div className="project-list">
+        <div
+          className="project-list"
+          onPointerLeave={() => {
+            if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+            clearTimerRef.current = setTimeout(() => setHovered(null), 50)
+          }}
+        >
           {projects.map((project) => (
             <button
               className={`project-row ${project.color}`}
               type="button"
               key={project.key}
-              onClick={() => setSelectedProject(project)}
-              onPointerEnter={() => setHovered(project)}
-              onPointerLeave={() => setHovered(null)}
-              onFocus={() => setHovered(project)}
-              onBlur={() => setHovered(null)}
+              onClick={() => {
+                if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+                setHovered(null)
+                setSelectedProject(project)
+              }}
+              onPointerEnter={() => {
+                if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+                setHovered(project)
+              }}
+              onPointerLeave={() => {
+                if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+                clearTimerRef.current = setTimeout(() => setHovered(null), 50)
+              }}
+              onFocus={(e) => {
+                if (e.currentTarget.matches(':focus-visible')) {
+                  if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+                  setHovered(project)
+                }
+              }}
+              onBlur={() => {
+                if (clearTimerRef.current) clearTimeout(clearTimerRef.current)
+                setHovered(null)
+              }}
             >
               <span className="project-number">{project.n}</span>
               <span className="project-main">

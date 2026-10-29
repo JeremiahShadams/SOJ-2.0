@@ -603,12 +603,21 @@ h1 {
   left: 0;
   opacity: 0;
   overflow: hidden;
-  pointer-events: none;
+  pointer-events: none !important;
   position: fixed;
-  scale: 0.92;
+  scale: 0.94;
   top: 0;
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), scale 0.22s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s ease-out, height 0.2s ease-out;
+  transition:
+    opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 60;
+  will-change: transform, width, height, opacity;
+}
+.demo-pop * {
+  pointer-events: none !important;
 }
 .demo-pop.on {
   opacity: 1;
@@ -628,8 +637,35 @@ h1 {
 .demo-pop.is-web {
   width: 380px;
   height: 246px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(242, 237, 228, 0.22);
+}
+
+/* Screen layer system for smooth cross-fading */
+.demo-pop-screens {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.demo-pop-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  scale: 0.97;
+  transition:
+    opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  visibility: hidden;
+}
+.demo-pop-layer.is-active {
+  opacity: 1;
+  scale: 1;
+  visibility: visible;
+  z-index: 1;
 }
 
 /* Video element (if media exists) */
